@@ -1,0 +1,63 @@
+{% extends "templates/lapmarkaz_base.html" %}
+{% import "templates/includes/lm_icons.html" as ic %}
+
+{% block title %}My Orders | Lapmarkaz{% endblock %}
+
+{% block lm_content %}
+<div class="lm-shell py-10">
+
+	<div class="flex flex-wrap items-end justify-between gap-4">
+		<div>
+			<h1 class="font-display text-[30px] font-bold tracking-tight text-ink">My Orders</h1>
+			<p class="mt-2 text-[14px] text-slate-500">
+				{{ orders | length }} order{{ "" if orders | length == 1 else "s" }} placed with Lapmarkaz.
+			</p>
+		</div>
+		<a href="/account" class="text-[13.5px] font-medium text-brand hover:underline">Back to My Account</a>
+	</div>
+
+	{%- if not orders %}
+	<div class="lm-card mt-8 px-6 py-20 text-center">
+		<span class="inline-flex text-slate-300">{{ ic.icon("box", "h-12 w-12", stroke="1.3") }}</span>
+		<p class="mt-4 font-display text-[17px] font-semibold text-ink">No orders yet</p>
+		<p class="mt-2 text-[14px] text-slate-500">When you place an order it'll show up here.</p>
+		<a href="/shop" class="lm-btn-primary mt-6">Start Shopping</a>
+	</div>
+
+	{%- else %}
+	<div class="lm-card mt-8 overflow-hidden">
+		<ul class="divide-y divide-line">
+			{%- for order in orders %}
+			<li class="flex flex-wrap items-center gap-4 px-6 py-5">
+				<div class="min-w-0 flex-1">
+					<div class="flex flex-wrap items-center gap-2.5">
+						<a href="/order/{{ order.name }}"
+							class="font-display text-[15px] font-semibold text-ink hover:text-brand">#{{ order.name }}</a>
+						<span class="lm-badge {{ order.tone }}">{{ order.status }}</span>
+						{%- if order.payment_status %}
+						<span class="lm-badge {% if order.payment_status == 'Paid' %}bg-emerald-50 text-emerald-700
+							{% else %}bg-slate-100 text-slate-500{% endif %}">{{ order.payment_status }}</span>
+						{%- endif %}
+					</div>
+					<p class="mt-1.5 text-[12.5px] text-slate-500">
+						{{ frappe.format_date(order.order_date) }}
+						&middot; {{ order.total_qty }} item{{ "" if order.total_qty == 1 else "s" }}
+						&middot; {{ order.payment_method }}
+						{%- if order.expected_delivery %}
+						&middot; arriving {{ frappe.format_date(order.expected_delivery) }}
+						{%- endif %}
+					</p>
+				</div>
+				<div class="text-right">
+					<p class="font-display text-[16px] font-bold text-ink">{{ rupees(order.grand_total) }}</p>
+					<a href="/order/{{ order.name }}" class="text-[12.5px] font-medium text-brand hover:underline">
+						View details
+					</a>
+				</div>
+			</li>
+			{%- endfor %}
+		</ul>
+	</div>
+	{%- endif %}
+</div>
+{% endblock %}

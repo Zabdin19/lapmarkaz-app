@@ -1,0 +1,86 @@
+{% extends "templates/lapmarkaz_base.html" %}
+{% import "templates/includes/lm_icons.html" as ic %}
+
+{% block title %}{{ settings.page_title or "Store Locator | Lapmarkaz" }}{% endblock %}
+
+{% block lm_content %}
+<div class="lm-shell py-12">
+
+	<h1 class="font-display text-[34px] font-bold tracking-tight text-ink">{{ settings.heading }}</h1>
+	{%- if settings.subheading %}
+	<p class="mt-3 max-w-[640px] text-[15px] leading-relaxed text-slate-600">{{ settings.subheading }}</p>
+	{%- endif %}
+
+	{%- if settings.show_city_filter and cities | length > 1 %}
+	<div class="mt-7 flex flex-wrap gap-2">
+		<a href="/stores"
+			class="rounded-full border px-4 py-2 text-[13px] font-medium transition
+				{% if not city %}border-brand bg-brand text-white{% else %}border-line bg-white text-slate-600 hover:text-ink{% endif %}">
+			{{ settings.all_cities_label or "All cities" }}
+		</a>
+		{%- for option in cities %}
+		<a href="/stores?city={{ option }}"
+			class="rounded-full border px-4 py-2 text-[13px] font-medium transition
+				{% if city == option %}border-brand bg-brand text-white{% else %}border-line bg-white text-slate-600 hover:text-ink{% endif %}">
+			{{ option }}
+		</a>
+		{%- endfor %}
+	</div>
+	{%- endif %}
+
+	{%- if not stores %}
+	<div class="lm-card mt-7 px-6 py-16 text-center">
+		<p class="font-display text-[17px] font-semibold text-ink">{{ settings.empty_heading }}</p>
+		<p class="mt-2 text-[14px] text-slate-500">{{ settings.empty_body }}</p>
+		<a href="{{ settings.empty_cta_link or '/support' }}" class="lm-btn-primary mt-6">{{ settings.empty_cta_label }}</a>
+	</div>
+
+	{%- else %}
+	<div class="mt-7 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+		{%- for store in stores %}
+		<div class="lm-card flex flex-col p-6">
+			<div class="flex items-start justify-between gap-3">
+				<h2 class="font-display text-[17px] font-bold tracking-tight text-ink">{{ store.store_name }}</h2>
+				{%- if store.is_flagship %}
+				<span class="lm-badge shrink-0 bg-brand-50 text-brand">{{ settings.flagship_label or "Flagship" }}</span>
+				{%- endif %}
+			</div>
+			<p class="mt-1 text-[12.5px] font-medium uppercase tracking-[0.07em] text-slate-400">{{ store.city }}</p>
+
+			<ul class="mt-4 space-y-3 text-[13px] text-slate-600">
+				<li class="flex gap-2.5">
+					<span class="mt-0.5 shrink-0 text-slate-400">{{ ic.icon("pin", "h-4 w-4") }}</span>
+					<span class="leading-relaxed">{{ store.address }}</span>
+				</li>
+				{%- if store.phone %}
+				<li class="flex gap-2.5">
+					<span class="shrink-0 text-slate-400">{{ ic.icon("phone", "h-4 w-4") }}</span>
+					<a href="tel:{{ store.phone | replace(' ', '') }}" class="hover:text-brand">{{ store.phone }}</a>
+				</li>
+				{%- endif %}
+				{%- if store.email %}
+				<li class="flex gap-2.5">
+					<span class="shrink-0 text-slate-400">{{ ic.icon("mail", "h-4 w-4") }}</span>
+					<a href="mailto:{{ store.email }}" class="hover:text-brand">{{ store.email }}</a>
+				</li>
+				{%- endif %}
+				{%- if store.hours %}
+				<li class="flex gap-2.5">
+					<span class="shrink-0 text-slate-400">{{ ic.icon("clock", "h-4 w-4") }}</span>
+					<span>{{ store.hours }}</span>
+				</li>
+				{%- endif %}
+			</ul>
+
+			{%- if store.map_url %}
+			<a href="{{ store.map_url }}" target="_blank" rel="noopener"
+				class="lm-btn-outline mt-5 w-full py-2.5 text-[13px]">
+				{{ ic.icon("pin", "h-4 w-4") }} {{ settings.directions_label or "Get Directions" }}
+			</a>
+			{%- endif %}
+		</div>
+		{%- endfor %}
+	</div>
+	{%- endif %}
+</div>
+{% endblock %}

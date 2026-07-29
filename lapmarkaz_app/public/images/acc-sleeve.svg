@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Laptop sleeve">
+  <rect width="400" height="400" fill="#EDF0F4"/>
+  <ellipse cx="200" cy="300" rx="132" ry="12" fill="#0F172A" opacity=".07"/>
+  <rect x="58" y="150" width="284" height="140" rx="18" fill="#2F3A52"/>
+  <rect x="58" y="150" width="284" height="30" rx="15" fill="#3C4A67"/>
+  <path d="M58 186h284" stroke="#1F2839" stroke-width="5"/>
+  <rect x="86" y="132" width="228" height="34" rx="8" fill="#C4CCD8"/>
+  <rect x="98" y="140" width="204" height="18" rx="5" fill="#E3E8EF"/>
+  <rect x="86" y="214" width="120" height="10" rx="5" fill="#4C5B79"/>
+  <rect x="86" y="236" width="80" height="10" rx="5" fill="#4C5B79" opacity=".7"/>
+  <circle cx="300" cy="232" r="16" fill="none" stroke="#5B6B8C" stroke-width="6"/>
+  <path d="M300 216v-14a12 12 0 0 1 24 0" fill="none" stroke="#5B6B8C" stroke-width="6" stroke-linecap="round"/>
+</svg>

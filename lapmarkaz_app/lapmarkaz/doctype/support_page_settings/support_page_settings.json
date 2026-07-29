@@ -1,0 +1,256 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-07-28 10:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "sb_sup_hero",
+  "hero_heading",
+  "hero_subheading",
+  "cb_sup_hero",
+  "search_placeholder",
+  "show_search",
+  "sb_sup_cats",
+  "categories_heading",
+  "categories",
+  "sb_sup_faq",
+  "faq_heading",
+  "faqs",
+  "sb_sup_contact",
+  "contact_heading",
+  "contact_button_label",
+  "cb_sup_contact",
+  "contact_success_message",
+  "notify_email",
+  "sb_sup_channels",
+  "channels_heading",
+  "channels",
+  "sb_sup_resources",
+  "resources_heading",
+  "resources",
+  "sb_sup_footer",
+  "footer_note",
+  "footer_tagline",
+  "cb_sup_footer",
+  "footer_links",
+  "sb_sup_seo",
+  "page_title",
+  "meta_description"
+ ],
+ "fields": [
+  {
+   "fieldname": "sb_sup_hero",
+   "fieldtype": "Section Break",
+   "label": "Hero"
+  },
+  {
+   "default": "How can we help you today?",
+   "fieldname": "hero_heading",
+   "fieldtype": "Data",
+   "label": "Heading",
+   "reqd": 1
+  },
+  {
+   "fieldname": "hero_subheading",
+   "fieldtype": "Text",
+   "label": "Subheading"
+  },
+  {
+   "fieldname": "cb_sup_hero",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Search for help...",
+   "fieldname": "search_placeholder",
+   "fieldtype": "Data",
+   "label": "Search Placeholder"
+  },
+  {
+   "default": "1",
+   "fieldname": "show_search",
+   "fieldtype": "Check",
+   "label": "Show Search"
+  },
+  {
+   "fieldname": "sb_sup_cats",
+   "fieldtype": "Section Break",
+   "label": "Help Categories"
+  },
+  {
+   "default": "Help Categories",
+   "fieldname": "categories_heading",
+   "fieldtype": "Data",
+   "label": "Heading"
+  },
+  {
+   "fieldname": "categories",
+   "fieldtype": "Table",
+   "label": "Categories",
+   "options": "Lapmarkaz Feature Item"
+  },
+  {
+   "fieldname": "sb_sup_faq",
+   "fieldtype": "Section Break",
+   "label": "FAQs"
+  },
+  {
+   "default": "Frequently Asked Questions",
+   "fieldname": "faq_heading",
+   "fieldtype": "Data",
+   "label": "Heading"
+  },
+  {
+   "fieldname": "faqs",
+   "fieldtype": "Table",
+   "label": "FAQs",
+   "options": "Lapmarkaz FAQ Item"
+  },
+  {
+   "fieldname": "sb_sup_contact",
+   "fieldtype": "Section Break",
+   "label": "Contact Form"
+  },
+  {
+   "default": "Contact Us",
+   "fieldname": "contact_heading",
+   "fieldtype": "Data",
+   "label": "Heading"
+  },
+  {
+   "default": "Send Message",
+   "fieldname": "contact_button_label",
+   "fieldtype": "Data",
+   "label": "Button Label"
+  },
+  {
+   "fieldname": "cb_sup_contact",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Thanks \u2014 we've got your message and will reply within one business day.",
+   "fieldname": "contact_success_message",
+   "fieldtype": "Data",
+   "label": "Success Message"
+  },
+  {
+   "description": "Optional: send an alert here when a message arrives",
+   "fieldname": "notify_email",
+   "fieldtype": "Data",
+   "label": "Notify Email",
+   "options": "Email"
+  },
+  {
+   "fieldname": "sb_sup_channels",
+   "fieldtype": "Section Break",
+   "label": "Direct Channels"
+  },
+  {
+   "default": "Direct Channels",
+   "fieldname": "channels_heading",
+   "fieldtype": "Data",
+   "label": "Heading"
+  },
+  {
+   "fieldname": "channels",
+   "fieldtype": "Table",
+   "label": "Channels",
+   "options": "Lapmarkaz Support Channel"
+  },
+  {
+   "fieldname": "sb_sup_resources",
+   "fieldtype": "Section Break",
+   "label": "Technical Resources"
+  },
+  {
+   "default": "Technical Resources",
+   "fieldname": "resources_heading",
+   "fieldtype": "Data",
+   "label": "Heading"
+  },
+  {
+   "fieldname": "resources",
+   "fieldtype": "Table",
+   "label": "Resources",
+   "options": "Lapmarkaz Feature Item"
+  },
+  {
+   "fieldname": "sb_sup_footer",
+   "fieldtype": "Section Break",
+   "label": "Footer"
+  },
+  {
+   "default": "\u00a9 2024 Lapmarkaz. All rights reserved.",
+   "fieldname": "footer_note",
+   "fieldtype": "Data",
+   "label": "Copyright Note"
+  },
+  {
+   "default": "Premium Laptops in Pakistan.",
+   "fieldname": "footer_tagline",
+   "fieldtype": "Data",
+   "label": "Tagline"
+  },
+  {
+   "fieldname": "cb_sup_footer",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "footer_links",
+   "fieldtype": "Table",
+   "label": "Links",
+   "options": "Lapmarkaz Footer Link"
+  },
+  {
+   "fieldname": "sb_sup_seo",
+   "fieldtype": "Section Break",
+   "label": "SEO"
+  },
+  {
+   "default": "Support | Lapmarkaz",
+   "fieldname": "page_title",
+   "fieldtype": "Data",
+   "label": "Page Title"
+  },
+  {
+   "fieldname": "meta_description",
+   "fieldtype": "Small Text",
+   "label": "Meta Description"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2026-07-28 10:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Lapmarkaz",
+ "name": "Support Page Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "Website Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

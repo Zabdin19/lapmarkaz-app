@@ -1,0 +1,321 @@
+{
+ "charts": [],
+ "content": "[]",
+ "creation": "2026-07-29 15:29:53.780156",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "hide_custom": 0,
+ "icon": "retail",
+ "idx": 0,
+ "indicator_color": "green",
+ "is_hidden": 0,
+ "label": "Lapmarkaz",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Catalogue",
+   "link_count": 7,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Laptop",
+   "link_count": 0,
+   "link_to": "Laptop",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Laptop Brand",
+   "link_count": 0,
+   "link_to": "Laptop Brand",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Laptop Usage",
+   "link_count": 0,
+   "link_to": "Laptop Usage",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Laptop Review",
+   "link_count": 0,
+   "link_to": "Laptop Review",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Accessory",
+   "link_count": 0,
+   "link_to": "Lapmarkaz Accessory",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Accessory Category",
+   "link_count": 0,
+   "link_to": "Accessory Category",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Accessory Brand",
+   "link_count": 0,
+   "link_to": "Accessory Brand",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Sales",
+   "link_count": 5,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Order",
+   "link_count": 0,
+   "link_to": "Lapmarkaz Order",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Cart",
+   "link_count": 0,
+   "link_to": "Lapmarkaz Cart",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Address",
+   "link_count": 0,
+   "link_to": "Lapmarkaz Address",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Payment Method",
+   "link_count": 0,
+   "link_to": "Lapmarkaz Payment Method",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Shop Settings",
+   "link_count": 0,
+   "link_to": "Lapmarkaz Shop Settings",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Content",
+   "link_count": 8,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Home Page Settings",
+   "link_count": 0,
+   "link_to": "Home Page Settings",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "About Page Settings",
+   "link_count": 0,
+   "link_to": "About Page Settings",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Accessories Page Settings",
+   "link_count": 0,
+   "link_to": "Accessories Page Settings",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Support Page Settings",
+   "link_count": 0,
+   "link_to": "Support Page Settings",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Store Locator Settings",
+   "link_count": 0,
+   "link_to": "Store Locator Settings",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Policy Page",
+   "link_count": 0,
+   "link_to": "Lapmarkaz Policy Page",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Store",
+   "link_count": 0,
+   "link_to": "Lapmarkaz Store",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Hero Slide",
+   "link_count": 0,
+   "link_to": "Lapmarkaz Hero Slide",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Customers",
+   "link_count": 2,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Support Message",
+   "link_count": 0,
+   "link_to": "Lapmarkaz Support Message",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Wishlist Item",
+   "link_count": 0,
+   "link_to": "Lapmarkaz Wishlist Item",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2026-07-29 15:29:53.780156",
+ "modified_by": "Administrator",
+ "module": "lapmarkaz",
+ "name": "Lapmarkaz",
+ "number_cards": [],
+ "owner": "Administrator",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [],
+ "sequence_id": 1.0,
+ "shortcuts": [
+  {
+   "doc_view": "",
+   "label": "Laptop",
+   "link_to": "Laptop",
+   "type": "DocType"
+  },
+  {
+   "doc_view": "",
+   "label": "Accessories",
+   "link_to": "Lapmarkaz Accessory",
+   "type": "DocType"
+  },
+  {
+   "doc_view": "",
+   "label": "Orders",
+   "link_to": "Lapmarkaz Order",
+   "type": "DocType"
+  },
+  {
+   "doc_view": "",
+   "label": "Payment Methods",
+   "link_to": "Lapmarkaz Payment Method",
+   "type": "DocType"
+  },
+  {
+   "doc_view": "",
+   "label": "Shop Settings",
+   "link_to": "Lapmarkaz Shop Settings",
+   "type": "DocType"
+  },
+  {
+   "doc_view": "",
+   "label": "Home Page",
+   "link_to": "Home Page Settings",
+   "type": "DocType"
+  }
+ ],
+ "title": "Lapmarkaz"
+}

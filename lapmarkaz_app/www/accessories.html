@@ -1,0 +1,168 @@
+{% extends "templates/lapmarkaz_base.html" %}
+{% import "templates/includes/lm_icons.html" as ic %}
+
+{% block title %}{{ settings.page_title or "Premium Accessories | Lapmarkaz" }}{% endblock %}
+
+{% block lm_content %}
+<div class="lm-shell py-9">
+
+	<h1 class="font-display text-[38px] font-bold tracking-tight text-ink">{{ settings.heading }}</h1>
+	{%- if settings.subheading %}
+	<p class="mt-3 max-w-[720px] text-[15px] leading-relaxed text-slate-600">{{ settings.subheading }}</p>
+	{%- endif %}
+
+	<div class="mt-8 grid items-start gap-6 lg:grid-cols-[280px_minmax(0,1fr)]">
+
+		{# ------------------------------------------------------- filter rail #}
+		<form method="get" action="/accessories" id="lm-acc-filters" class="lm-card px-6 py-6 lg:sticky lg:top-[76px]">
+			{%- if search %}<input type="hidden" name="q" value="{{ search }}">{% endif %}
+
+			<div class="flex items-center justify-between border-b border-line pb-4">
+				<h2 class="font-display text-[19px] font-bold tracking-tight text-ink">Filters</h2>
+				{%- if active_filter_count %}
+				<a href="/accessories" class="text-[13px] font-semibold text-brand hover:underline">Clear All</a>
+				{%- else %}
+				<span class="text-[13px] font-semibold text-brand/40">Clear All</span>
+				{%- endif %}
+			</div>
+
+			{%- for facet in facets %}
+			{%- set options = facet_options[facet.param] %}
+			{%- set picked = selected[facet.param] %}
+			<div class="pt-5">
+				<h3 class="font-display text-[15px] font-bold text-ink">{{ facet.label }}</h3>
+				<div class="mt-3 space-y-2.5">
+					{%- for option in options %}
+					<label class="flex cursor-pointer items-start gap-2.5 text-[13.5px] text-slate-600 hover:text-ink">
+						<input type="checkbox" name="{{ facet.param }}" value="{{ option.value }}"
+							onchange="this.form.submit()"
+							{% if option.value in picked %}checked{% endif %}
+							class="mt-0.5 h-4 w-4 shrink-0 rounded border-line text-brand focus:ring-brand/30">
+						<span>{{ option.label }}</span>
+					</label>
+					{%- endfor %}
+				</div>
+			</div>
+			{%- endfor %}
+
+			<noscript>
+				<button type="submit" class="lm-btn-primary mt-5 w-full py-2.5 text-[13px]">Apply Filters</button>
+			</noscript>
+		</form>
+
+		{# ------------------------------------------------------------ results #}
+		<div>
+			<div class="flex flex-wrap items-center justify-between gap-3">
+				<p class="text-[14px] text-slate-600">
+					Showing <span class="font-semibold text-ink">{{ total }}</span> product{{ "" if total == 1 else "s" }}
+					{%- if search %} for “{{ search }}”{% endif %}
+				</p>
+
+				<div class="flex items-center gap-3">
+					<label for="lm-acc-sort" class="text-[14px] text-slate-500">Sort by:</label>
+					<select id="lm-acc-sort" name="sort" form="lm-acc-filters" onchange="this.form.submit()"
+						class="h-10 rounded-lg border border-line bg-white pl-3.5 pr-9 text-[13.5px] text-ink
+							focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/15">
+						{%- for option in sort_options %}
+						<option value="{{ option.value }}" {% if option.value == sort %}selected{% endif %}>{{ option.label }}</option>
+						{%- endfor %}
+					</select>
+				</div>
+			</div>
+
+			{%- if not accessories %}
+			<div class="lm-card mt-5 px-6 py-16 text-center">
+				<p class="font-display text-[17px] font-semibold text-ink">No accessories match those filters</p>
+				<p class="mt-2 text-[14px] text-slate-500">Try clearing a filter or two.</p>
+				<a href="/accessories" class="lm-btn-primary mt-6">Clear all filters</a>
+			</div>
+
+			{%- else %}
+			<div class="mt-5 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+				{%- for item in accessories %}
+				<div class="lm-card flex flex-col overflow-hidden transition hover:shadow-pop">
+					<div class="relative flex h-[170px] items-center justify-center bg-[#EDF0F4] px-6">
+						<img src="{{ item.image }}" alt="{{ item.accessory_name }}"
+							class="max-h-full max-w-full object-contain" loading="lazy">
+						{%- if item.is_best_seller %}
+						<span class="lm-badge absolute left-3 top-3 bg-emerald-800 text-white">Best Seller</span>
+						{%- endif %}
+					</div>
+
+					<div class="flex flex-1 flex-col px-4 pb-4 pt-4">
+						<p class="text-[11px] font-semibold uppercase tracking-[0.08em] text-slate-400">{{ item.brand }}</p>
+						<h3 class="mt-1.5 font-display text-[14.5px] font-bold leading-snug text-ink">
+							{{ item.accessory_name }}
+						</h3>
+
+						{%- if item.review_count %}
+						<div class="mt-2 flex items-center gap-1.5">
+							<span class="text-amber-400">{{ ic.icon("star", "h-[14px] w-[14px]") }}</span>
+							<span class="text-[12.5px] font-medium text-ink">{{ "%.1f" | format(item.rating or 0) }}</span>
+							<span class="text-[12.5px] text-slate-500">({{ item.review_count }} reviews)</span>
+						</div>
+						{%- endif %}
+
+						<div class="mt-auto flex items-center justify-between pt-4">
+							<span class="font-display text-[19px] font-bold text-ink">{{ rupees(item.price, "Rs") }}</span>
+							<button type="button" data-lm-add="{{ item.name }}" data-lm-type="Accessory"
+								aria-label="Add {{ item.accessory_name }} to cart"
+								class="flex h-10 w-10 items-center justify-center rounded-full bg-page text-slate-600
+									transition hover:bg-brand hover:text-white">
+								{{ ic.icon("cart", "h-[18px] w-[18px]") }}
+							</button>
+						</div>
+					</div>
+				</div>
+				{%- endfor %}
+			</div>
+			{%- endif %}
+
+			{# --------------------------------------------------- pagination #}
+			{%- if page_numbers %}
+			<nav class="mt-9 flex items-center justify-center gap-2" aria-label="Pagination">
+				{%- set qs = base_query + ("&" if base_query else "") %}
+
+				<a href="{{ '/accessories?' ~ qs ~ 'page=' ~ (page - 1) if page > 1 else '#' }}" aria-label="Previous page"
+					class="flex h-10 w-10 items-center justify-center rounded-lg border border-line bg-white transition
+						{% if page > 1 %}text-slate-600 hover:text-ink{% else %}pointer-events-none text-slate-300{% endif %}">
+					{{ ic.icon("chevron-left", "h-4 w-4") }}
+				</a>
+
+				{%- for number in page_numbers %}
+					{%- if number is none %}
+					<span class="px-1 text-slate-400">…</span>
+					{%- else %}
+					<a href="/accessories?{{ qs }}page={{ number }}"
+						class="flex h-10 min-w-[40px] items-center justify-center rounded-lg border px-2 text-[14px] font-semibold transition
+							{% if number == page %}border-brand bg-brand text-white
+							{% else %}border-line bg-white text-slate-600 hover:text-ink{% endif %}">{{ number }}</a>
+					{%- endif %}
+				{%- endfor %}
+
+				<a href="{{ '/accessories?' ~ qs ~ 'page=' ~ (page + 1) if page < total_pages else '#' }}" aria-label="Next page"
+					class="flex h-10 w-10 items-center justify-center rounded-lg border border-line bg-white transition
+						{% if page < total_pages %}text-slate-600 hover:text-ink{% else %}pointer-events-none text-slate-300{% endif %}">
+					{{ ic.icon("chevron-right", "h-4 w-4") }}
+				</a>
+			</nav>
+			{%- endif %}
+		</div>
+	</div>
+</div>
+
+{# --------------------------------------------------------- feature strip #}
+{%- if settings.show_features and settings.features %}
+<section class="border-t border-line bg-white">
+	<div class="lm-shell grid gap-10 py-14 md:grid-cols-3">
+		{%- for feature in settings.features %}
+		<div class="text-center">
+			<span class="inline-flex text-ink">{{ ic.icon(feature.icon or "shield-check", "h-7 w-7", stroke="1.6") }}</span>
+			<h3 class="mt-3 font-display text-[15.5px] font-bold text-ink">{{ feature.title }}</h3>
+			<p class="mx-auto mt-2 max-w-[330px] text-[13.5px] leading-relaxed text-slate-600">{{ feature.description }}</p>
+		</div>
+		{%- endfor %}
+	</div>
+</section>
+{%- endif %}
+{% endblock %}

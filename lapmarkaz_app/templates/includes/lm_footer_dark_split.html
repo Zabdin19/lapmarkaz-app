@@ -1,0 +1,26 @@
+{#
+	Dark footer: wordmark + tagline left, inline links right, centred note below.
+		footer_tagline, footer_links [{label, href}], footer_note
+#}
+<footer class="bg-navy text-slate-400">
+	<div class="lm-shell py-12">
+		<div class="flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between">
+			<div>
+				<p class="font-display text-[26px] font-bold tracking-tight text-white">Lapmarkaz</p>
+				<p class="mt-3 max-w-[380px] text-[13.5px] leading-relaxed">
+					{{ footer_tagline or "High-performance computing for Pakistan." }}
+				</p>
+			</div>
+
+			<nav class="flex flex-wrap items-center gap-x-8 gap-y-3 lg:pt-2">
+				{%- for link in (footer_links or []) %}
+				<a href="{{ link.href }}" class="text-[13.5px] transition hover:text-white">{{ link.label }}</a>
+				{%- endfor %}
+			</nav>
+		</div>
+
+		<div class="mt-10 border-t border-white/10 pt-6 text-center text-[12.5px] text-slate-500">
+			{{ footer_note or "© 2024 Lapmarkaz. All rights reserved." }}
+		</div>
+	</div>
+</footer>

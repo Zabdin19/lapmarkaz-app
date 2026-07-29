@@ -1,0 +1,249 @@
+{% extends "templates/lapmarkaz_base.html" %}
+{% import "templates/includes/lm_icons.html" as ic %}
+
+{% block title %}{{ settings.page_title or "Support | Lapmarkaz" }}{% endblock %}
+
+{% block lm_content %}
+
+{# ---------------------------------------------------------------- hero #}
+<section class="bg-[#ECEEF1]">
+	<div class="lm-shell py-16 text-center">
+		<h1 class="font-display text-[28px] font-bold tracking-tight text-ink sm:text-[30px]">
+			{{ settings.hero_heading }}
+		</h1>
+		{%- if settings.hero_subheading %}
+		<p class="mx-auto mt-4 max-w-[520px] text-[14px] leading-relaxed text-slate-600">
+			{{ settings.hero_subheading }}
+		</p>
+		{%- endif %}
+
+		{%- if settings.show_search %}
+		<form action="/support" method="get" class="relative mx-auto mt-7 max-w-[420px]">
+			<label class="sr-only" for="lm-help-search">Search help</label>
+			<span class="pointer-events-none absolute inset-y-0 left-4 flex items-center text-slate-400">
+				{{ ic.icon("search", "h-[18px] w-[18px]") }}
+			</span>
+			<input id="lm-help-search" type="search" name="q" value="{{ search }}"
+				placeholder="{{ settings.search_placeholder or 'Search for help...' }}"
+				class="h-12 w-full rounded-full border border-line bg-white pl-11 pr-5 text-[14px] text-ink
+					placeholder:text-slate-400 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/15">
+		</form>
+		{%- endif %}
+	</div>
+</section>
+
+{# ---------------------------------------------------------- categories #}
+{%- if settings.categories %}
+<section class="bg-page">
+	<div class="lm-shell py-14">
+		<h2 class="text-center font-display text-[22px] font-bold tracking-tight text-ink">
+			{{ settings.categories_heading or "Help Categories" }}
+		</h2>
+
+		<div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+			{%- for category in settings.categories %}
+			{%- set tag = "a" if category.link else "div" %}
+			<{{ tag }} {% if category.link %}href="{{ category.link }}"{% endif %}
+				class="lm-card block px-5 py-7 text-center transition hover:shadow-pop">
+				<span class="inline-flex h-11 w-11 items-center justify-center rounded-full bg-[#ECEEF1] text-ink">
+					{{ ic.icon(category.icon or "headset", "h-[19px] w-[19px]") }}
+				</span>
+				<h3 class="mt-4 font-display text-[15px] font-bold text-ink">{{ category.title }}</h3>
+				{%- if category.description %}
+				<p class="mt-2 text-[12px] leading-relaxed text-slate-500">{{ category.description }}</p>
+				{%- endif %}
+			</{{ tag }}>
+			{%- endfor %}
+		</div>
+	</div>
+</section>
+{%- endif %}
+
+{# ----------------------------------------------------------------- faq #}
+<section class="bg-[#ECEEF1]">
+	<div class="lm-shell py-14">
+		<h2 class="text-center font-display text-[22px] font-bold tracking-tight text-ink">
+			{{ settings.faq_heading or "Frequently Asked Questions" }}
+		</h2>
+
+		{%- if search %}
+		<p class="mt-3 text-center text-[13px] text-slate-500">
+			{{ faqs | length }} result{{ "" if faqs | length == 1 else "s" }} for “{{ search }}”
+			&middot; <a href="/support" class="font-medium text-brand hover:underline">clear</a>
+		</p>
+		{%- endif %}
+
+		<div class="mx-auto mt-8 max-w-[600px] space-y-4">
+			{%- for faq in faqs %}
+			<details class="group rounded-lg border border-line bg-white px-5 open:shadow-card">
+				<summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-4
+					text-[13.5px] font-medium text-ink marker:content-none [&::-webkit-details-marker]:hidden">
+					{{ faq.question }}
+					<span class="shrink-0 text-slate-400 transition-transform group-open:rotate-180">
+						{{ ic.icon("chevron-down", "h-[18px] w-[18px]") }}
+					</span>
+				</summary>
+				<p class="border-t border-line py-4 text-[13px] leading-relaxed text-slate-600">{{ faq.answer }}</p>
+			</details>
+			{%- else %}
+			<p class="rounded-lg border border-line bg-white px-5 py-8 text-center text-[13.5px] text-slate-500">
+				Nothing matched that search. Try different words, or send us a message below.
+			</p>
+			{%- endfor %}
+		</div>
+	</div>
+</section>
+
+{# ------------------------------------------------------------- contact #}
+<section class="bg-page">
+	<div class="lm-shell grid items-start gap-6 py-14 lg:grid-cols-2">
+
+		<div class="lm-card p-7">
+			<h2 class="font-display text-[19px] font-bold tracking-tight text-ink">
+				{{ settings.contact_heading or "Contact Us" }}
+			</h2>
+
+			<form class="mt-5 space-y-4" data-lm-contact novalidate>
+				<div>
+					<label class="lm-label" for="sender_name">Name</label>
+					<input class="lm-input" id="sender_name" name="sender_name" required
+						autocomplete="name" placeholder="Your Name">
+				</div>
+				<div>
+					<label class="lm-label" for="email">Email</label>
+					<input class="lm-input" id="email" name="email" type="email" required
+						autocomplete="email" placeholder="your@email.com">
+				</div>
+				<div>
+					<label class="lm-label" for="message">Message</label>
+					<textarea class="lm-input min-h-[110px] resize-y" id="message" name="message" required
+						placeholder="How can we help you?"></textarea>
+				</div>
+
+				<p data-lm-contact-msg class="hidden rounded-lg px-4 py-3 text-[13px] font-medium"></p>
+
+				<button type="submit" class="lm-btn-primary w-full py-3">
+					<span data-lm-contact-label>{{ settings.contact_button_label or "Send Message" }}</span>
+				</button>
+			</form>
+		</div>
+
+		<div class="space-y-6">
+			{%- if settings.channels %}
+			<div class="rounded-xl border border-line bg-[#ECEEF1] p-7">
+				<h2 class="font-display text-[19px] font-bold tracking-tight text-ink">
+					{{ settings.channels_heading or "Direct Channels" }}
+				</h2>
+				<ul class="mt-5 space-y-4">
+					{%- for channel in settings.channels %}
+					<li class="flex items-start gap-3.5">
+						<span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white text-brand">
+							{{ ic.icon(channel.icon or "mail", "h-[17px] w-[17px]") }}
+						</span>
+						<span>
+							<span class="block text-[13px] font-semibold text-ink">{{ channel.label }}</span>
+							{%- if channel.link %}
+							<a href="{{ channel.link }}" class="block text-[12.5px] text-brand hover:underline">{{ channel.value }}</a>
+							{%- else %}
+							<span class="block text-[12.5px] text-slate-600">{{ channel.value }}</span>
+							{%- endif %}
+						</span>
+					</li>
+					{%- endfor %}
+				</ul>
+			</div>
+			{%- endif %}
+
+			{%- if settings.resources %}
+			<div class="lm-card p-7">
+				<h2 class="font-display text-[19px] font-bold tracking-tight text-ink">
+					{{ settings.resources_heading or "Technical Resources" }}
+				</h2>
+				<ul class="mt-5 space-y-3.5">
+					{%- for resource in settings.resources %}
+					<li>
+						<a href="{{ resource.link or '#' }}"
+							class="flex items-center gap-3 text-[13.5px] text-slate-700 transition hover:text-brand">
+							<span class="text-slate-500">{{ ic.icon(resource.icon or "download", "h-[17px] w-[17px]") }}</span>
+							{{ resource.title }}
+						</a>
+					</li>
+					{%- endfor %}
+				</ul>
+			</div>
+			{%- endif %}
+		</div>
+	</div>
+</section>
+{% endblock %}
+
+{% block lm_script %}
+<script>
+	(function () {
+		var form = document.querySelector("[data-lm-contact]");
+		if (!form) return;
+
+		var box = document.querySelector("[data-lm-contact-msg]");
+		var label = document.querySelector("[data-lm-contact-label]");
+		var idle = label.textContent;
+
+		function say(text, ok) {
+			box.textContent = text;
+			box.classList.remove("hidden", "bg-emerald-50", "text-emerald-700", "bg-red-50", "text-red-700");
+			box.classList.add(ok ? "bg-emerald-50" : "bg-red-50", ok ? "text-emerald-700" : "text-red-700");
+		}
+
+		function reset() {
+			label.textContent = idle;
+			form.querySelector("button[type=submit]").disabled = false;
+		}
+
+		form.addEventListener("submit", function (event) {
+			event.preventDefault();
+			box.classList.add("hidden");
+
+			var name = form.sender_name.value.trim();
+			var email = form.email.value.trim();
+			var message = form.message.value.trim();
+
+			if (!name) return say("Please tell us your name.", false);
+			if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return say("Please enter a valid email address.", false);
+			if (!message) return say("Please write a message.", false);
+
+			label.textContent = "Sending…";
+			form.querySelector("button[type=submit]").disabled = true;
+
+			fetch("/api/method/lapmarkaz_app.api.support.send_message", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+					"X-Frappe-CSRF-Token": (window.frappe && frappe.csrf_token) || "",
+				},
+				credentials: "same-origin",
+				body: JSON.stringify({ sender_name: name, email: email, message: message }),
+			})
+				.then(function (response) {
+					return response.json().then(function (body) { return { ok: response.ok, body: body }; });
+				})
+				.then(function (result) {
+					if (!result.ok || !(result.body.message || {}).ok) {
+						throw new Error(
+							(result.body._server_messages
+								? JSON.parse(result.body._server_messages)
+										.map(function (m) { return JSON.parse(m).message; })
+										.join(" ")
+								: result.body.message) || "We couldn't send that. Please try again."
+						);
+					}
+					say(result.body.message.message, true);
+					form.reset();
+					reset();
+				})
+				.catch(function (error) {
+					say(String(error.message).replace(/<[^>]*>/g, ""), false);
+					reset();
+				});
+		});
+	})();
+</script>
+{% endblock %}

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Power adapter">
+  <rect width="400" height="400" fill="#EDF0F4"/>
+  <ellipse cx="200" cy="300" rx="120" ry="12" fill="#0F172A" opacity=".07"/>
+  <rect x="128" y="150" width="144" height="106" rx="16" fill="#2F3642"/>
+  <rect x="128" y="150" width="144" height="26" rx="13" fill="#3D4653"/>
+  <rect x="152" y="196" width="96" height="8" rx="4" fill="#5C6675"/>
+  <rect x="152" y="214" width="60" height="6" rx="3" fill="#5C6675" opacity=".7"/>
+  <path d="M128 206H86a26 26 0 0 0-26 26v46a20 20 0 0 0 20 20h26"
+    fill="none" stroke="#2F3642" stroke-width="13" stroke-linecap="round"/>
+  <path d="M272 206h40a26 26 0 0 1 26 26v40a24 24 0 0 1-24 24h-58"
+    fill="none" stroke="#2F3642" stroke-width="13" stroke-linecap="round"/>
+  <rect x="94" y="288" width="34" height="22" rx="6" fill="#4A5361"/>
+  <rect x="248" y="286" width="30" height="24" rx="7" fill="#4A5361"/>
+</svg>

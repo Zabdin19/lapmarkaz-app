@@ -1,0 +1,125 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-07-28 10:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "sb_checkout",
+  "require_login_to_order",
+  "login_required_message",
+  "cb_checkout",
+  "allow_guest_cart",
+  "sb_shipping",
+  "free_shipping_over",
+  "shipping_charge",
+  "cb_shipping",
+  "delivery_days",
+  "sb_stock",
+  "reduce_stock_on_order"
+ ],
+ "fields": [
+  {
+   "fieldname": "sb_checkout",
+   "fieldtype": "Section Break",
+   "label": "Checkout"
+  },
+  {
+   "default": "0",
+   "description": "When ticked, only signed-in customers can reach checkout and place an order.",
+   "fieldname": "require_login_to_order",
+   "fieldtype": "Check",
+   "label": "Require Login to Place Order"
+  },
+  {
+   "default": "Please sign in to place your order.",
+   "fieldname": "login_required_message",
+   "fieldtype": "Small Text",
+   "label": "Login Required Message"
+  },
+  {
+   "fieldname": "cb_checkout",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "1",
+   "description": "Guests can still fill a cart; it moves to their account when they sign in.",
+   "fieldname": "allow_guest_cart",
+   "fieldtype": "Check",
+   "label": "Allow Guest Cart"
+  },
+  {
+   "fieldname": "sb_shipping",
+   "fieldtype": "Section Break",
+   "label": "Shipping"
+  },
+  {
+   "default": "20000",
+   "fieldname": "free_shipping_over",
+   "fieldtype": "Currency",
+   "label": "Free Shipping Over"
+  },
+  {
+   "default": "500",
+   "fieldname": "shipping_charge",
+   "fieldtype": "Currency",
+   "label": "Shipping Charge"
+  },
+  {
+   "fieldname": "cb_shipping",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "4",
+   "fieldname": "delivery_days",
+   "fieldtype": "Int",
+   "label": "Expected Delivery (days)"
+  },
+  {
+   "fieldname": "sb_stock",
+   "fieldtype": "Section Break",
+   "label": "Stock"
+  },
+  {
+   "default": "1",
+   "fieldname": "reduce_stock_on_order",
+   "fieldtype": "Check",
+   "label": "Reduce Stock on Order"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2026-07-28 10:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Lapmarkaz",
+ "name": "Lapmarkaz Shop Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "Website Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

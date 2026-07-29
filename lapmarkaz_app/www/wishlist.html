@@ -1,0 +1,58 @@
+{% extends "templates/lapmarkaz_base.html" %}
+{% import "templates/includes/lm_icons.html" as ic %}
+{% import "templates/includes/lm_cards.html" as cards %}
+
+{% block title %}My Wishlist | Lapmarkaz{% endblock %}
+
+{% block lm_content %}
+<div class="lm-shell py-10">
+
+	<h1 class="flex items-center gap-2.5 font-display text-[28px] font-bold tracking-tight text-ink">
+		{{ ic.icon("heart-filled", "h-[24px] w-[24px]") }} My Wishlist
+	</h1>
+	<p class="mt-2 text-[14px] text-slate-500">
+		{{ laptops | length }} laptop{{ "" if laptops | length == 1 else "s" }} saved for later.
+	</p>
+
+	{%- if not laptops %}
+	<div class="lm-card mt-7 px-6 py-16 text-center">
+		<span class="inline-flex text-slate-300">{{ ic.icon("heart", "h-10 w-10", stroke="1.3") }}</span>
+		<p class="mt-4 font-display text-[16px] font-semibold text-ink">Your wishlist is empty</p>
+		<p class="mt-2 text-[13.5px] text-slate-500">Tap the heart on any laptop to save it here.</p>
+		<a href="/shop" class="lm-btn-primary mt-6">Browse Laptops</a>
+	</div>
+
+	{%- else %}
+	<div class="mt-7 grid grid-cols-2 gap-5 lg:grid-cols-4" data-lm-wishlist-page>
+		{%- for laptop in laptops %}
+		<div data-lm-wishlist-card="{{ laptop.name }}">{{ cards.home_card(laptop, wishlist_ids) }}</div>
+		{%- endfor %}
+	</div>
+	{%- endif %}
+</div>
+{% endblock %}
+
+{% block lm_script %}
+<script>
+	// Removing a card here should drop it from the grid immediately, not just
+	// unfill the heart — this page's entire point is managing saved items.
+	document.addEventListener("click", function (event) {
+		const button = event.target.closest("[data-lm-wishlist]");
+		const grid = document.querySelector("[data-lm-wishlist-page]");
+		if (!button || !grid) return;
+
+		const card = button.closest("[data-lm-wishlist-card]");
+		if (!card) return;
+
+		setTimeout(function () {
+			if (card.querySelector("[data-lm-wishlist]").classList.contains("text-brand")) return;
+			card.style.transition = "opacity .25s ease";
+			card.style.opacity = "0";
+			setTimeout(function () {
+				card.remove();
+				if (!grid.children.length) window.location.reload();
+			}, 250);
+		}, 400);
+	});
+</script>
+{% endblock %}

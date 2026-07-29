@@ -1,0 +1,128 @@
+{% extends "templates/lapmarkaz_base.html" %}
+{% import "templates/includes/lm_icons.html" as ic %}
+
+{% block title %}Order {{ order.name }} | Lapmarkaz{% endblock %}
+
+{% block lm_content %}
+<div class="lm-shell py-12">
+
+	{# ---------------------------------------------------------- headline #}
+	<div class="text-center">
+		<span class="inline-flex h-16 w-16 items-center justify-center rounded-full bg-emerald-50 text-emerald-500">
+			{{ ic.icon("check-circle", "h-8 w-8", stroke="1.6") }}
+		</span>
+		<h1 class="mt-5 font-display text-[32px] font-bold tracking-tight text-ink">Thank You for Your Order!</h1>
+		<p class="mt-3 text-[15px] text-slate-600">
+			Order <span class="font-semibold text-ink">#{{ order.name }}</span> has been confirmed.
+			A receipt has been sent to your email.
+		</p>
+	</div>
+
+	<div class="mx-auto mt-9 grid max-w-[980px] items-start gap-6 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)]">
+
+		{# ------------------------------------------------------ summary #}
+		<section class="lm-card p-6">
+			<h2 class="flex items-center gap-2 font-display text-[18px] font-bold tracking-tight text-ink">
+				{{ ic.icon("receipt", "h-[18px] w-[18px]") }} Order Summary
+			</h2>
+
+			<ul class="mt-5 divide-y divide-line border-t border-line">
+				{%- for item in order_items %}
+				<li class="flex items-center gap-4 py-4">
+					<span class="flex h-[52px] w-[62px] shrink-0 items-center justify-center rounded-lg bg-[#EDF0F4] p-1.5">
+						<img src="{{ item.image }}" alt="" class="max-h-full max-w-full object-contain">
+					</span>
+					<span class="min-w-0 flex-1">
+						<span class="block text-[14px] font-semibold leading-snug text-ink">{{ item.display_name }}</span>
+						<span class="mt-0.5 block text-[12.5px] text-slate-500">Qty: {{ item.qty }}</span>
+					</span>
+					<span class="shrink-0 font-display text-[15px] font-bold text-ink">{{ rupees(item.amount) }}</span>
+				</li>
+				{%- endfor %}
+			</ul>
+
+			<dl class="space-y-3 border-t border-line pt-4 text-[13.5px]">
+				<div class="flex items-center justify-between">
+					<dt class="text-slate-600">Subtotal</dt>
+					<dd class="text-ink">{{ rupees(order.subtotal) }}</dd>
+				</div>
+				{%- if order.discount_amount %}
+				<div class="flex items-center justify-between">
+					<dt class="text-slate-600">Discount</dt>
+					<dd class="text-emerald-600">− {{ rupees(order.discount_amount) }}</dd>
+				</div>
+				{%- endif %}
+				<div class="flex items-center justify-between">
+					<dt class="text-slate-600">Shipping</dt>
+					<dd class="{% if not order.shipping_charge %}text-emerald-600{% else %}text-ink{% endif %}">
+						{{ "Free" if not order.shipping_charge else rupees(order.shipping_charge) }}
+					</dd>
+				</div>
+			</dl>
+
+			<div class="mt-4 flex items-center justify-between border-t border-line pt-4">
+				<span class="text-[16px] font-bold text-ink">Total</span>
+				<span class="font-display text-[19px] font-bold text-brand">{{ rupees(order.grand_total) }}</span>
+			</div>
+		</section>
+
+		{# ------------------------------------------- delivery + timeline #}
+		<div class="space-y-6">
+			<section class="lm-card p-6">
+				<h2 class="flex items-center gap-2 font-display text-[18px] font-bold tracking-tight text-ink">
+					{{ ic.icon("truck", "h-[18px] w-[18px]") }} Delivery
+				</h2>
+
+				{%- if expected_delivery %}
+				<div class="mt-4 flex items-start gap-2.5 rounded-lg bg-emerald-50 px-4 py-3">
+					<span class="mt-0.5 shrink-0 text-emerald-600">{{ ic.icon("calendar", "h-4 w-4") }}</span>
+					<span>
+						<span class="block text-[12.5px] text-emerald-700">Arriving by</span>
+						<span class="block text-[14px] font-semibold text-emerald-800">{{ expected_delivery }}</span>
+					</span>
+				</div>
+				{%- endif %}
+
+				<p class="mt-5 text-[13px] font-semibold text-ink">Shipping Address</p>
+				<address class="mt-1.5 space-y-0.5 text-[13px] not-italic leading-relaxed text-slate-600">
+					{%- for line in address_lines %}<span class="block">{{ line }}</span>{% endfor %}
+				</address>
+			</section>
+
+			<section class="lm-card p-6">
+				<h2 class="flex items-center gap-2 font-display text-[18px] font-bold tracking-tight text-ink">
+					{{ ic.icon("clock", "h-[18px] w-[18px]") }} What's Next?
+				</h2>
+
+				<ol class="mt-5 space-y-1">
+					{%- for step in timeline %}
+					<li class="relative flex gap-3.5 pb-5 last:pb-0">
+						{%- if not loop.last %}
+						<span class="absolute left-[15px] top-8 h-[calc(100%-1.5rem)] w-px bg-line"></span>
+						{%- endif %}
+						<span class="relative z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full
+							{% if step.active or step.done %}bg-brand text-white{% else %}bg-page text-slate-400{% endif %}">
+							{{ ic.icon(step.icon, "h-[15px] w-[15px]") }}
+						</span>
+						<span class="pt-1">
+							<span class="block text-[13.5px] font-semibold
+								{% if step.active or step.done %}text-ink{% else %}text-slate-500{% endif %}">{{ step.title }}</span>
+							{%- if step.active %}
+							<span class="mt-0.5 block text-[12.5px] leading-relaxed text-slate-500">{{ step.note }}</span>
+							{%- endif %}
+						</span>
+					</li>
+					{%- endfor %}
+				</ol>
+			</section>
+		</div>
+	</div>
+
+	{# ----------------------------------------------------------- actions #}
+	<div class="mt-10 flex flex-wrap items-center justify-center gap-3">
+		<a href="/shop" class="lm-btn-outline px-7">
+			{{ ic.icon("bag", "h-4 w-4") }} Continue Shopping
+		</a>
+	</div>
+</div>
+{% endblock %}

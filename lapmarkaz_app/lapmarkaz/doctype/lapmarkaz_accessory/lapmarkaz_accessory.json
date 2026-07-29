@@ -1,0 +1,178 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:accessory_name",
+ "creation": "2026-07-28 10:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "accessory_name",
+  "slug",
+  "tagline",
+  "cb_accessory",
+  "price",
+  "image",
+  "stock_status",
+  "published",
+  "display_order",
+  "brand",
+  "category",
+  "connectivity",
+  "sb_acc_rating",
+  "rating",
+  "review_count",
+  "cb_acc_rating",
+  "is_best_seller",
+  "is_featured",
+  "sb_acc_content",
+  "description"
+ ],
+ "fields": [
+  {
+   "fieldname": "accessory_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Accessory Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "slug",
+   "fieldtype": "Data",
+   "label": "Slug",
+   "unique": 1
+  },
+  {
+   "description": "e.g. Fits up to 15.6\"",
+   "fieldname": "tagline",
+   "fieldtype": "Data",
+   "label": "Tagline"
+  },
+  {
+   "fieldname": "cb_accessory",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "price",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Price",
+   "reqd": 1
+  },
+  {
+   "fieldname": "image",
+   "fieldtype": "Attach Image",
+   "label": "Image"
+  },
+  {
+   "default": "In Stock",
+   "fieldname": "stock_status",
+   "fieldtype": "Select",
+   "label": "Stock Status",
+   "options": "In Stock\nLow Stock\nOut of Stock"
+  },
+  {
+   "default": "1",
+   "fieldname": "published",
+   "fieldtype": "Check",
+   "label": "Published"
+  },
+  {
+   "fieldname": "display_order",
+   "fieldtype": "Int",
+   "label": "Display Order"
+  },
+  {
+   "fieldname": "brand",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Brand",
+   "options": "Accessory Brand"
+  },
+  {
+   "fieldname": "category",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Category",
+   "options": "Accessory Category"
+  },
+  {
+   "description": "Drives the Connectivity filter on /accessories",
+   "fieldname": "connectivity",
+   "fieldtype": "Select",
+   "in_standard_filter": 1,
+   "label": "Connectivity",
+   "options": "\nWireless\nWired"
+  },
+  {
+   "fieldname": "sb_acc_rating",
+   "fieldtype": "Section Break",
+   "label": "Rating"
+  },
+  {
+   "description": "0 to 5",
+   "fieldname": "rating",
+   "fieldtype": "Float",
+   "label": "Rating",
+   "precision": "1"
+  },
+  {
+   "fieldname": "review_count",
+   "fieldtype": "Int",
+   "label": "Review Count"
+  },
+  {
+   "fieldname": "cb_acc_rating",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "is_best_seller",
+   "fieldtype": "Check",
+   "label": "Best Seller"
+  },
+  {
+   "fieldname": "is_featured",
+   "fieldtype": "Check",
+   "label": "Featured"
+  },
+  {
+   "fieldname": "sb_acc_content",
+   "fieldtype": "Section Break",
+   "label": "Content"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text Editor",
+   "label": "Description"
+  }
+ ],
+ "image_field": "image",
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-07-28 10:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Lapmarkaz",
+ "name": "Lapmarkaz Accessory",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "search_fields": "brand,category",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "accessory_name"
+}

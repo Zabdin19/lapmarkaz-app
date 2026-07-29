@@ -1,0 +1,186 @@
+{% extends "templates/lapmarkaz_base.html" %}
+{% import "templates/includes/lm_icons.html" as ic %}
+
+{% block title %}Create your Account | Lapmarkaz{% endblock %}
+
+{% block lm_content %}
+<div class="lm-shell py-8">
+	<div class="mx-auto grid max-w-[1120px] overflow-hidden rounded-2xl bg-white shadow-pop lg:grid-cols-2">
+
+		{# ------------------------------------------------------ brand panel #}
+		<div class="relative hidden min-h-[560px] overflow-hidden bg-navy lg:block">
+			<img src="/assets/lapmarkaz_app/images/auth-signup.svg" alt=""
+				class="absolute inset-0 h-full w-full object-cover">
+			<div class="absolute inset-0 bg-gradient-to-t from-navy/90 via-navy/25 to-transparent"></div>
+			<div class="relative flex h-full flex-col justify-end p-10 xl:p-12">
+				<h2 class="max-w-[380px] font-display text-[30px] font-bold leading-[1.18] text-white">
+					Your Gateway to Premium Tech
+				</h2>
+				<p class="mt-3.5 max-w-[400px] text-[14px] leading-relaxed text-white/75">
+					Join Lapmarkaz for exclusive access to the latest laptops, authentic warranties,
+					and unparalleled support.
+				</p>
+			</div>
+		</div>
+
+		{# -------------------------------------------------------------- form #}
+		<div class="px-8 py-10 sm:px-12 sm:py-12">
+			<h1 class="font-display text-[32px] font-bold tracking-tight text-ink">Create your Account</h1>
+			<p class="mt-2 text-[14px] text-slate-500">Enter your details below to get started.</p>
+
+			<form class="mt-7 space-y-4" data-lm-signup novalidate>
+				<div>
+					<label class="lm-label" for="full_name">Full Name</label>
+					<input class="lm-input bg-page" id="full_name" name="full_name" required
+						autocomplete="name" placeholder="John Doe">
+				</div>
+
+				<div>
+					<label class="lm-label" for="email">Email Address</label>
+					<input class="lm-input bg-page" id="email" name="email" type="email" required
+						autocomplete="email" placeholder="john@example.com">
+				</div>
+
+				<div>
+					<label class="lm-label" for="phone">Phone Number</label>
+					<div class="flex">
+						<span class="flex items-center rounded-l-lg border border-r-0 border-line bg-page px-3.5
+							text-[13.5px] font-medium text-slate-600">+92</span>
+						<input class="lm-input rounded-l-none bg-page" id="phone" name="phone"
+							inputmode="tel" autocomplete="tel" placeholder="300 1234567">
+					</div>
+				</div>
+
+				<div>
+					<label class="lm-label" for="password">Password</label>
+					<div class="relative">
+						<input class="lm-input bg-page pr-11" id="password" name="password" type="password"
+							required autocomplete="new-password" placeholder="••••••••">
+						<button type="button" data-lm-reveal="#password" aria-label="Show password"
+							class="absolute inset-y-0 right-3 flex items-center text-slate-400 hover:text-ink">
+							{{ ic.icon("eye", "h-[18px] w-[18px]") }}
+						</button>
+					</div>
+					<p class="mt-1.5 text-[12px] text-slate-400">At least 8 characters.</p>
+				</div>
+
+				<div>
+					<label class="lm-label" for="confirm_password">Confirm Password</label>
+					<input class="lm-input bg-page" id="confirm_password" name="confirm_password" type="password"
+						required autocomplete="new-password" placeholder="••••••••">
+				</div>
+
+				<label class="flex cursor-pointer items-start gap-2.5 pt-1">
+					<input type="checkbox" name="subscribe" value="1"
+						class="mt-0.5 h-4 w-4 shrink-0 rounded border-line text-brand focus:ring-brand/30">
+					<span class="text-[13px] leading-snug text-slate-600">
+						Subscribe to our newsletter for exclusive deals and updates.
+					</span>
+				</label>
+
+				<p data-lm-error class="hidden rounded-lg bg-red-50 px-4 py-3 text-[13px] font-medium text-red-700"></p>
+
+				<button type="submit" class="lm-btn-primary w-full py-3.5 text-[15px]">
+					<span data-lm-submit-label>Create Account</span>
+				</button>
+			</form>
+
+
+			<p class="mt-7 text-center text-[13.5px] text-slate-500">
+				Already have an account?
+				<a href="/login{% if redirect_to and redirect_to != '/' %}?redirect-to={{ redirect_to }}{% endif %}"
+					class="font-semibold text-brand hover:underline">Log in</a>
+			</p>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+{% block lm_script %}
+<script>
+	(function () {
+		document.querySelectorAll("[data-lm-reveal]").forEach(function (button) {
+			button.addEventListener("click", function () {
+				var input = document.querySelector(button.dataset.lmReveal);
+				var hidden = input.type === "password";
+				input.type = hidden ? "text" : "password";
+				button.setAttribute("aria-label", hidden ? "Hide password" : "Show password");
+			});
+		});
+
+		var form = document.querySelector("[data-lm-signup]");
+		var errorBox = document.querySelector("[data-lm-error]");
+		var label = document.querySelector("[data-lm-submit-label]");
+		var redirectTo = {{ (redirect_to or "/") | tojson }};
+
+		function fail(message) {
+			errorBox.textContent = message;
+			errorBox.classList.remove("hidden");
+			label.textContent = "Create Account";
+			form.querySelector("button[type=submit]").disabled = false;
+		}
+
+		form.addEventListener("submit", function (event) {
+			event.preventDefault();
+			errorBox.classList.add("hidden");
+
+			var name = form.full_name.value.trim();
+			var email = form.email.value.trim();
+			var password = form.password.value;
+
+			if (!name) return fail("Please enter your full name.");
+			if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return fail("Please enter a valid email address.");
+			if (password.length < 8) return fail("Please choose a password of at least 8 characters.");
+			if (password !== form.confirm_password.value) return fail("Those passwords don't match.");
+
+			label.textContent = "Creating account…";
+			form.querySelector("button[type=submit]").disabled = true;
+
+			var phone = form.phone.value.trim();
+
+			fetch("/api/method/lapmarkaz_app.api.portal.register", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+					"X-Frappe-CSRF-Token": (window.frappe && frappe.csrf_token) || "",
+				},
+				credentials: "same-origin",
+				body: JSON.stringify({
+					full_name: name,
+					email: email,
+					password: password,
+					mobile_no: phone ? "+92" + phone.replace(/\s+/g, "") : null,
+					subscribe: form.subscribe.checked ? 1 : 0,
+				}),
+			})
+				.then(function (response) {
+					return response.json().then(function (body) {
+						return { ok: response.ok, body: body };
+					});
+				})
+				.then(function (result) {
+					if (!result.ok || !(result.body.message || {}).ok) {
+						throw new Error(
+							(result.body._server_messages
+								? JSON.parse(result.body._server_messages)
+										.map(function (m) { return JSON.parse(m).message; })
+										.join(" ")
+								: result.body.message) || "We couldn't create your account."
+						);
+					}
+					// Registration does not sign anyone in — the server sends us
+					// to the login page. Carry the caller's redirect-to through
+					// so they still land where they were headed after logging in.
+					var target = result.body.message.redirect || "/login?registered=1";
+					if (redirectTo && redirectTo !== "/") {
+						target += "&redirect-to=" + encodeURIComponent(redirectTo);
+					}
+					window.location.href = target;
+				})
+				.catch(function (error) {
+					fail(String(error.message).replace(/<[^>]*>/g, ""));
+				});
+		});
+	})();
+</script>
+{% endblock %}

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Laptop cooling pad">
+  <rect width="400" height="400" fill="#EDF0F4"/>
+  <ellipse cx="200" cy="300" rx="130" ry="13" fill="#0F172A" opacity=".07"/>
+  <path d="M62 268 108 150h184l46 118z" fill="#4B5566"/>
+  <path d="M62 268h276v18a10 10 0 0 1-10 10H72a10 10 0 0 1-10-10z" fill="#39414E"/>
+  <g fill="none" stroke="#78828F" stroke-width="7">
+    <circle cx="152" cy="212" r="30"/>
+    <circle cx="248" cy="212" r="30"/>
+  </g>
+  <g fill="#78828F">
+    <path d="M152 190a22 22 0 0 1 0 44 11 11 0 0 0 0-44z"/>
+    <path d="M248 190a22 22 0 0 1 0 44 11 11 0 0 0 0-44z"/>
+  </g>
+  <rect x="120" y="164" width="160" height="10" rx="5" fill="#5D6778"/>
+  <rect x="118" y="122" width="164" height="14" rx="7" fill="#B9C1CC"/>
+  <rect x="132" y="102" width="136" height="20" rx="6" fill="#CDD4DD"/>
+</svg>

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Laptop">
+  <defs>
+    <linearGradient id="glareG" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity=".18"/>
+      <stop offset=".55" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="#EDF0F4"/>
+  <ellipse cx="400" cy="455" rx="238" ry="17" fill="#0F172A" opacity=".08"/>
+  <rect x="245" y="165" width="310" height="212" rx="14" fill="#8E939B"/>
+  <rect x="256" y="176" width="288" height="181" rx="6" fill="#1B222C"/>
+  <rect x="380" y="176" width="40" height="12" rx="6" fill="#8E939B"/>
+  <rect x="286" y="216" width="218" height="9" rx="4.5" fill="#8FA0B4" opacity=".6"/>
+  <rect x="286" y="238" width="166" height="6" rx="3" fill="#64748B" opacity=".5"/>
+  <circle cx="400" cy="292" r="34" fill="none" stroke="#5C6B7D" stroke-width="6"/>
+  <path d="m389 292 9 9 16-18" fill="none" stroke="#5C6B7D" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="256" y="176" width="288" height="181" rx="6" fill="url(#glareG)"/>
+  <path d="M216 377h368l40 56H176z" fill="#9BA1A9"/>
+  <path d="M176 433h448a11 11 0 0 1-11 11H187a11 11 0 0 1-11-11z" fill="#7E858E"/>
+  <rect x="358" y="436" width="84" height="5" rx="2.5" fill="#666D76"/>
+</svg>

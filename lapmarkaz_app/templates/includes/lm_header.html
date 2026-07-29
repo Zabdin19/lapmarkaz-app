@@ -1,0 +1,183 @@
+{% import "templates/includes/lm_icons.html" as ic %}
+
+{%- set layout = header_layout or "search-center" -%}
+{%- set nav = nav_items or [
+	{"label": "Home", "href": "/", "active": False},
+	{"label": "Shop", "href": "/shop", "active": False},
+	{"label": "About Us", "href": "/about", "active": False},
+	{"label": "Blog", "href": "/blog", "active": False}
+] -%}
+
+{%- macro wordmark() -%}
+<a href="/" class="flex shrink-0 items-center gap-2.5">
+	{%- if show_logo_mark %}
+	<img src="/assets/lapmarkaz_app/images/logo-mark.svg" alt="" class="h-7 w-7 rounded-md">
+	{%- endif %}
+	<span class="font-display text-[22px] font-extrabold tracking-tight text-ink">Lapmarkaz</span>
+</a>
+{%- endmacro -%}
+
+{%- macro searchbox(extra="") -%}
+<form action="/shop" method="get" class="relative {{ extra }}">
+	<span class="pointer-events-none absolute inset-y-0 left-3.5 flex items-center text-slate-400">
+		{{ ic.icon("search", "h-[18px] w-[18px]") }}
+	</span>
+	<input type="search" name="q" value="{{ frappe.form_dict.q or '' }}"
+		placeholder="{{ search_placeholder or 'Search products...' }}"
+		class="h-10 w-full rounded-full border border-line bg-page pl-10 pr-4 text-sm text-ink
+			placeholder:text-slate-400 focus:border-brand focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand/15">
+</form>
+{%- endmacro -%}
+
+{%- macro navlinks() -%}
+<nav class="hidden items-center gap-7 lg:flex">
+	{%- for item in nav %}
+	<div class="group relative">
+		<a href="{{ item.href }}"
+			class="relative flex items-center gap-1 py-5 text-[14px] font-medium transition
+				{% if item.active %}text-brand{% else %}text-slate-600 hover:text-ink{% endif %}">
+			{{ item.label }}
+			{%- if item.dropdown %}{{ ic.icon("chevron-down", "h-3.5 w-3.5") }}{% endif %}
+			{%- if item.active %}
+			<span class="absolute inset-x-0 bottom-3 h-0.5 rounded-full bg-brand"></span>
+			{%- endif %}
+		</a>
+		{%- if item.dropdown %}
+		<div class="invisible absolute left-0 top-full z-50 w-52 rounded-lg border border-line bg-white py-2
+			opacity-0 shadow-pop transition group-hover:visible group-hover:opacity-100">
+			{%- for entry in item.dropdown %}
+			<a href="{{ entry.href }}" class="block px-4 py-2 text-[13px] text-slate-600 hover:bg-page hover:text-ink">
+				{{ entry.label }}
+			</a>
+			{%- endfor %}
+		</div>
+		{%- endif %}
+	</div>
+	{%- endfor %}
+</nav>
+{%- endmacro -%}
+
+{%- set action_tone = "text-brand hover:bg-brand-50" if accent_actions else "text-slate-600 hover:bg-page hover:text-ink" -%}
+
+{%- macro cart_link() -%}
+<a href="/cart" aria-label="Cart"
+	class="relative flex h-9 w-9 items-center justify-center rounded-full {{ action_tone }}">
+	{{ ic.icon("cart", "h-[21px] w-[21px]") }}
+	<span data-lm-cart-badge
+		class="absolute -right-0.5 -top-0.5 flex h-[17px] min-w-[17px] items-center justify-center rounded-full
+			bg-brand px-1 text-[10px] font-bold leading-none text-white {% if not cart_count %}hidden{% endif %}">
+		{{ cart_count or 0 }}
+	</span>
+</a>
+{%- endmacro -%}
+
+{#
+	Guests get a "Login / Register" link; signed-in customers get their name
+	and an account menu. `lm_user` is set for every page by
+	hooks.update_website_context.
+#}
+{%- macro account_link() -%}
+{%- if lm_user -%}
+<div class="group relative">
+	<button type="button"
+		class="flex items-center gap-2 rounded-full py-1.5 pl-1.5 pr-3 {{ action_tone }}">
+		{{ ic.icon("user", "h-[21px] w-[21px]") }}
+		<span class="hidden max-w-[110px] truncate text-[13.5px] font-medium sm:inline">
+			{{ lm_user_first_name or lm_user }}
+		</span>
+		{{ ic.icon("chevron-down", "h-3.5 w-3.5") }}
+	</button>
+
+	<div class="invisible absolute right-0 top-full z-50 w-52 rounded-lg border border-line bg-white py-2
+		opacity-0 shadow-pop transition group-hover:visible group-hover:opacity-100">
+		<a href="/account" class="block px-4 py-2 text-[13px] text-slate-600 hover:bg-page hover:text-ink">My Account</a>
+		<a href="/orders" class="block px-4 py-2 text-[13px] text-slate-600 hover:bg-page hover:text-ink">My Orders</a>
+		<a href="/addresses" class="block px-4 py-2 text-[13px] text-slate-600 hover:bg-page hover:text-ink">My Addresses</a>
+		<a href="/wishlist" class="block px-4 py-2 text-[13px] text-slate-600 hover:bg-page hover:text-ink">Wishlist</a>
+		<div class="my-1.5 border-t border-line"></div>
+		<button type="button" data-lm-logout
+			class="block w-full px-4 py-2 text-left text-[13px] text-slate-600 hover:bg-page hover:text-ink">
+			Logout
+		</button>
+	</div>
+</div>
+{%- else -%}
+{#
+	"Login" and "Register" are separate links so each word opens its own form.
+	The person icon falls back to the login page, and is the only part visible
+	on small screens where the labels are hidden.
+#}
+<span class="flex items-center gap-1.5 rounded-full py-1.5 pl-1.5 pr-2">
+	<a href="/login" aria-label="Login" class="flex items-center rounded-full {{ action_tone }}">
+		{{ ic.icon("user", "h-[21px] w-[21px]") }}
+	</a>
+	<span class="hidden items-center gap-1.5 text-[13.5px] font-medium sm:flex">
+		<a href="/login" class="whitespace-nowrap rounded px-1 {{ action_tone }}">Login</a>
+		<span class="text-slate-300">/</span>
+		<a href="/register" class="whitespace-nowrap rounded px-1 {{ action_tone }}">Register</a>
+	</span>
+</span>
+{%- endif -%}
+{%- endmacro -%}
+
+{%- macro actions() -%}
+<div class="flex shrink-0 items-center gap-1">
+	{%- if show_wishlist %}
+	<a href="/wishlist" aria-label="Wishlist"
+		class="flex h-9 w-9 items-center justify-center rounded-full {{ action_tone }}">
+		{{ ic.icon("heart", "h-[21px] w-[21px]") }}
+	</a>
+	{%- endif %}
+	{%- if account_first -%}
+		{{ account_link() }}{{ cart_link() }}
+	{%- else -%}
+		{{ cart_link() }}{{ account_link() }}
+	{%- endif %}
+</div>
+{%- endmacro -%}
+
+<header class="sticky top-0 z-40 border-b border-line bg-white">
+	<div class="lm-shell flex h-[60px] items-center gap-6">
+		{%- if layout == "search-left" %}
+			{{ wordmark() }}
+			{{ searchbox("hidden w-[230px] md:block") }}
+			<div class="flex-1"></div>
+			{{ navlinks() }}
+			<div class="w-4"></div>
+			{{ actions() }}
+		{%- elif layout == "nav-left" %}
+			{{ wordmark() }}
+			{{ navlinks() }}
+			<div class="flex-1"></div>
+			{%- if not hide_search %}{{ searchbox("hidden w-[250px] md:block") }}{% endif %}
+			{{ actions() }}
+		{%- elif layout == "nav-center" %}
+			{{ wordmark() }}
+			<div class="flex-1"></div>
+			{{ navlinks() }}
+			<div class="flex-1"></div>
+			{%- if not hide_search %}{{ searchbox("hidden w-[210px] md:block") }}{% endif %}
+			{{ actions() }}
+		{%- else %}
+			{{ wordmark() }}
+			<div class="flex flex-1 justify-center">
+				{{ searchbox("w-full max-w-[330px]") }}
+			</div>
+			{{ navlinks() }}
+			<div class="w-2"></div>
+			{{ actions() }}
+		{%- endif %}
+	</div>
+
+	{%- if trust_strip %}
+	<div class="border-t border-line bg-page">
+		<div class="lm-shell flex flex-wrap items-center justify-center gap-x-12 gap-y-2 py-2.5">
+			{%- for t in trust_strip %}
+			<span class="flex items-center gap-2 text-[12.5px] text-slate-600">
+				<span class="text-slate-500">{{ ic.icon(t.icon, "h-[15px] w-[15px]") }}</span>{{ t.label }}
+			</span>
+			{%- endfor %}
+		</div>
+	</div>
+	{%- endif %}
+</header>

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Mechanical keyboard">
+  <rect width="400" height="400" fill="#EDF0F4"/>
+  <ellipse cx="200" cy="286" rx="140" ry="13" fill="#0F172A" opacity=".07"/>
+  <path d="M60 168h280l16 96H44z" fill="#4B5566"/>
+  <path d="M44 264h312v14a10 10 0 0 1-10 10H54a10 10 0 0 1-10-10z" fill="#39414E"/>
+  <g fill="#6C7788">
+    <rect x="78" y="184" width="22" height="16" rx="3"/><rect x="108" y="184" width="22" height="16" rx="3"/>
+    <rect x="138" y="184" width="22" height="16" rx="3"/><rect x="168" y="184" width="22" height="16" rx="3"/>
+    <rect x="198" y="184" width="22" height="16" rx="3"/><rect x="228" y="184" width="22" height="16" rx="3"/>
+    <rect x="258" y="184" width="22" height="16" rx="3"/><rect x="288" y="184" width="22" height="16" rx="3"/>
+    <rect x="72" y="208" width="22" height="16" rx="3"/><rect x="102" y="208" width="22" height="16" rx="3"/>
+    <rect x="132" y="208" width="22" height="16" rx="3"/><rect x="162" y="208" width="22" height="16" rx="3"/>
+    <rect x="192" y="208" width="22" height="16" rx="3"/><rect x="222" y="208" width="22" height="16" rx="3"/>
+    <rect x="252" y="208" width="22" height="16" rx="3"/><rect x="282" y="208" width="22" height="16" rx="3"/>
+    <rect x="66" y="232" width="52" height="16" rx="3"/><rect x="126" y="232" width="148" height="16" rx="3"/>
+    <rect x="282" y="232" width="52" height="16" rx="3"/>
+  </g>
+  <rect x="60" y="150" width="280" height="12" rx="6" fill="#5C6778" opacity=".5"/>
+</svg>

@@ -1,0 +1,136 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:store_name",
+ "creation": "2026-07-28 10:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "store_name",
+  "city",
+  "cb_store_head",
+  "is_flagship",
+  "published",
+  "display_order",
+  "sb_store_where",
+  "address",
+  "map_url",
+  "cb_store_where",
+  "phone",
+  "email",
+  "hours"
+ ],
+ "fields": [
+  {
+   "fieldname": "store_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Store Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "city",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "City",
+   "options": "Karachi\nLahore\nIslamabad\nRawalpindi\nFaisalabad\nMultan\nPeshawar\nQuetta\nHyderabad\nSialkot\nGujranwala",
+   "reqd": 1
+  },
+  {
+   "fieldname": "cb_store_head",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "is_flagship",
+   "fieldtype": "Check",
+   "label": "Flagship"
+  },
+  {
+   "default": "1",
+   "fieldname": "published",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Published"
+  },
+  {
+   "fieldname": "display_order",
+   "fieldtype": "Int",
+   "label": "Display Order"
+  },
+  {
+   "fieldname": "sb_store_where",
+   "fieldtype": "Section Break",
+   "label": "Location"
+  },
+  {
+   "fieldname": "address",
+   "fieldtype": "Small Text",
+   "label": "Address",
+   "reqd": 1
+  },
+  {
+   "description": "Link to Google Maps",
+   "fieldname": "map_url",
+   "fieldtype": "Data",
+   "label": "Map URL"
+  },
+  {
+   "fieldname": "cb_store_where",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "phone",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Phone"
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email",
+   "options": "Email"
+  },
+  {
+   "default": "Mon - Sat, 10:00 AM - 8:00 PM",
+   "fieldname": "hours",
+   "fieldtype": "Data",
+   "label": "Opening Hours"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-07-28 10:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Lapmarkaz",
+ "name": "Lapmarkaz Store",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "Website Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "store_name"
+}

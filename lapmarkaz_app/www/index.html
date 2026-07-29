@@ -1,0 +1,159 @@
+{% extends "templates/lapmarkaz_base.html" %}
+{% import "templates/includes/lm_icons.html" as ic %}
+{% import "templates/includes/lm_cards.html" as cards %}
+
+{% block title %}{{ home.page_title or "Lapmarkaz — Premium Tech for Pakistan" }}{% endblock %}
+
+{% block lm_content %}
+
+{# ---------------------------------------------------------------- hero #}
+{%- if hero_slides %}
+<section data-lm-carousel class="relative h-[300px] overflow-hidden bg-navy sm:h-[380px] lg:h-[430px]">
+	{%- for slide in hero_slides %}
+	<div data-lm-slide
+		class="absolute inset-0 transition-opacity duration-700 {% if not loop.first %}opacity-0 pointer-events-none{% endif %}">
+		<img src="{{ slide.image }}" alt="" class="absolute inset-0 h-full w-full object-cover">
+		<div class="lm-shell relative flex h-full flex-col justify-center">
+			{%- if slide.eyebrow %}
+			<p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-white/85">{{ slide.eyebrow }}</p>
+			{%- endif %}
+			<h1 class="mt-3 max-w-[640px] font-display text-[28px] font-bold leading-[1.2] text-white sm:text-[34px] lg:text-[38px]">
+				{%- for line in slide.heading.split("\n") %}{{ line }}{% if not loop.last %}<br>{% endif %}{% endfor -%}
+			</h1>
+			{%- if slide.subheading %}
+			<p class="mt-4 max-w-[500px] text-[14px] leading-relaxed text-white/75">{{ slide.subheading }}</p>
+			{%- endif %}
+			{%- if slide.cta_label %}
+			<div class="mt-7">
+				<a href="{{ slide.cta_link or '/shop' }}" class="lm-btn-primary px-7">{{ slide.cta_label }}</a>
+			</div>
+			{%- endif %}
+		</div>
+	</div>
+	{%- endfor %}
+
+	{%- if hero_slides | length > 1 %}
+	<div class="absolute inset-x-0 bottom-5 flex items-center justify-center gap-1.5">
+		{%- for slide in hero_slides %}
+		<button type="button" data-lm-dot aria-label="Go to slide {{ loop.index }}"
+			class="h-1.5 rounded-full transition-all {% if loop.first %}w-7 bg-brand{% else %}w-2.5 bg-white/45{% endif %}"></button>
+		{%- endfor %}
+	</div>
+	{%- endif %}
+</section>
+{%- endif %}
+
+{# ------------------------------------------------------------ value props #}
+{%- if value_props %}
+<section class="border-b border-line bg-white">
+	{# Flex rather than a grid: the column count is data-driven, and Tailwind
+	   can't generate a class name built from a template variable. #}
+	<div class="lm-shell flex flex-wrap items-center justify-between gap-x-6 gap-y-3 py-3.5">
+		{%- for prop in value_props %}
+		<div class="flex items-center gap-2.5">
+			<span class="text-brand">{{ ic.icon(prop.icon or "check-circle", "h-[19px] w-[19px]") }}</span>
+			<span class="text-[12.5px] text-slate-600">{{ prop.title }}</span>
+		</div>
+		{%- endfor %}
+	</div>
+</section>
+{%- endif %}
+
+{# --------------------------------------------------------- product section #}
+{%- if products %}
+<section class="bg-white py-12 lg:py-14">
+	<div class="lm-shell">
+		<div class="flex items-end justify-between">
+			<div>
+				<h2 class="font-display text-[26px] font-bold tracking-tight text-ink">{{ home.products_heading }}</h2>
+				{%- if home.products_subheading %}
+				<p class="mt-1.5 text-[14px] text-slate-500">{{ home.products_subheading }}</p>
+				{%- endif %}
+			</div>
+			{%- if home.products_cta_label %}
+			<a href="{{ home.products_cta_link or '/shop' }}"
+				class="shrink-0 text-[13px] font-medium text-brand hover:underline">{{ home.products_cta_label }}</a>
+			{%- endif %}
+		</div>
+
+		<div class="mt-7 grid grid-cols-2 gap-5 lg:grid-cols-4">
+			{%- for laptop in products %}{{ cards.home_card(laptop, wishlist_ids) }}{% endfor %}
+		</div>
+	</div>
+</section>
+{%- endif %}
+
+{# ------------------------------------------------------------- newsletter #}
+{%- if home.show_newsletter %}
+<section class="bg-page py-16">
+	<div class="lm-shell text-center">
+		<span class="inline-flex text-brand">{{ ic.icon("mail", "h-8 w-8", stroke="1.5") }}</span>
+		<h2 class="mt-4 font-display text-[26px] font-bold tracking-tight text-ink">{{ home.newsletter_heading }}</h2>
+		{%- if home.newsletter_body %}
+		<p class="mx-auto mt-3 max-w-[540px] text-[14px] leading-relaxed text-slate-500">{{ home.newsletter_body }}</p>
+		{%- endif %}
+
+		<form class="mx-auto mt-7 flex max-w-[460px] items-stretch" data-lm-newsletter>
+			<label class="sr-only" for="lm-newsletter-email">Email address</label>
+			<input id="lm-newsletter-email" type="email" name="email" required
+				placeholder="{{ home.newsletter_placeholder or 'Enter your email address' }}"
+				class="h-11 min-w-0 flex-1 rounded-l-lg border border-line bg-white px-4 text-sm text-ink
+					placeholder:text-slate-400 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/15">
+			<button type="submit"
+				class="h-11 shrink-0 rounded-r-lg bg-brand px-6 text-sm font-semibold text-white transition hover:bg-brand-700">
+				{{ home.newsletter_button_label or "Subscribe" }}
+			</button>
+		</form>
+		<p data-lm-newsletter-msg class="mt-3 hidden text-[13px] font-medium"></p>
+	</div>
+</section>
+{%- endif %}
+
+{% endblock %}
+
+{% block lm_script %}
+<script>
+	document.querySelectorAll("[data-lm-newsletter]").forEach(function (form) {
+		var msg = document.querySelector("[data-lm-newsletter-msg]");
+
+		function say(text, ok) {
+			msg.textContent = text;
+			msg.classList.remove("hidden", "text-emerald-600", "text-red-600");
+			msg.classList.add(ok ? "text-emerald-600" : "text-red-600");
+		}
+
+		form.addEventListener("submit", function (event) {
+			event.preventDefault();
+			var email = form.email.value.trim();
+			if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+				return say("Please enter a valid email address.", false);
+			}
+
+			var button = form.querySelector("button[type=submit]");
+			button.disabled = true;
+
+			fetch("/api/method/lapmarkaz_app.api.newsletter.subscribe", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+					"X-Frappe-CSRF-Token": (window.frappe && frappe.csrf_token) || "",
+				},
+				credentials: "same-origin",
+				body: JSON.stringify({ email: email }),
+			})
+				.then(function (response) {
+					return response.json().then(function (body) { return { ok: response.ok, body: body }; });
+				})
+				.then(function (result) {
+					if (!result.ok || !(result.body.message || {}).ok) {
+						throw new Error("We couldn't subscribe that address. Please try again.");
+					}
+					say(result.body.message.message, true);
+					form.reset();
+				})
+				.catch(function (error) { say(error.message, false); })
+				.finally(function () { button.disabled = false; });
+		});
+	});
+</script>
+{% endblock %}

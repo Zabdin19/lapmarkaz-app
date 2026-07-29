@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Laptop backpack">
+  <rect width="400" height="400" fill="#EDF0F4"/>
+  <ellipse cx="200" cy="330" rx="112" ry="12" fill="#0F172A" opacity=".07"/>
+  <path d="M132 118a68 68 0 0 1 136 0v10h-136z" fill="none" stroke="#3B4453" stroke-width="14"/>
+  <rect x="106" y="118" width="188" height="206" rx="34" fill="#3B4453"/>
+  <rect x="106" y="196" width="188" height="76" rx="16" fill="#2C333F"/>
+  <rect x="140" y="212" width="120" height="44" rx="10" fill="#4B5566"/>
+  <rect x="160" y="228" width="80" height="12" rx="6" fill="#333B48"/>
+  <rect x="126" y="140" width="148" height="40" rx="12" fill="#4B5566"/>
+  <rect x="176" y="286" width="48" height="10" rx="5" fill="#525C6D"/>
+</svg>

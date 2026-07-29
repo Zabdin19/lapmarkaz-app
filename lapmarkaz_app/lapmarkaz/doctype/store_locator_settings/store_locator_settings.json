@@ -1,0 +1,163 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-07-28 10:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "heading",
+  "subheading",
+  "sb_store_filter",
+  "show_city_filter",
+  "all_cities_label",
+  "cb_store_filter",
+  "flagship_label",
+  "directions_label",
+  "sb_store_empty",
+  "empty_heading",
+  "empty_body",
+  "cb_store_empty",
+  "empty_cta_label",
+  "empty_cta_link",
+  "sb_store_seo",
+  "page_title",
+  "cb_store_seo",
+  "meta_description"
+ ],
+ "fields": [
+  {
+   "default": "Find a Lapmarkaz Store",
+   "fieldname": "heading",
+   "fieldtype": "Data",
+   "label": "Heading",
+   "reqd": 1
+  },
+  {
+   "fieldname": "subheading",
+   "fieldtype": "Text",
+   "label": "Subheading"
+  },
+  {
+   "fieldname": "sb_store_seo",
+   "fieldtype": "Section Break",
+   "label": "SEO"
+  },
+  {
+   "default": "Store Locator | Lapmarkaz",
+   "fieldname": "page_title",
+   "fieldtype": "Data",
+   "label": "Page Title"
+  },
+  {
+   "fieldname": "cb_store_seo",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "meta_description",
+   "fieldtype": "Small Text",
+   "label": "Meta Description"
+  },
+  {
+   "fieldname": "sb_store_filter",
+   "fieldtype": "Section Break",
+   "label": "City Filter"
+  },
+  {
+   "default": "1",
+   "fieldname": "show_city_filter",
+   "fieldtype": "Check",
+   "label": "Show City Filter"
+  },
+  {
+   "default": "All cities",
+   "fieldname": "all_cities_label",
+   "fieldtype": "Data",
+   "label": "All Cities Label"
+  },
+  {
+   "fieldname": "cb_store_filter",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Flagship",
+   "fieldname": "flagship_label",
+   "fieldtype": "Data",
+   "label": "Flagship Badge"
+  },
+  {
+   "default": "Get Directions",
+   "fieldname": "directions_label",
+   "fieldtype": "Data",
+   "label": "Directions Button"
+  },
+  {
+   "fieldname": "sb_store_empty",
+   "fieldtype": "Section Break",
+   "label": "Empty State"
+  },
+  {
+   "default": "No stores listed here yet",
+   "fieldname": "empty_heading",
+   "fieldtype": "Data",
+   "label": "Heading"
+  },
+  {
+   "default": "Try another city, or reach us online.",
+   "fieldname": "empty_body",
+   "fieldtype": "Small Text",
+   "label": "Body"
+  },
+  {
+   "fieldname": "cb_store_empty",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Contact Support",
+   "fieldname": "empty_cta_label",
+   "fieldtype": "Data",
+   "label": "Button Label"
+  },
+  {
+   "default": "/support",
+   "fieldname": "empty_cta_link",
+   "fieldtype": "Data",
+   "label": "Button Link"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2026-07-28 10:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Lapmarkaz",
+ "name": "Store Locator Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "Website Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

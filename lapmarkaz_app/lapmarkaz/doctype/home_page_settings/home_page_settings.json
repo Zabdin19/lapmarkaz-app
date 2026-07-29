@@ -1,0 +1,321 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-07-28 10:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "sb_home_header",
+  "search_placeholder",
+  "show_wishlist",
+  "cb_home_header",
+  "nav_items",
+  "sb_home_hero",
+  "show_hero",
+  "sb_home_props",
+  "show_value_props",
+  "value_props",
+  "sb_home_products",
+  "products_heading",
+  "products_subheading",
+  "products_source",
+  "cb_home_products",
+  "products_cta_label",
+  "products_cta_link",
+  "products_limit",
+  "sb_home_news",
+  "show_newsletter",
+  "newsletter_heading",
+  "newsletter_body",
+  "cb_home_news",
+  "newsletter_placeholder",
+  "newsletter_button_label",
+  "newsletter_success_message",
+  "sb_home_footer",
+  "footer_blurb",
+  "footer_links",
+  "show_policy_column",
+  "policy_column_title",
+  "cb_home_footer",
+  "socials",
+  "contact_title",
+  "contact_address",
+  "contact_phone",
+  "contact_email",
+  "footer_note",
+  "sb_home_seo",
+  "page_title",
+  "cb_home_seo",
+  "meta_description"
+ ],
+ "fields": [
+  {
+   "fieldname": "sb_home_header",
+   "fieldtype": "Section Break",
+   "label": "Header"
+  },
+  {
+   "default": "Search for laptops, brands...",
+   "fieldname": "search_placeholder",
+   "fieldtype": "Data",
+   "label": "Search Placeholder"
+  },
+  {
+   "default": "1",
+   "fieldname": "show_wishlist",
+   "fieldtype": "Check",
+   "label": "Show Wishlist Icon"
+  },
+  {
+   "fieldname": "cb_home_header",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "nav_items",
+   "fieldtype": "Table",
+   "label": "Navigation",
+   "options": "Lapmarkaz Nav Item"
+  },
+  {
+   "fieldname": "sb_home_hero",
+   "fieldtype": "Section Break",
+   "label": "Hero"
+  },
+  {
+   "default": "1",
+   "description": "Slides are managed in the Lapmarkaz Hero Slide list",
+   "fieldname": "show_hero",
+   "fieldtype": "Check",
+   "label": "Show Hero Carousel"
+  },
+  {
+   "fieldname": "sb_home_props",
+   "fieldtype": "Section Break",
+   "label": "Value Props Strip"
+  },
+  {
+   "default": "1",
+   "fieldname": "show_value_props",
+   "fieldtype": "Check",
+   "label": "Show Value Props"
+  },
+  {
+   "description": "Only the icon and title are shown in the strip",
+   "fieldname": "value_props",
+   "fieldtype": "Table",
+   "label": "Value Props",
+   "options": "Lapmarkaz Feature Item"
+  },
+  {
+   "fieldname": "sb_home_products",
+   "fieldtype": "Section Break",
+   "label": "Product Section"
+  },
+  {
+   "default": "New Arrivals",
+   "fieldname": "products_heading",
+   "fieldtype": "Data",
+   "label": "Heading"
+  },
+  {
+   "fieldname": "products_subheading",
+   "fieldtype": "Small Text",
+   "label": "Subheading"
+  },
+  {
+   "default": "New Arrivals",
+   "fieldname": "products_source",
+   "fieldtype": "Select",
+   "label": "Source",
+   "options": "New Arrivals\nFeatured\nBest Sellers\nLatest\nLowest Price"
+  },
+  {
+   "fieldname": "cb_home_products",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "View All",
+   "fieldname": "products_cta_label",
+   "fieldtype": "Data",
+   "label": "CTA Label"
+  },
+  {
+   "default": "/shop?sort=latest",
+   "fieldname": "products_cta_link",
+   "fieldtype": "Data",
+   "label": "CTA Link"
+  },
+  {
+   "default": "4",
+   "fieldname": "products_limit",
+   "fieldtype": "Int",
+   "label": "Number of Products"
+  },
+  {
+   "fieldname": "sb_home_news",
+   "fieldtype": "Section Break",
+   "label": "Newsletter"
+  },
+  {
+   "default": "1",
+   "fieldname": "show_newsletter",
+   "fieldtype": "Check",
+   "label": "Show Newsletter"
+  },
+  {
+   "default": "Get Exclusive Deals",
+   "fieldname": "newsletter_heading",
+   "fieldtype": "Data",
+   "label": "Heading"
+  },
+  {
+   "fieldname": "newsletter_body",
+   "fieldtype": "Text",
+   "label": "Body"
+  },
+  {
+   "fieldname": "cb_home_news",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Enter your email address",
+   "fieldname": "newsletter_placeholder",
+   "fieldtype": "Data",
+   "label": "Input Placeholder"
+  },
+  {
+   "default": "Subscribe",
+   "fieldname": "newsletter_button_label",
+   "fieldtype": "Data",
+   "label": "Button Label"
+  },
+  {
+   "default": "Thanks \u2014 you're on the list.",
+   "fieldname": "newsletter_success_message",
+   "fieldtype": "Data",
+   "label": "Success Message"
+  },
+  {
+   "fieldname": "sb_home_footer",
+   "fieldtype": "Section Break",
+   "label": "Footer"
+  },
+  {
+   "fieldname": "footer_blurb",
+   "fieldtype": "Small Text",
+   "label": "Blurb"
+  },
+  {
+   "fieldname": "footer_links",
+   "fieldtype": "Table",
+   "label": "Link Columns",
+   "options": "Lapmarkaz Footer Link"
+  },
+  {
+   "default": "1",
+   "description": "Adds a column built from published Lapmarkaz Policy Page records",
+   "fieldname": "show_policy_column",
+   "fieldtype": "Check",
+   "label": "Show Policy Column"
+  },
+  {
+   "default": "Customer Service",
+   "fieldname": "policy_column_title",
+   "fieldtype": "Data",
+   "label": "Policy Column Title"
+  },
+  {
+   "fieldname": "cb_home_footer",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "socials",
+   "fieldtype": "Table",
+   "label": "Social Links",
+   "options": "Lapmarkaz Social Link"
+  },
+  {
+   "default": "Contact Us",
+   "fieldname": "contact_title",
+   "fieldtype": "Data",
+   "label": "Contact Title"
+  },
+  {
+   "fieldname": "contact_address",
+   "fieldtype": "Small Text",
+   "label": "Contact Address"
+  },
+  {
+   "fieldname": "contact_phone",
+   "fieldtype": "Data",
+   "label": "Contact Phone"
+  },
+  {
+   "fieldname": "contact_email",
+   "fieldtype": "Data",
+   "label": "Contact Email",
+   "options": "Email"
+  },
+  {
+   "default": "\u00a9 2024 Lapmarkaz Pakistan. All rights reserved.",
+   "fieldname": "footer_note",
+   "fieldtype": "Data",
+   "label": "Copyright Note"
+  },
+  {
+   "fieldname": "sb_home_seo",
+   "fieldtype": "Section Break",
+   "label": "SEO"
+  },
+  {
+   "default": "Lapmarkaz \u2014 Premium Tech for Pakistan",
+   "fieldname": "page_title",
+   "fieldtype": "Data",
+   "label": "Page Title"
+  },
+  {
+   "fieldname": "cb_home_seo",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "meta_description",
+   "fieldtype": "Small Text",
+   "label": "Meta Description"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2026-07-28 10:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Lapmarkaz",
+ "name": "Home Page Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "Website Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

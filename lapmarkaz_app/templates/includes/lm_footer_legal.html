@@ -1,0 +1,17 @@
+{# Light grey footer: wordmark + copyright left, policy links right. #}
+<footer class="bg-[#F1F3F6]">
+	<div class="lm-shell flex flex-col gap-6 py-8 lg:flex-row lg:items-start lg:justify-between">
+		<div>
+			<p class="font-display text-[19px] font-bold tracking-tight text-ink">Lapmarkaz</p>
+			<p class="mt-2 max-w-[240px] text-[12.5px] leading-relaxed text-slate-500">
+				{{ footer_note or "© 2024 Lapmarkaz Pakistan. All rights reserved." }}
+			</p>
+		</div>
+
+		<nav class="flex flex-wrap items-center gap-x-7 gap-y-2 lg:pt-1">
+			{%- for link in (footer_links or []) %}
+			<a href="{{ link.href }}" class="text-[12.5px] text-slate-600 transition hover:text-ink">{{ link.label }}</a>
+			{%- endfor %}
+		</nav>
+	</div>
+</footer>

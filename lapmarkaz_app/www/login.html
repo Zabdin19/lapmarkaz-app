@@ -1,0 +1,168 @@
+{% extends "templates/lapmarkaz_base.html" %}
+{% import "templates/includes/lm_icons.html" as ic %}
+
+{% block title %}Login | Lapmarkaz{% endblock %}
+
+{% block lm_content %}
+<div class="grid min-h-screen lg:grid-cols-2">
+
+	{# ------------------------------------------------------- brand panel #}
+	<div class="relative hidden overflow-hidden bg-navy lg:block">
+		<img src="/assets/lapmarkaz_app/images/auth-login.svg" alt=""
+			class="absolute inset-0 h-full w-full object-cover">
+		<div class="absolute inset-0 bg-gradient-to-t from-navy/90 via-navy/25 to-transparent"></div>
+		<div class="relative flex h-full flex-col justify-end p-12 xl:p-16">
+			<h2 class="max-w-[420px] font-display text-[38px] font-bold leading-[1.15] text-white">
+				Welcome Back to<br>Premium Tech
+			</h2>
+			<p class="mt-4 max-w-[440px] text-[15px] leading-relaxed text-white/75">
+				Access your account to view exclusive deals, track orders, and experience the best in
+				technical precision.
+			</p>
+		</div>
+	</div>
+
+	{# -------------------------------------------------------------- form #}
+	<div class="flex items-center justify-center px-6 py-12 sm:px-10">
+		<div class="w-full max-w-[400px]">
+
+			<a href="/" class="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-line p-1.5">
+				<img src="/assets/lapmarkaz_app/images/logo-mark.svg" alt="Lapmarkaz" class="h-full w-full">
+			</a>
+
+			<h1 class="mt-7 font-display text-[34px] font-bold tracking-tight text-ink">Login</h1>
+			<p class="mt-2 text-[14px] text-slate-500">Please enter your details to sign in to your account.</p>
+
+			{%- if just_registered %}
+			<div class="mt-5 flex items-start gap-2.5 rounded-lg bg-emerald-50 px-4 py-3">
+				<span class="mt-0.5 shrink-0 text-emerald-600">{{ ic.icon("check-circle", "h-[18px] w-[18px]") }}</span>
+				<p class="text-[13px] leading-relaxed text-emerald-800">
+					{%- if needs_verification %}
+					Please verify your email, then log in.
+					{%- else %}
+					<b>Registration successful</b> — please log in with your new credentials.
+					{%- endif %}
+				</p>
+			</div>
+			{%- endif %}
+
+			{%- if password_updated %}
+			<div class="mt-5 flex items-start gap-2.5 rounded-lg bg-emerald-50 px-4 py-3">
+				<span class="mt-0.5 shrink-0 text-emerald-600">{{ ic.icon("check-circle", "h-[18px] w-[18px]") }}</span>
+				<p class="text-[13px] leading-relaxed text-emerald-800">
+					<b>Password updated successfully</b> — please log in with your new password.
+				</p>
+			</div>
+			{%- endif %}
+
+			<form class="mt-7 space-y-5" data-lm-login>
+				<div>
+					<label class="lm-label" for="usr">Email Address</label>
+					<div class="relative">
+						<span class="pointer-events-none absolute inset-y-0 left-3.5 flex items-center text-slate-400">
+							{{ ic.icon("mail", "h-[18px] w-[18px]") }}
+						</span>
+						<input class="lm-input pl-11" id="usr" name="usr" type="email" required autocomplete="username"
+							placeholder="name@example.com">
+					</div>
+				</div>
+
+				<div>
+					<div class="flex items-center justify-between">
+						<label class="lm-label mb-0" for="pwd">Password</label>
+						<a href="/forgot-password" class="text-[12.5px] font-medium text-brand hover:underline">Forgot Password?</a>
+					</div>
+					<div class="relative mt-1.5">
+						<span class="pointer-events-none absolute inset-y-0 left-3.5 flex items-center text-slate-400">
+							{{ ic.icon("lock", "h-[18px] w-[18px]") }}
+						</span>
+						<input class="lm-input pl-11 pr-11" id="pwd" name="pwd" type="password" required
+							autocomplete="current-password" placeholder="••••••••">
+						<button type="button" data-lm-reveal="#pwd" aria-label="Show password"
+							class="absolute inset-y-0 right-3 flex items-center text-slate-400 hover:text-ink">
+							{{ ic.icon("eye", "h-[18px] w-[18px]") }}
+						</button>
+					</div>
+				</div>
+
+				<p data-lm-error class="hidden rounded-lg bg-red-50 px-4 py-3 text-[13px] font-medium text-red-700"></p>
+
+				<button type="submit" class="lm-btn-primary w-full py-3.5 text-[15px]">
+					<span data-lm-submit-label>Login</span> {{ ic.icon("arrow-right", "h-4 w-4") }}
+				</button>
+			</form>
+
+
+			<p class="mt-8 text-center text-[13.5px] text-slate-500">
+				Don't have an account?
+				<a href="/register{% if redirect_to and redirect_to != '/' %}?redirect-to={{ redirect_to }}{% endif %}"
+					class="font-semibold text-brand hover:underline">Sign up</a>
+			</p>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+{% block lm_script %}
+<script>
+	(function () {
+		// Password reveal
+		document.querySelectorAll("[data-lm-reveal]").forEach(function (button) {
+			button.addEventListener("click", function () {
+				var input = document.querySelector(button.dataset.lmReveal);
+				var hidden = input.type === "password";
+				input.type = hidden ? "text" : "password";
+				button.setAttribute("aria-label", hidden ? "Hide password" : "Show password");
+			});
+		});
+
+		var form = document.querySelector("[data-lm-login]");
+		var errorBox = document.querySelector("[data-lm-error]");
+		var label = document.querySelector("[data-lm-submit-label]");
+		var redirectTo = {{ (redirect_to or "/") | tojson }};
+
+		form.addEventListener("submit", function (event) {
+			event.preventDefault();
+			errorBox.classList.add("hidden");
+			label.textContent = "Signing in…";
+			form.querySelector("button[type=submit]").disabled = true;
+
+			// Frappe's own login endpoint — same session handling as the desk.
+			fetch("/api/method/login", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+					"X-Frappe-CSRF-Token": (window.frappe && frappe.csrf_token) || "",
+				},
+				credentials: "same-origin",
+				body: JSON.stringify({ usr: form.usr.value, pwd: form.pwd.value }),
+			})
+				.then(function (response) {
+					return response.json().then(function (body) {
+						return { ok: response.ok, body: body };
+					});
+				})
+				.then(function (result) {
+					// Frappe answers "Logged In" for desk users and "No App" for
+					// Website Users, so trust the status code, not the message.
+					if (!result.ok || result.body.exc_type) {
+						throw new Error(result.body.message || "Invalid email or password.");
+					}
+					// Desk users keep going to the desk; everyone else to the shop.
+					var home = result.body.home_page;
+					window.location.href =
+						redirectTo !== "/" ? redirectTo : home === "/app" ? "/app" : "/";
+				})
+				.catch(function (error) {
+					label.textContent = "Login";
+					form.querySelector("button[type=submit]").disabled = false;
+					errorBox.textContent =
+						error.message === "Failed to fetch"
+							? "Couldn't reach the server. Please try again."
+							: "Invalid email or password.";
+					errorBox.classList.remove("hidden");
+				});
+		});
+	})();
+</script>
+{% endblock %}

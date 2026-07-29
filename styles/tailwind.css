@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-white font-sans text-ink;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display;
+  }
+}
+
+@layer components {
+  .lm-shell {
+    @apply mx-auto w-full max-w-shell px-4 sm:px-6;
+  }
+
+  .lm-btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-semibold transition;
+  }
+
+  .lm-btn-primary {
+    @apply lm-btn bg-brand text-white hover:bg-brand-700;
+  }
+
+  .lm-btn-dark {
+    @apply lm-btn bg-ink text-white hover:bg-navy;
+  }
+
+  .lm-btn-outline {
+    @apply lm-btn border border-line bg-white text-ink hover:bg-page;
+  }
+
+  .lm-card {
+    @apply rounded-xl border border-line bg-white shadow-card;
+  }
+
+  .lm-input {
+    @apply w-full rounded-lg border border-line bg-white px-4 py-3 text-sm text-ink
+           placeholder:text-slate-400 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20;
+  }
+
+  .lm-label {
+    @apply mb-1.5 block text-sm font-medium text-ink;
+  }
+
+  .lm-badge {
+    @apply inline-flex items-center rounded px-2 py-1 text-[11px] font-semibold leading-none;
+  }
+
+  /* Rich text coming out of a Text Editor field. */
+  .prose-lm p {
+    @apply mb-4 last:mb-0;
+  }
+
+  .prose-lm b,
+  .prose-lm strong {
+    @apply font-semibold text-ink;
+  }
+
+  .prose-lm ul {
+    @apply mb-4 list-disc space-y-1.5 pl-5 last:mb-0;
+  }
+
+  .prose-lm ol {
+    @apply mb-4 list-decimal space-y-1.5 pl-5 last:mb-0;
+  }
+
+  .prose-lm a {
+    @apply text-brand underline;
+  }
+
+  .prose-lm h2,
+  .prose-lm h3 {
+    @apply mb-2 mt-6 font-display font-semibold text-ink first:mt-0;
+  }
+}

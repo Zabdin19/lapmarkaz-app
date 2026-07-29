@@ -1,0 +1,293 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "creation": "2026-07-28 10:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "sb_hero",
+  "hero_heading",
+  "hero_body",
+  "cb_hero",
+  "hero_cta_label",
+  "hero_cta_link",
+  "hero_image",
+  "sb_story",
+  "story_heading",
+  "story_body",
+  "sb_values",
+  "values_heading",
+  "values",
+  "sb_expertise",
+  "expertise_heading",
+  "expertise_body",
+  "expertise_tags",
+  "cb_expertise",
+  "expertise_image_1",
+  "expertise_image_2",
+  "sb_cta",
+  "cta_heading",
+  "cta_body",
+  "cb_cta",
+  "cta_label",
+  "cta_link",
+  "sb_chrome",
+  "show_trust_strip",
+  "trust_items",
+  "sb_footer",
+  "footer_tagline",
+  "footer_links",
+  "cb_footer",
+  "contact_email",
+  "contact_phone",
+  "footer_note",
+  "sb_seo",
+  "page_title",
+  "meta_description"
+ ],
+ "fields": [
+  {
+   "fieldname": "sb_hero",
+   "fieldtype": "Section Break",
+   "label": "Hero"
+  },
+  {
+   "fieldname": "hero_heading",
+   "fieldtype": "Small Text",
+   "label": "Heading",
+   "reqd": 1
+  },
+  {
+   "fieldname": "hero_body",
+   "fieldtype": "Text",
+   "label": "Body"
+  },
+  {
+   "fieldname": "cb_hero",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Shop Now",
+   "fieldname": "hero_cta_label",
+   "fieldtype": "Data",
+   "label": "CTA Label"
+  },
+  {
+   "default": "/shop",
+   "fieldname": "hero_cta_link",
+   "fieldtype": "Data",
+   "label": "CTA Link"
+  },
+  {
+   "fieldname": "hero_image",
+   "fieldtype": "Attach Image",
+   "label": "Hero Image"
+  },
+  {
+   "fieldname": "sb_story",
+   "fieldtype": "Section Break",
+   "label": "Our Story"
+  },
+  {
+   "default": "Our Story",
+   "fieldname": "story_heading",
+   "fieldtype": "Data",
+   "label": "Heading"
+  },
+  {
+   "fieldname": "story_body",
+   "fieldtype": "Text",
+   "label": "Body"
+  },
+  {
+   "fieldname": "sb_values",
+   "fieldtype": "Section Break",
+   "label": "Core Values"
+  },
+  {
+   "default": "Our Core Values",
+   "fieldname": "values_heading",
+   "fieldtype": "Data",
+   "label": "Heading"
+  },
+  {
+   "fieldname": "values",
+   "fieldtype": "Table",
+   "label": "Values",
+   "options": "Lapmarkaz Feature Item"
+  },
+  {
+   "fieldname": "sb_expertise",
+   "fieldtype": "Section Break",
+   "label": "Expertise"
+  },
+  {
+   "default": "Our Expertise",
+   "fieldname": "expertise_heading",
+   "fieldtype": "Data",
+   "label": "Heading"
+  },
+  {
+   "fieldname": "expertise_body",
+   "fieldtype": "Text",
+   "label": "Body"
+  },
+  {
+   "fieldname": "expertise_tags",
+   "fieldtype": "Table",
+   "label": "Tags",
+   "options": "Lapmarkaz About Tag"
+  },
+  {
+   "fieldname": "cb_expertise",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "expertise_image_1",
+   "fieldtype": "Attach Image",
+   "label": "Image One"
+  },
+  {
+   "fieldname": "expertise_image_2",
+   "fieldtype": "Attach Image",
+   "label": "Image Two"
+  },
+  {
+   "fieldname": "sb_cta",
+   "fieldtype": "Section Break",
+   "label": "Closing Call To Action"
+  },
+  {
+   "fieldname": "cta_heading",
+   "fieldtype": "Small Text",
+   "label": "Heading"
+  },
+  {
+   "fieldname": "cta_body",
+   "fieldtype": "Text",
+   "label": "Body"
+  },
+  {
+   "fieldname": "cb_cta",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Explore the Shop",
+   "fieldname": "cta_label",
+   "fieldtype": "Data",
+   "label": "Button Label"
+  },
+  {
+   "default": "/shop",
+   "fieldname": "cta_link",
+   "fieldtype": "Data",
+   "label": "Button Link"
+  },
+  {
+   "fieldname": "sb_chrome",
+   "fieldtype": "Section Break",
+   "label": "Header"
+  },
+  {
+   "default": "1",
+   "fieldname": "show_trust_strip",
+   "fieldtype": "Check",
+   "label": "Show Trust Strip"
+  },
+  {
+   "description": "Only the icon and title are used in the header strip.",
+   "fieldname": "trust_items",
+   "fieldtype": "Table",
+   "label": "Trust Items",
+   "options": "Lapmarkaz Feature Item"
+  },
+  {
+   "fieldname": "sb_footer",
+   "fieldtype": "Section Break",
+   "label": "Footer"
+  },
+  {
+   "fieldname": "footer_tagline",
+   "fieldtype": "Small Text",
+   "label": "Tagline"
+  },
+  {
+   "fieldname": "footer_links",
+   "fieldtype": "Table",
+   "label": "Links",
+   "options": "Lapmarkaz Footer Link"
+  },
+  {
+   "fieldname": "cb_footer",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "contact_email",
+   "fieldtype": "Data",
+   "label": "Contact Email",
+   "options": "Email"
+  },
+  {
+   "fieldname": "contact_phone",
+   "fieldtype": "Data",
+   "label": "Contact Phone"
+  },
+  {
+   "default": "\u00a9 2024 Lapmarkaz Pakistan. All rights reserved.",
+   "fieldname": "footer_note",
+   "fieldtype": "Data",
+   "label": "Copyright Note"
+  },
+  {
+   "fieldname": "sb_seo",
+   "fieldtype": "Section Break",
+   "label": "SEO"
+  },
+  {
+   "default": "About Us | Lapmarkaz",
+   "fieldname": "page_title",
+   "fieldtype": "Data",
+   "label": "Page Title"
+  },
+  {
+   "fieldname": "meta_description",
+   "fieldtype": "Small Text",
+   "label": "Meta Description"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2026-07-28 10:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Lapmarkaz",
+ "name": "About Page Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "Website Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

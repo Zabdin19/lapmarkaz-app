@@ -1,0 +1,16 @@
+{# Light, centred footer used on the checkout flow. #}
+<footer class="border-t border-line bg-white">
+	<div class="lm-shell py-8 text-center">
+		<p class="text-[12.5px] text-slate-500">
+			{{ footer_note or "© 2024 Lapmarkaz. Premium Tech for Pakistan." }}
+		</p>
+		<nav class="mt-2 flex items-center justify-center gap-6">
+			{%- for link in (footer_links or [
+				{"label": "Privacy Policy", "href": "/privacy"},
+				{"label": "Terms of Service", "href": "/terms"}
+			]) %}
+			<a href="{{ link.href }}" class="text-[12.5px] text-brand transition hover:underline">{{ link.label }}</a>
+			{%- endfor %}
+		</nav>
+	</div>
+</footer>

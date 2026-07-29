@@ -1,0 +1,497 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:laptop_name",
+ "creation": "2026-07-28 10:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "sb_identity",
+  "laptop_name",
+  "brand",
+  "model",
+  "cb_identity",
+  "slug",
+  "tagline",
+  "usage_tags",
+  "sb_condition",
+  "condition",
+  "show_condition_badge",
+  "grade",
+  "cb_condition",
+  "stock_status",
+  "stock_qty",
+  "sb_processor",
+  "processor",
+  "processor_family",
+  "cb_processor",
+  "generation",
+  "processor_note",
+  "sb_memory",
+  "ram_gb",
+  "ram_spec",
+  "ram_note",
+  "cb_memory",
+  "storage",
+  "storage_gb",
+  "storage_note",
+  "sb_display",
+  "screen_size",
+  "display",
+  "display_note",
+  "cb_display",
+  "gpu",
+  "gpu_note",
+  "sb_battery",
+  "battery",
+  "battery_note",
+  "cb_battery",
+  "ports",
+  "ports_note",
+  "sb_pricing",
+  "price",
+  "compare_at_price",
+  "cb_pricing",
+  "price_note",
+  "sb_assurance",
+  "shipping_note",
+  "return_note",
+  "cb_assurance",
+  "warranty",
+  "sb_media",
+  "thumbnail",
+  "images",
+  "sb_content",
+  "description",
+  "sb_rating",
+  "rating",
+  "review_count",
+  "cb_rating",
+  "view_count",
+  "sb_flags",
+  "published",
+  "is_new_arrival",
+  "cb_flags",
+  "is_featured",
+  "is_best_seller"
+ ],
+ "fields": [
+  {
+   "fieldname": "sb_identity",
+   "fieldtype": "Section Break",
+   "label": "Identity"
+  },
+  {
+   "fieldname": "laptop_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Laptop Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "brand",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Brand",
+   "options": "Laptop Brand",
+   "reqd": 1
+  },
+  {
+   "fieldname": "model",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Model",
+   "reqd": 1
+  },
+  {
+   "fieldname": "cb_identity",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "URL segment, e.g. lenovo-thinkpad-t480",
+   "fieldname": "slug",
+   "fieldtype": "Data",
+   "label": "Slug",
+   "unique": 1
+  },
+  {
+   "description": "Short spec line, e.g. Core i5 8th Gen, 16GB RAM, 512GB SSD",
+   "fieldname": "tagline",
+   "fieldtype": "Data",
+   "label": "Tagline"
+  },
+  {
+   "fieldname": "usage_tags",
+   "fieldtype": "Table MultiSelect",
+   "label": "Usage",
+   "options": "Laptop Usage Item"
+  },
+  {
+   "fieldname": "sb_condition",
+   "fieldtype": "Section Break",
+   "label": "Condition & Availability"
+  },
+  {
+   "fieldname": "condition",
+   "fieldtype": "Select",
+   "in_standard_filter": 1,
+   "label": "Condition",
+   "options": "New\nCertified Refurbished\nGrade A Refurbished\nGrade B Refurbished\nExcellent Condition",
+   "reqd": 1
+  },
+  {
+   "default": "1",
+   "description": "Untick to hide the condition badge for this laptop everywhere it's shown (shop, product page, cart) without changing the Condition value itself.",
+   "fieldname": "show_condition_badge",
+   "fieldtype": "Check",
+   "label": "Show Condition Badge"
+  },
+  {
+   "fieldname": "grade",
+   "fieldtype": "Select",
+   "in_standard_filter": 1,
+   "label": "Grade",
+   "options": "\nA\nB\nC"
+  },
+  {
+   "fieldname": "cb_condition",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "In Stock",
+   "fieldname": "stock_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Stock Status",
+   "options": "In Stock\nLow Stock\nOut of Stock"
+  },
+  {
+   "default": "0",
+   "fieldname": "stock_qty",
+   "fieldtype": "Int",
+   "label": "Stock Quantity"
+  },
+  {
+   "fieldname": "sb_processor",
+   "fieldtype": "Section Break",
+   "label": "Processor"
+  },
+  {
+   "description": "e.g. Intel Core i5-8350U",
+   "fieldname": "processor",
+   "fieldtype": "Data",
+   "label": "Processor",
+   "reqd": 1
+  },
+  {
+   "fieldname": "processor_family",
+   "fieldtype": "Select",
+   "in_standard_filter": 1,
+   "label": "Processor Family",
+   "options": "\nCore i3\nCore i5\nCore i7\nCore i9\nRyzen 3\nRyzen 5\nRyzen 7\nApple M1\nApple M2\nCeleron"
+  },
+  {
+   "fieldname": "cb_processor",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "generation",
+   "fieldtype": "Select",
+   "in_standard_filter": 1,
+   "label": "Generation",
+   "options": "\n6th Gen\n7th Gen\n8th Gen\n9th Gen\n10th Gen\n11th Gen\n12th Gen\n13th Gen\nM Series"
+  },
+  {
+   "description": "e.g. 1.7 GHz Base, Up to 3.6 GHz, 4 Cores",
+   "fieldname": "processor_note",
+   "fieldtype": "Data",
+   "label": "Processor Note"
+  },
+  {
+   "fieldname": "sb_memory",
+   "fieldtype": "Section Break",
+   "label": "Memory & Storage"
+  },
+  {
+   "fieldname": "ram_gb",
+   "fieldtype": "Int",
+   "in_standard_filter": 1,
+   "label": "RAM (GB)",
+   "reqd": 1
+  },
+  {
+   "description": "e.g. 16GB DDR4",
+   "fieldname": "ram_spec",
+   "fieldtype": "Data",
+   "label": "RAM Spec"
+  },
+  {
+   "description": "e.g. 2400 MHz (Upgradable to 32GB)",
+   "fieldname": "ram_note",
+   "fieldtype": "Data",
+   "label": "RAM Note"
+  },
+  {
+   "fieldname": "cb_memory",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "e.g. 512GB NVMe SSD",
+   "fieldname": "storage",
+   "fieldtype": "Data",
+   "label": "Storage"
+  },
+  {
+   "fieldname": "storage_gb",
+   "fieldtype": "Int",
+   "label": "Storage (GB)"
+  },
+  {
+   "description": "e.g. PCIe Fast Storage",
+   "fieldname": "storage_note",
+   "fieldtype": "Data",
+   "label": "Storage Note"
+  },
+  {
+   "fieldname": "sb_display",
+   "fieldtype": "Section Break",
+   "label": "Display & Graphics"
+  },
+  {
+   "fieldname": "screen_size",
+   "fieldtype": "Float",
+   "in_standard_filter": 1,
+   "label": "Screen Size (inches)",
+   "precision": "1"
+  },
+  {
+   "description": "e.g. 14\" FHD IPS Anti-Glare",
+   "fieldname": "display",
+   "fieldtype": "Data",
+   "label": "Display"
+  },
+  {
+   "description": "e.g. 1920 x 1080 Resolution",
+   "fieldname": "display_note",
+   "fieldtype": "Data",
+   "label": "Display Note"
+  },
+  {
+   "fieldname": "cb_display",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "e.g. Intel UHD Graphics 620",
+   "fieldname": "gpu",
+   "fieldtype": "Data",
+   "label": "GPU"
+  },
+  {
+   "description": "e.g. Integrated, 1 GB Shared Memory",
+   "fieldname": "gpu_note",
+   "fieldtype": "Data",
+   "label": "GPU Note"
+  },
+  {
+   "fieldname": "sb_battery",
+   "fieldtype": "Section Break",
+   "label": "Battery & Ports"
+  },
+  {
+   "description": "e.g. Dual Battery System",
+   "fieldname": "battery",
+   "fieldtype": "Data",
+   "label": "Battery"
+  },
+  {
+   "description": "e.g. Power Bridge Technology",
+   "fieldname": "battery_note",
+   "fieldtype": "Data",
+   "label": "Battery Note"
+  },
+  {
+   "fieldname": "cb_battery",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "e.g. USB-C, HDMI, RJ45",
+   "fieldname": "ports",
+   "fieldtype": "Data",
+   "label": "Ports & Connectivity"
+  },
+  {
+   "description": "e.g. Thunderbolt 3, Wi-Fi 5, Bluetooth 4.1",
+   "fieldname": "ports_note",
+   "fieldtype": "Data",
+   "label": "Ports Note"
+  },
+  {
+   "fieldname": "sb_pricing",
+   "fieldtype": "Section Break",
+   "label": "Pricing"
+  },
+  {
+   "fieldname": "price",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Price",
+   "reqd": 1
+  },
+  {
+   "fieldname": "compare_at_price",
+   "fieldtype": "Currency",
+   "label": "Compare At Price"
+  },
+  {
+   "fieldname": "cb_pricing",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Price includes taxes. Free shipping on this item.",
+   "fieldname": "price_note",
+   "fieldtype": "Data",
+   "label": "Price Note"
+  },
+  {
+   "fieldname": "sb_assurance",
+   "fieldtype": "Section Break",
+   "label": "Assurance"
+  },
+  {
+   "default": "Free Nationwide Shipping",
+   "fieldname": "shipping_note",
+   "fieldtype": "Data",
+   "label": "Shipping Note"
+  },
+  {
+   "default": "7-Day Easy Return",
+   "fieldname": "return_note",
+   "fieldtype": "Data",
+   "label": "Return Note"
+  },
+  {
+   "fieldname": "cb_assurance",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "1-Month Warranty",
+   "fieldname": "warranty",
+   "fieldtype": "Data",
+   "label": "Warranty"
+  },
+  {
+   "fieldname": "sb_media",
+   "fieldtype": "Section Break",
+   "label": "Media"
+  },
+  {
+   "fieldname": "thumbnail",
+   "fieldtype": "Attach Image",
+   "label": "Thumbnail"
+  },
+  {
+   "fieldname": "images",
+   "fieldtype": "Table",
+   "label": "Gallery",
+   "options": "Laptop Image"
+  },
+  {
+   "fieldname": "sb_content",
+   "fieldtype": "Section Break",
+   "label": "Content"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text Editor",
+   "label": "Description"
+  },
+  {
+   "fieldname": "sb_rating",
+   "fieldtype": "Section Break",
+   "label": "Rating"
+  },
+  {
+   "fieldname": "rating",
+   "fieldtype": "Float",
+   "label": "Rating",
+   "precision": "1",
+   "read_only": 1
+  },
+  {
+   "fieldname": "review_count",
+   "fieldtype": "Int",
+   "label": "Review Count",
+   "read_only": 1
+  },
+  {
+   "fieldname": "cb_rating",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "view_count",
+   "fieldtype": "Int",
+   "label": "View Count",
+   "read_only": 1
+  },
+  {
+   "fieldname": "sb_flags",
+   "fieldtype": "Section Break",
+   "label": "Flags"
+  },
+  {
+   "default": "1",
+   "fieldname": "published",
+   "fieldtype": "Check",
+   "label": "Published"
+  },
+  {
+   "fieldname": "is_new_arrival",
+   "fieldtype": "Check",
+   "label": "New Arrival"
+  },
+  {
+   "fieldname": "cb_flags",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "is_featured",
+   "fieldtype": "Check",
+   "label": "Featured"
+  },
+  {
+   "fieldname": "is_best_seller",
+   "fieldtype": "Check",
+   "label": "Best Seller"
+  }
+ ],
+ "image_field": "thumbnail",
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-07-28 10:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Lapmarkaz",
+ "name": "Laptop",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "search_fields": "brand,model,processor",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "laptop_name"
+}

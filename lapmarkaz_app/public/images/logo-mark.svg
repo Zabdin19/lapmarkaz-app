@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Lapmarkaz">
+  <rect width="64" height="64" rx="14" fill="#101B33"/>
+  <rect x="14" y="18" width="36" height="24" rx="3.5" fill="none" stroke="#2E8BFF" stroke-width="3"/>
+  <path d="M22 36V24h4.5l5.5 7 5.5-7H42v12" fill="none" stroke="#2E8BFF" stroke-width="3"
+    stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M10 47h44" stroke="#2E8BFF" stroke-width="3" stroke-linecap="round"/>
+</svg>

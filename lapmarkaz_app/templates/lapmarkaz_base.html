@@ -1,0 +1,74 @@
+{#
+	Storefront shell for every Lapmarkaz page.
+
+	Pages extend this and fill `{% block lm_content %}`. It deliberately replaces
+	Frappe's Bootstrap website bundle with the app's own Tailwind build so the
+	markup is styled by exactly one system.
+
+	Context knobs a page may set in get_context():
+		header_variant   full | checkout | wordmark | none
+		footer_variant   full | slim | legal | light | dark_bar | none
+		header_layout    search-left | nav-left | search-center
+		nav_items        [{label, href, active}]
+		show_wishlist    bool
+		search_placeholder
+		page_bg          tailwind bg class for <main>
+#}
+{% extends "templates/base.html" %}
+
+{%- block head -%}
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="stylesheet"
+		href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap">
+	<link rel="stylesheet" href="/assets/lapmarkaz_app/css/lapmarkaz.css?v={{ lm_asset_version }}">
+	{{ head_html or "" }}
+{%- endblock -%}
+
+{%- block banner -%}{%- endblock -%}
+
+{%- block navbar -%}
+	{%- set variant = header_variant or "full" -%}
+	{%- if variant == "full" -%}
+		{% include "templates/includes/lm_header.html" %}
+	{%- elif variant == "checkout" -%}
+		{% include "templates/includes/lm_header_checkout.html" %}
+	{%- elif variant == "wordmark" -%}
+		{% include "templates/includes/lm_header_wordmark.html" %}
+	{%- endif -%}
+{%- endblock -%}
+
+{%- block content -%}
+<main class="{{ page_bg or 'bg-white' }}">
+	{%- block lm_content -%}{{ content }}{%- endblock -%}
+</main>
+{%- endblock -%}
+
+{%- block footer -%}
+	{%- set variant = footer_variant or "full" -%}
+	{%- if variant == "full" -%}
+		{% include "templates/includes/lm_footer.html" %}
+	{%- elif variant == "slim" -%}
+		{% include "templates/includes/lm_footer_slim.html" %}
+	{%- elif variant == "columns" -%}
+		{% include "templates/includes/lm_footer_columns.html" %}
+	{%- elif variant == "legal" -%}
+		{% include "templates/includes/lm_footer_legal.html" %}
+	{%- elif variant == "light" -%}
+		{% include "templates/includes/lm_footer_light.html" %}
+	{%- elif variant == "bar" -%}
+		{% include "templates/includes/lm_footer_bar.html" %}
+	{%- elif variant == "light-columns" -%}
+		{% include "templates/includes/lm_footer_light_columns.html" %}
+	{%- elif variant == "dark-split" -%}
+		{% include "templates/includes/lm_footer_dark_split.html" %}
+	{%- elif variant == "light-split" -%}
+		{% include "templates/includes/lm_footer_light_split.html" %}
+	{%- endif -%}
+{%- endblock -%}
+
+{%- block script -%}
+	{{ super() }}
+	<script src="/assets/lapmarkaz_app/js/lapmarkaz.js?v={{ lm_asset_version }}"></script>
+	{%- block lm_script -%}{%- endblock -%}
+{%- endblock -%}

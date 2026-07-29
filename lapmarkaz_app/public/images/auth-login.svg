@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Office workspace with a laptop">
+  <defs>
+    <linearGradient id="liBg" x1="0" y1="0" x2=".5" y2="1">
+      <stop offset="0" stop-color="#31435D"/>
+      <stop offset=".55" stop-color="#3E5573"/>
+      <stop offset="1" stop-color="#243346"/>
+    </linearGradient>
+    <linearGradient id="liGlass" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#BFD6F2" stop-opacity=".30"/>
+      <stop offset="1" stop-color="#BFD6F2" stop-opacity=".06"/>
+    </linearGradient>
+    <linearGradient id="liLid" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#C3CCDA"/>
+      <stop offset="1" stop-color="#98A4B5"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="1000" fill="url(#liBg)"/>
+
+  <!-- window wall -->
+  <g>
+    <rect x="40" y="40" width="720" height="560" fill="url(#liGlass)"/>
+    <g stroke="#DCE8F8" stroke-opacity=".26" stroke-width="6">
+      <path d="M280 40v560M520 40v560M40 320h720"/>
+    </g>
+    <!-- city beyond -->
+    <g fill="#0F1B2C" opacity=".22">
+      <rect x="86" y="360" width="80" height="240"/>
+      <rect x="190" y="300" width="64" height="300"/>
+      <rect x="320" y="386" width="90" height="214"/>
+      <rect x="440" y="326" width="58" height="274"/>
+      <rect x="560" y="368" width="86" height="232"/>
+      <rect x="672" y="308" width="64" height="292"/>
+    </g>
+    <g fill="#E8F1FF" opacity=".16">
+      <rect x="104" y="392" width="16" height="14"/><rect x="132" y="392" width="16" height="14"/>
+      <rect x="104" y="428" width="16" height="14"/><rect x="132" y="428" width="16" height="14"/>
+      <rect x="206" y="336" width="16" height="14"/><rect x="230" y="336" width="16" height="14"/>
+      <rect x="580" y="404" width="16" height="14"/><rect x="608" y="404" width="16" height="14"/>
+      <rect x="690" y="344" width="16" height="14"/>
+    </g>
+  </g>
+
+  <!-- desk -->
+  <path d="M0 660h800v340H0z" fill="#1B2740" opacity=".85"/>
+  <path d="M0 660h800v7H0z" fill="#A8BAD2" opacity=".22"/>
+
+  <!-- laptop -->
+  <g transform="translate(196 430)">
+    <rect x="0" y="0" width="408" height="256" rx="12" fill="url(#liLid)"/>
+    <rect x="12" y="12" width="384" height="232" rx="6" fill="#101A28"/>
+    <rect x="12" y="12" width="384" height="26" rx="6" fill="#1B2837"/>
+    <circle cx="30" cy="24" r="3.4" fill="#DCE6F2" opacity=".5"/>
+    <rect x="40" y="62" width="150" height="11" rx="5.5" fill="#7E95B4" opacity=".75"/>
+    <rect x="40" y="92" width="300" height="8" rx="4" fill="#56698A" opacity=".6"/>
+    <rect x="40" y="112" width="240" height="8" rx="4" fill="#56698A" opacity=".4"/>
+    <rect x="40" y="146" width="316" height="34" rx="7" fill="#1D2B3E"/>
+    <rect x="40" y="192" width="140" height="26" rx="7" fill="#0B5FD5" opacity=".85"/>
+
+    <path d="M-52 256h512l58 70H-110z" fill="#B2BCCB"/>
+    <path d="M-110 326h628a13 13 0 0 1-13 13H-97a13 13 0 0 1-13-13z" fill="#93A0B2"/>
+  </g>
+
+  <!-- plant -->
+  <g transform="translate(674 566)" opacity=".7">
+    <path d="M40 94V44" stroke="#6E8AA8" stroke-width="7" stroke-linecap="round"/>
+    <path d="M40 56c-22-6-30-24-28-42 20 2 32 18 28 42zM40 62c22-10 28-30 24-48-20 4-30 22-24 48z" fill="#6E8AA8"/>
+    <path d="M18 94h44l-6 40H24z" fill="#8397AF"/>
+  </g>
+</svg>

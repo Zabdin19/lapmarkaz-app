@@ -1,0 +1,108 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "hash",
+ "creation": "2026-07-28 10:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "laptop",
+  "reviewer_name",
+  "user",
+  "cb_review",
+  "rating",
+  "review_date",
+  "verified_purchase",
+  "sb_body",
+  "title",
+  "comment"
+ ],
+ "fields": [
+  {
+   "fieldname": "laptop",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Laptop",
+   "options": "Laptop",
+   "reqd": 1
+  },
+  {
+   "fieldname": "reviewer_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Reviewer Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "user",
+   "fieldtype": "Link",
+   "label": "User",
+   "options": "User"
+  },
+  {
+   "fieldname": "cb_review",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "1 to 5",
+   "fieldname": "rating",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Rating",
+   "precision": "1",
+   "reqd": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "review_date",
+   "fieldtype": "Date",
+   "label": "Review Date"
+  },
+  {
+   "fieldname": "verified_purchase",
+   "fieldtype": "Check",
+   "label": "Verified Purchase"
+  },
+  {
+   "fieldname": "sb_body",
+   "fieldtype": "Section Break",
+   "label": ""
+  },
+  {
+   "fieldname": "title",
+   "fieldtype": "Data",
+   "label": "Title"
+  },
+  {
+   "fieldname": "comment",
+   "fieldtype": "Small Text",
+   "label": "Comment"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-07-28 10:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Lapmarkaz",
+ "name": "Laptop Review",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "reviewer_name"
+}

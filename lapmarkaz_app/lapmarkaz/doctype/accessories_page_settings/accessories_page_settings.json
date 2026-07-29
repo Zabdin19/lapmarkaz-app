@@ -1,0 +1,143 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-07-28 10:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "sb_head",
+  "heading",
+  "subheading",
+  "sb_features",
+  "show_features",
+  "features",
+  "sb_acc_footer",
+  "footer_tagline",
+  "footer_links",
+  "cb_acc_footer",
+  "footer_note",
+  "sb_acc_seo",
+  "page_title",
+  "meta_description",
+  "page_size"
+ ],
+ "fields": [
+  {
+   "fieldname": "sb_head",
+   "fieldtype": "Section Break",
+   "label": "Header"
+  },
+  {
+   "default": "Premium Accessories",
+   "fieldname": "heading",
+   "fieldtype": "Data",
+   "label": "Heading",
+   "reqd": 1
+  },
+  {
+   "fieldname": "subheading",
+   "fieldtype": "Text",
+   "label": "Subheading"
+  },
+  {
+   "fieldname": "sb_features",
+   "fieldtype": "Section Break",
+   "label": "Feature Strip"
+  },
+  {
+   "default": "1",
+   "fieldname": "show_features",
+   "fieldtype": "Check",
+   "label": "Show Feature Strip"
+  },
+  {
+   "fieldname": "features",
+   "fieldtype": "Table",
+   "label": "Features",
+   "options": "Lapmarkaz Feature Item"
+  },
+  {
+   "fieldname": "sb_acc_footer",
+   "fieldtype": "Section Break",
+   "label": "Footer"
+  },
+  {
+   "fieldname": "footer_tagline",
+   "fieldtype": "Small Text",
+   "label": "Tagline"
+  },
+  {
+   "fieldname": "footer_links",
+   "fieldtype": "Table",
+   "label": "Links",
+   "options": "Lapmarkaz Footer Link"
+  },
+  {
+   "fieldname": "cb_acc_footer",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "\u00a9 2024 Lapmarkaz. All rights reserved. High-performance computing for Pakistan.",
+   "fieldname": "footer_note",
+   "fieldtype": "Data",
+   "label": "Copyright Note"
+  },
+  {
+   "fieldname": "sb_acc_seo",
+   "fieldtype": "Section Break",
+   "label": "SEO"
+  },
+  {
+   "default": "Premium Accessories | Lapmarkaz",
+   "fieldname": "page_title",
+   "fieldtype": "Data",
+   "label": "Page Title"
+  },
+  {
+   "fieldname": "meta_description",
+   "fieldtype": "Small Text",
+   "label": "Meta Description"
+  },
+  {
+   "default": "8",
+   "fieldname": "page_size",
+   "fieldtype": "Int",
+   "label": "Products Per Page"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2026-07-28 10:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Lapmarkaz",
+ "name": "Accessories Page Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "Website Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

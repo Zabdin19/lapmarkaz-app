@@ -56,8 +56,49 @@ app_license = "mit"
 # Home Pages
 # ----------
 
-# application home page (will override Website Settings)
-# home_page = "login"
+home_page = "index"
+
+# Exportable/versionable records: `bench --site <site> export-fixtures`
+fixtures = [
+	{"dt": "Lapmarkaz Payment Method"},
+	{"dt": "Email Template", "filters": [["name", "in", ["Lapmarkaz Password Reset"]]]},
+	{"dt": "Role", "filters": [["name", "in", ["Lapmarkaz Manager"]]]},
+]
+
+# Website
+# -------
+
+update_website_context = "lapmarkaz_app.website_context.update_context"
+
+# Carry an anonymous cart into the account on login / signup.
+on_session_creation = ["lapmarkaz_app.api.auth.after_login"]
+
+# Frappe already refuses Website Users at /app with a PermissionError; this
+# turns that dead end into a redirect back to the customer portal.
+before_request = ["lapmarkaz_app.api.portal.block_website_users_from_desk"]
+
+website_route_rules = [
+	{"from_route": "/laptops/<slug>", "to_route": "laptop"},
+	{"from_route": "/order/<order_id>", "to_route": "order-confirmation"},
+	# ERPNext ships its own www/support page and, being installed after this
+	# app, wins the name. Ours lives under a unique page name and claims the URL.
+	{"from_route": "/support", "to_route": "help-center"},
+	# ERPNext also claims /orders -> Sales Order and /addresses -> Address for
+	# its generic portal. This storefront sells through Lapmarkaz Order, so
+	# these rules point both routes back at our own pages.
+	{"from_route": "/orders", "to_route": "orders"},
+	{"from_route": "/addresses", "to_route": "addresses"},
+]
+
+# Jinja helpers used across the storefront templates
+jinja = {
+	"methods": [
+		"lapmarkaz_app.utils.jinja.rupees",
+		"lapmarkaz_app.utils.jinja.condition_pill",
+		"lapmarkaz_app.utils.jinja.condition_class",
+		"lapmarkaz_app.utils.jinja.product_image",
+	]
+}
 
 # website user home page (by Role)
 # role_home_page = {
