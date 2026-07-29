@@ -1,7 +1,8 @@
-{% extends "templates/lapmarkaz_base.html" %}
+{% set login_template = "frappe/www/login.html" if use_frappe_login else "templates/lapmarkaz_base.html" %}
+{% extends login_template %}
 {% import "templates/includes/lm_icons.html" as ic %}
 
-{% block title %}Login | Lapmarkaz{% endblock %}
+{% block title %}{% if use_frappe_login %}{{ _("Login") }}{% else %}Login | Lapmarkaz{% endif %}{% endblock %}
 
 {% block lm_content %}
 <div class="grid min-h-screen lg:grid-cols-2">

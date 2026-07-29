@@ -1,26 +1,39 @@
 # Copyright (c) 2026, Lapmarkaz and contributors
 # For license information, please see license.txt
 
-"""Branded login at /login, overriding Frappe's stock login page.
+"""Branded website login at /login.
 
 This app is installed after `frappe`, so this module wins the /login route and
-Frappe's own www/login.html is never rendered. Only the markup changes:
-authentication still posts to Frappe's native `/api/method/login`, so sessions,
-password hashing, rate limiting and CSRF are all stock Frappe.
+can decide whether a request should see the storefront login or Frappe's stock
+Desk login. Storefront authentication still posts to Frappe's native
+`/api/method/login`, so sessions, password hashing, rate limiting and CSRF are
+all stock Frappe.
 
-Because Frappe sends unauthenticated Desk traffic to /login, staff hitting
-/app land here too. That is intended — they sign in with the same form, and the
-login response's `home_page` sends System Users on to /app.
+Frappe sends unauthenticated Desk traffic to /login with a `redirect-to=/app...`
+query string. Those requests are handed back to Frappe's original login context
+and template; customer-facing website links continue to use the branded page.
 
 SESSION SCOPE: Frappe keeps exactly one session cookie (`sid`) per browser, so
 a System User on /app and a customer on the storefront cannot both be signed in
-in the SAME browser — whichever logs in second replaces the first. That is
+in the SAME browser; whichever logs in second replaces the first. That is
 Frappe's session model, not a bug. To use both at once, use two separate
 browsers (or one incognito window), or host the Desk on its own subdomain so
 the cookies are scoped separately.
 """
 
+from urllib.parse import urlparse
+
 import frappe
+from frappe.www import login as frappe_login
+
+
+def _is_desk_redirect(redirect_to):
+	"""Return true for redirects that are clearly headed to the Desk."""
+	if not redirect_to:
+		return False
+
+	path = urlparse(redirect_to).path
+	return path == "/app" or path.startswith("/app/")
 
 
 def get_context(context):
@@ -28,6 +41,11 @@ def get_context(context):
 	context.title = "Login | Lapmarkaz"
 
 	redirect_to = frappe.form_dict.get("redirect-to") or "/"
+
+	if _is_desk_redirect(redirect_to):
+		context = frappe_login.get_context(context)
+		context.use_frappe_login = True
+		return context
 
 	if frappe.session.user != "Guest":
 		frappe.local.flags.redirect_location = redirect_to
