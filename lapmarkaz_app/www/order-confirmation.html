@@ -44,25 +44,25 @@
 			<dl class="space-y-3 border-t border-line pt-4 text-[13.5px]">
 				<div class="flex items-center justify-between">
 					<dt class="text-slate-600">Subtotal</dt>
-					<dd class="text-ink">{{ rupees(order.subtotal) }}</dd>
+					<dd class="text-ink">{{ rupees(totals.subtotal) }}</dd>
 				</div>
-				{%- if order.discount_amount %}
+				{%- if totals.discount_amount %}
 				<div class="flex items-center justify-between">
 					<dt class="text-slate-600">Discount</dt>
-					<dd class="text-emerald-600">− {{ rupees(order.discount_amount) }}</dd>
+					<dd class="text-emerald-600">− {{ rupees(totals.discount_amount) }}</dd>
 				</div>
 				{%- endif %}
 				<div class="flex items-center justify-between">
 					<dt class="text-slate-600">Shipping</dt>
-					<dd class="{% if not order.shipping_charge %}text-emerald-600{% else %}text-ink{% endif %}">
-						{{ "Free" if not order.shipping_charge else rupees(order.shipping_charge) }}
+					<dd class="{% if not totals.shipping_charge %}text-emerald-600{% else %}text-ink{% endif %}">
+						{{ "Free" if not totals.shipping_charge else rupees(totals.shipping_charge) }}
 					</dd>
 				</div>
 			</dl>
 
 			<div class="mt-4 flex items-center justify-between border-t border-line pt-4">
 				<span class="text-[16px] font-bold text-ink">Total</span>
-				<span class="font-display text-[19px] font-bold text-brand">{{ rupees(order.grand_total) }}</span>
+				<span class="font-display text-[19px] font-bold text-brand">{{ rupees(totals.grand_total) }}</span>
 			</div>
 		</section>
 

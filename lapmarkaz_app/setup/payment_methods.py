@@ -12,6 +12,12 @@ display label in Desk will not cause a duplicate to be seeded.
 import frappe
 
 # code, name, description, mode_of_payment, flags
+#
+# Only Cash on Delivery is live. The rest are seeded disabled so they are ready
+# to switch on in Desk once the account and wallet numbers below are real ones
+# — the values here are placeholders, and an enabled method sends shoppers to
+# them. `is_enabled` is part of each spec, so re-running this seed keeps that
+# choice rather than turning everything back on.
 METHODS = [
 	{
 		"method_code": "cod",
@@ -22,6 +28,7 @@ METHODS = [
 		"display_order": 1,
 	},
 	{
+		"is_enabled": 0,
 		"method_code": "card",
 		"method_name": "Credit / Debit Card",
 		"description": "Visa and Mastercard accepted.",
@@ -29,6 +36,7 @@ METHODS = [
 		"display_order": 2,
 	},
 	{
+		"is_enabled": 0,
 		"method_code": "bank_transfer",
 		"method_name": "Bank Transfer",
 		"description": "Transfer to our account and share the receipt.",
@@ -44,6 +52,7 @@ METHODS = [
 		),
 	},
 	{
+		"is_enabled": 0,
 		"method_code": "easypaisa",
 		"method_name": "Easypaisa",
 		"description": "Pay from your Easypaisa wallet.",
@@ -56,6 +65,7 @@ METHODS = [
 		),
 	},
 	{
+		"is_enabled": 0,
 		"method_code": "jazzcash",
 		"method_name": "JazzCash",
 		"description": "Pay from your JazzCash wallet.",

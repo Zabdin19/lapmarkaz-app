@@ -12,6 +12,7 @@
   "tagline",
   "cb_accessory",
   "price",
+  "item",
   "image",
   "stock_status",
   "published",
@@ -58,6 +59,15 @@
    "in_list_view": 1,
    "label": "Price",
    "reqd": 1
+  },
+  {
+   "description": "ERPNext Item behind this product on a Sales Order. Provisioned automatically the first time it is ordered.",
+   "fieldname": "item",
+   "fieldtype": "Link",
+   "label": "Item",
+   "options": "Item",
+   "no_copy": 1,
+   "read_only": 1
   },
   {
    "fieldname": "image",

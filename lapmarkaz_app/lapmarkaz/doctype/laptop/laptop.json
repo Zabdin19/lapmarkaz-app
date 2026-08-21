@@ -55,6 +55,7 @@
   "compare_at_price",
   "cb_pricing",
   "price_note",
+  "item",
   "sb_assurance",
   "shipping_note",
   "return_note",
@@ -355,6 +356,15 @@
    "fieldname": "price_note",
    "fieldtype": "Data",
    "label": "Price Note"
+  },
+  {
+   "description": "ERPNext Item behind this product on a Sales Order. Provisioned automatically the first time it is ordered.",
+   "fieldname": "item",
+   "fieldtype": "Link",
+   "label": "Item",
+   "options": "Item",
+   "no_copy": 1,
+   "read_only": 1
   },
   {
    "fieldname": "sb_assurance",

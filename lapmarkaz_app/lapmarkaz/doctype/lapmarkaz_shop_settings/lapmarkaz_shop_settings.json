@@ -6,6 +6,11 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "sb_selling",
+  "company",
+  "shipping_account",
+  "cb_selling",
+  "selling_price_list",
   "sb_checkout",
   "require_login_to_order",
   "login_required_message",
@@ -20,6 +25,36 @@
   "reduce_stock_on_order"
  ],
  "fields": [
+  {
+   "fieldname": "sb_selling",
+   "fieldtype": "Section Break",
+   "label": "Selling"
+  },
+  {
+   "description": "Company the website's Sales Orders are raised against.",
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company"
+  },
+  {
+   "description": "Account the shipping charge is booked to on the Sales Order.",
+   "fieldname": "shipping_account",
+   "fieldtype": "Link",
+   "label": "Shipping Account",
+   "options": "Account"
+  },
+  {
+   "fieldname": "cb_selling",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "Leave blank to use Standard Selling. Its currency must match the company's.",
+   "fieldname": "selling_price_list",
+   "fieldtype": "Link",
+   "label": "Selling Price List",
+   "options": "Price List"
+  },
   {
    "fieldname": "sb_checkout",
    "fieldtype": "Section Break",

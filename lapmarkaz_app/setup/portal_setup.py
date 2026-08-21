@@ -17,8 +17,10 @@ CUSTOMER_ROLE = "Customer"
 # doctype -> permission rules for the Customer role. `if_owner` restricts a
 # customer to rows they created; Customer/Address additionally rely on the
 # User Permission created at registration.
+# Sales Order is deliberately absent: order history is read server-side by
+# lapmarkaz_app.utils.orders, filtered to the session user, so shoppers never
+# need read on the document itself.
 CUSTOMER_PERMS = [
-	{"doctype": "Lapmarkaz Order", "read": 1, "write": 0, "create": 0, "if_owner": 1},
 	{"doctype": "Lapmarkaz Address", "read": 1, "write": 1, "create": 1, "if_owner": 1},
 	{"doctype": "Lapmarkaz Wishlist Item", "read": 1, "write": 1, "create": 1, "if_owner": 1},
 ]

@@ -8,7 +8,9 @@ app_license = "mit"
 # Apps
 # ------------------
 
-# required_apps = []
+# Website orders are Sales Orders, and the catalogue is provisioned into
+# Items, so ERPNext is a hard dependency rather than an optional integration.
+required_apps = ["erpnext"]
 
 # Each item in the list will be shown as an app in the apps page
 # add_to_apps_screen = [
@@ -84,8 +86,9 @@ website_route_rules = [
 	# app, wins the name. Ours lives under a unique page name and claims the URL.
 	{"from_route": "/support", "to_route": "help-center"},
 	# ERPNext also claims /orders -> Sales Order and /addresses -> Address for
-	# its generic portal. This storefront sells through Lapmarkaz Order, so
-	# these rules point both routes back at our own pages.
+	# its generic portal. Web orders are Sales Orders now too, but they are
+	# presented in the storefront's own design, so these rules point both routes
+	# back at our pages rather than ERPNext's.
 	{"from_route": "/orders", "to_route": "orders"},
 	{"from_route": "/addresses", "to_route": "addresses"},
 ]
@@ -123,8 +126,13 @@ jinja = {
 # Installation
 # ------------
 
+# Provisions the Company, item groups and the `lm_*` Sales Order custom fields
+# that checkout writes to. Idempotent, and re-run after every migrate so a
+# field added in a later release lands without a manual step.
+after_install = "lapmarkaz_app.setup.erpnext_setup.run"
+after_migrate = "lapmarkaz_app.setup.erpnext_setup.after_migrate"
+
 # before_install = "lapmarkaz_app.install.before_install"
-# after_install = "lapmarkaz_app.install.after_install"
 
 # Uninstallation
 # ------------
@@ -176,15 +184,19 @@ jinja = {
 
 # Document Events
 # ---------------
-# Hook on document methods and events
 
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-# 	}
-# }
+# Keep the ERPNext Item behind a catalogue record in step with it. Products
+# that have never been ordered have no Item yet and are skipped.
+doc_events = {
+	"Laptop": {"on_update": "lapmarkaz_app.utils.items.sync_item"},
+	"Lapmarkaz Accessory": {"on_update": "lapmarkaz_app.utils.items.sync_item"},
+	# Move the shopper's tracking timeline when staff submit or cancel, so the
+	# customer-facing status can't silently fall behind the real one.
+	"Sales Order": {
+		"on_submit": "lapmarkaz_app.utils.sales_order.on_submit",
+		"on_cancel": "lapmarkaz_app.utils.sales_order.on_cancel",
+	},
+}
 
 # Scheduled Tasks
 # ---------------

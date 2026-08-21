@@ -16,7 +16,7 @@ WORKSPACE = "Lapmarkaz"
 SHORTCUTS = [
 	("Laptop", "Laptop"),
 	("Lapmarkaz Accessory", "Accessories"),
-	("Lapmarkaz Order", "Orders"),
+	("Sales Order", "Orders"),
 	("Lapmarkaz Payment Method", "Payment Methods"),
 	("Lapmarkaz Shop Settings", "Shop Settings"),
 	("Home Page Settings", "Home Page"),
@@ -25,7 +25,7 @@ SHORTCUTS = [
 LINK_GROUPS = [
 	("Catalogue", ["Laptop", "Laptop Brand", "Laptop Usage", "Laptop Review",
 	               "Lapmarkaz Accessory", "Accessory Category", "Accessory Brand"]),
-	("Sales", ["Lapmarkaz Order", "Lapmarkaz Cart", "Lapmarkaz Address",
+	("Sales", ["Sales Order", "Customer", "Lapmarkaz Cart", "Lapmarkaz Address",
 	           "Lapmarkaz Payment Method", "Lapmarkaz Shop Settings"]),
 	("Content", ["Home Page Settings", "About Page Settings", "Accessories Page Settings",
 	             "Support Page Settings", "Store Locator Settings",

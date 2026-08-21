@@ -103,9 +103,9 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Order",
+   "label": "Sales Order",
    "link_count": 0,
-   "link_to": "Lapmarkaz Order",
+   "link_to": "Sales Order",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -295,7 +295,7 @@
   {
    "doc_view": "",
    "label": "Orders",
-   "link_to": "Lapmarkaz Order",
+   "link_to": "Sales Order",
    "type": "DocType"
   },
   {
