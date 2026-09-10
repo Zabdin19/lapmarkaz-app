@@ -7,7 +7,8 @@
  "engine": "InnoDB",
  "field_order": [
   "question",
-  "answer"
+  "answer",
+  "enabled"
  ],
  "fields": [
   {
@@ -23,6 +24,13 @@
    "in_list_view": 1,
    "label": "Answer",
    "reqd": 1
+  },
+  {
+   "default": "1",
+   "fieldname": "enabled",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Enabled"
   }
  ],
  "index_web_pages_for_search": 1,

@@ -13,7 +13,7 @@ import frappe
 IMG = "/assets/lapmarkaz_app/images/"
 
 CATEGORIES = ["Mice", "Keyboards", "Chargers & Adapters", "Bags & Sleeves", "Headsets"]
-BRANDS = ["Logitech", "Razer", "Dell", "HP", "Lenovo", "Anker", "Corsair", "Lapmarkaz Essentials"]
+BRANDS = ["Logitech", "Razer", "Dell", "HP", "Lenovo", "Anker", "Corsair", "hamzatraders Essentials"]
 
 # Category -> placeholder artwork, with a few per-product overrides.
 ART = {
@@ -40,7 +40,7 @@ CATALOGUE = [
 	("MX Master 3S Wireless Performance Mouse", "Logitech", "Mice", "Wireless", 32500, 4.9, 128, "8K DPI, quiet clicks, USB-C", "best,featured"),
 	("DeathAdder V3 Pro Wireless Gaming Mouse", "Razer", "Mice", "Wireless", 45000, 4.8, 85, "63g, 30K DPI optical sensor", "featured"),
 	("65W Type-C AC Power Adapter", "Dell", "Chargers & Adapters", "Wired", 12500, 4.6, 214, "Slim tip, 1.8m cable", "featured"),
-	('Premium Water-Resistant 15.6" Laptop Sleeve', "Lapmarkaz Essentials", "Bags & Sleeves", "", 4200, 4.7, 56, "Fleece lined, splash proof", "featured"),
+	('Premium Water-Resistant 15.6" Laptop Sleeve', "hamzatraders Essentials", "Bags & Sleeves", "", 4200, 4.7, 56, "Fleece lined, splash proof", "featured"),
 	("MX Keys S Wireless Keyboard", "Logitech", "Keyboards", "Wireless", 28500, 4.8, 97, "Backlit, low profile, multi-device", "best"),
 	("BlackWidow V4 Mechanical Keyboard", "Razer", "Keyboards", "Wired", 38000, 4.7, 63, "Green switches, per-key RGB", ""),
 	("Barracuda X Wireless Headset", "Razer", "Headsets", "Wireless", 26500, 4.5, 74, "2.4GHz + Bluetooth, 50h battery", ""),
@@ -55,9 +55,9 @@ CATALOGUE = [
 	("735 Pro GaN 100W Charger", "Anker", "Chargers & Adapters", "Wired", 15500, 4.8, 164, "3 ports, charges laptop + phone", "best"),
 	("7-in-1 USB-C Hub", "Anker", "Chargers & Adapters", "Wired", 4200, 4.5, 203, "HDMI, USB 3.0, SD Card", ""),
 	("ThinkPad Professional Backpack", "Lenovo", "Bags & Sleeves", "", 8900, 4.6, 71, 'Fits up to 15.6", padded', ""),
-	("Premium Laptop Backpack", "Lapmarkaz Essentials", "Bags & Sleeves", "", 3500, 4.3, 149, 'Fits up to 15.6"', ""),
+	("Premium Laptop Backpack", "hamzatraders Essentials", "Bags & Sleeves", "", 3500, 4.3, 149, 'Fits up to 15.6"', ""),
 	('Renew Business 14" Sleeve', "HP", "Bags & Sleeves", "", 5600, 4.4, 44, "Recycled fabric, slim profile", ""),
-	("Dual Fan Cooling Pad", "Lapmarkaz Essentials", "Bags & Sleeves", "Wired", 2100, 4.1, 96, 'For up to 17" Laptops', ""),
+	("Dual Fan Cooling Pad", "hamzatraders Essentials", "Bags & Sleeves", "Wired", 2100, 4.1, 96, 'For up to 17" Laptops', ""),
 	("Pro X 2 Lightspeed Gaming Headset", "Logitech", "Headsets", "Wireless", 61000, 4.9, 52, "Graphene drivers, 50h battery", "best"),
 	("HS80 RGB Wireless Headset", "Corsair", "Headsets", "Wireless", 34500, 4.6, 67, "Broadcast-grade mic, Dolby Atmos", ""),
 	("Pro Stereo Wired Headset", "Dell", "Headsets", "Wired", 8400, 4.2, 118, "Inline controls, noise-cancelling mic", ""),
@@ -146,8 +146,8 @@ def run():
 				"High-performance computing for Pakistan. Your trusted source for premium "
 				"laptops and accessories."
 			),
-			"footer_note": "© 2024 Lapmarkaz. All rights reserved. High-performance computing for Pakistan.",
-			"page_title": "Premium Accessories | Lapmarkaz",
+			"footer_note": "© 2024 hamzatraders. All rights reserved. High-performance computing for Pakistan.",
+			"page_title": "Premium Accessories | hamzatraders",
 			"meta_description": (
 				"Shop mice, keyboards, chargers, bags and headsets from Logitech, Razer, Dell, "
 				"HP and Lenovo — with genuine warranty and nationwide delivery."

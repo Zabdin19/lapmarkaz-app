@@ -7,7 +7,12 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "usage_name"
+  "usage_name",
+  "show_on_home",
+  "cb_laptop_usage",
+  "display_order",
+  "image",
+  "short_description"
  ],
  "fields": [
   {
@@ -16,6 +21,33 @@
    "in_list_view": 1,
    "label": "Usage",
    "reqd": 1
+  },
+  {
+   "default": "0",
+   "description": "Include this use case in the homepage \"Shop by Use Case\" section",
+   "fieldname": "show_on_home",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Show on Homepage"
+  },
+  {
+   "fieldname": "cb_laptop_usage",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "display_order",
+   "fieldtype": "Int",
+   "label": "Display Order"
+  },
+  {
+   "fieldname": "image",
+   "fieldtype": "Attach Image",
+   "label": "Image"
+  },
+  {
+   "fieldname": "short_description",
+   "fieldtype": "Small Text",
+   "label": "Short Description"
   }
  ],
  "index_web_pages_for_search": 1,

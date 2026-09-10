@@ -21,6 +21,8 @@ from frappe.utils import flt
 CATALOGUE = {
 	"Laptop": ("laptop_name", "price", "thumbnail", "Laptops"),
 	"Lapmarkaz Accessory": ("accessory_name", "price", "image", "Accessories"),
+	"Printing Machine": ("machine_name", "price", "thumbnail", "Printing Machines"),
+	"Printing Accessory": ("accessory_name", "price", "image", "Printing Accessories"),
 }
 
 FALLBACK_ITEM_GROUP = "All Item Groups"

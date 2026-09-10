@@ -45,7 +45,7 @@ METHODS = [
 		"display_order": 3,
 		"instructions": (
 			"<p>Transfer the total to:</p>"
-			"<p><b>Lapmarkaz</b><br>Meezan Bank<br>"
+			"<p><b>hamzatraders</b><br>Meezan Bank<br>"
 			"Account: 0123 4567 8901 2345<br>"
 			"IBAN: PK00 MEZN 0001 2345 6789 0123</p>"
 			"<p>Upload the transfer receipt below so we can verify it.</p>"
@@ -61,7 +61,7 @@ METHODS = [
 		"display_order": 4,
 		"instructions": (
 			"<p>Send the total to Easypaisa wallet <b>0321 2789920</b> "
-			"(Lapmarkaz), then upload the confirmation screenshot below.</p>"
+			"(hamzatraders), then upload the confirmation screenshot below.</p>"
 		),
 	},
 	{
@@ -74,7 +74,7 @@ METHODS = [
 		"display_order": 5,
 		"instructions": (
 			"<p>Send the total to JazzCash wallet <b>0321 2789920</b> "
-			"(Lapmarkaz), then upload the confirmation screenshot below.</p>"
+			"(hamzatraders), then upload the confirmation screenshot below.</p>"
 		),
 	},
 ]

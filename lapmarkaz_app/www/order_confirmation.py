@@ -78,7 +78,7 @@ def get_context(context):
 				frappe.throw("You are not permitted to view this order", frappe.PermissionError)
 
 	context.order = order
-	context.title = f"Order {order.name} | Lapmarkaz"
+	context.title = f"Order {order.name} | hamzatraders"
 
 	# Totals, named the way the storefront talks about them rather than the way
 	# ERPNext stores them.
@@ -129,7 +129,7 @@ def get_context(context):
 	context.page_bg = "bg-white"
 	context.header_variant = "wordmark"
 	context.footer_variant = "legal"
-	context.footer_note = "© 2024 Lapmarkaz Pakistan. All rights reserved."
+	context.footer_note = "© 2024 hamzatraders Pakistan. All rights reserved."
 	context.footer_links = [
 		{"label": "Privacy Policy", "href": "/privacy"},
 		{"label": "Shipping Policy", "href": "/shipping"},

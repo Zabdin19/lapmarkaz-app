@@ -23,7 +23,7 @@ ABBR = "LM"
 COUNTRY = "Pakistan"
 CURRENCY = "PKR"
 
-ITEM_GROUPS = ("Laptops", "Accessories")
+ITEM_GROUPS = ("Laptops", "Accessories", "Printing Machines", "Printing Accessories")
 
 # Account used for the shipping line on a Sales Order, tried in order.
 SHIPPING_ACCOUNT_CANDIDATES = ("Freight and Forwarding Charges", "Shipping Charges")
@@ -198,7 +198,7 @@ CUSTOM_FIELDS = {
 			"fieldname": "lm_item_type",
 			"label": "Storefront Item Type",
 			"fieldtype": "Select",
-			"options": "\nLaptop\nAccessory",
+			"options": "\nLaptop\nAccessory\nPrinting Machine\nPrinting Accessory",
 			"insert_after": "brand",
 			"read_only": 1,
 		},
@@ -216,6 +216,22 @@ CUSTOM_FIELDS = {
 			"fieldtype": "Link",
 			"options": "Lapmarkaz Accessory",
 			"insert_after": "lm_laptop",
+			"read_only": 1,
+		},
+		{
+			"fieldname": "lm_printing_machine",
+			"label": "Printing Machine",
+			"fieldtype": "Link",
+			"options": "Printing Machine",
+			"insert_after": "lm_accessory",
+			"read_only": 1,
+		},
+		{
+			"fieldname": "lm_printing_accessory",
+			"label": "Printing Accessory",
+			"fieldtype": "Link",
+			"options": "Printing Accessory",
+			"insert_after": "lm_printing_machine",
 			"read_only": 1,
 		},
 	],

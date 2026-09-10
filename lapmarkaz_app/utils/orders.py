@@ -11,11 +11,11 @@ already use, which keeps ERPNext's vocabulary out of the markup.
 import frappe
 
 STATUS_TONES = {
-	"Pending": "bg-amber-50 text-amber-700",
-	"Confirmed": "bg-sky-50 text-sky-700",
-	"Packed": "bg-sky-50 text-sky-700",
-	"Shipped": "bg-indigo-50 text-indigo-700",
-	"Delivered": "bg-emerald-50 text-emerald-700",
+	"Pending": "bg-warning-50 text-warning-700",
+	"Confirmed": "bg-brand-50 text-brand-700",
+	"Packed": "bg-brand-50 text-brand-700",
+	"Shipped": "bg-navy/10 text-navy",
+	"Delivered": "bg-success-50 text-success-700",
 	"Cancelled": "bg-slate-100 text-slate-500",
 }
 

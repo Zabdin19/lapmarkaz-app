@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Ink and toner cartridges">
+  <rect width="400" height="400" fill="#EDF0F4"/>
+  <ellipse cx="200" cy="296" rx="126" ry="12" fill="#0F172A" opacity=".07"/>
+  <rect x="120" y="140" width="70" height="150" rx="10" fill="#3B4453"/>
+  <rect x="120" y="140" width="70" height="26" rx="10" fill="#2C333F"/>
+  <rect x="138" y="176" width="34" height="70" rx="5" fill="#6C7788"/>
+  <rect x="210" y="120" width="70" height="170" rx="10" fill="#4B5566"/>
+  <rect x="210" y="120" width="70" height="26" rx="10" fill="#333B48"/>
+  <rect x="228" y="158" width="34" height="90" rx="5" fill="#525C6D"/>
+</svg>

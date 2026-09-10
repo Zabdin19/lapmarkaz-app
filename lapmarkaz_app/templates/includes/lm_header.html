@@ -13,12 +13,17 @@
 	{%- if show_logo_mark %}
 	<img src="/assets/lapmarkaz_app/images/logo-mark.svg" alt="" class="h-7 w-7 rounded-md">
 	{%- endif %}
-	<span class="font-display text-[22px] font-extrabold tracking-tight text-ink">Lapmarkaz</span>
+	<span class="font-display text-[20px] font-extrabold tracking-tight text-ink">hamzatraders</span>
 </a>
 {%- endmacro -%}
 
 {%- macro searchbox(extra="") -%}
-<form action="/shop" method="get" class="relative {{ extra }}">
+{#
+	`min-w` keeps this from being squeezed to a near-invisible sliver when the
+	row is tight (see navlinks() below) — it degrades to a smaller-but-still-
+	usable box instead, rather than disappearing.
+#}
+<form action="/shop" method="get" class="relative min-w-[140px] shrink {{ extra }}">
 	<span class="pointer-events-none absolute inset-y-0 left-3.5 flex items-center text-slate-400">
 		{{ ic.icon("search", "h-[18px] w-[18px]") }}
 	</span>
@@ -30,11 +35,23 @@
 {%- endmacro -%}
 
 {%- macro navlinks() -%}
-<nav class="hidden items-center gap-7 lg:flex">
+{#
+	`min-[1200px]:flex` (not the stock `lg` = 1024px, and not the 1152px this
+	was originally tuned to before the "hamzatraders" rebrand widened the
+	wordmark): with 5 links — including the two-word "Printing Machines" /
+	"Printing Accessories" — the nav's natural single-line width plus the
+	wordmark, search box and account/cart actions doesn't fit inside the shell
+	(capped at 1200px) until the shell itself reaches that cap. Below that,
+	nav stays hidden (the existing tablet/mobile behaviour — there's no
+	separate drawer menu in this project) rather than wrapping or overflowing.
+	`shrink-0` + `whitespace-nowrap` below then guarantee no single link can
+	ever wrap once shown, regardless of viewport.
+#}
+<nav class="hidden items-center gap-6 min-[1200px]:flex">
 	{%- for item in nav %}
-	<div class="group relative">
+	<div class="group relative shrink-0">
 		<a href="{{ item.href }}"
-			class="relative flex items-center gap-1 py-5 text-[14px] font-medium transition
+			class="relative flex items-center gap-1 whitespace-nowrap py-5 text-[14px] font-medium transition
 				{% if item.active %}text-brand{% else %}text-slate-600 hover:text-ink{% endif %}">
 			{{ item.label }}
 			{%- if item.dropdown %}{{ ic.icon("chevron-down", "h-3.5 w-3.5") }}{% endif %}
@@ -137,31 +154,31 @@
 {%- endmacro -%}
 
 <header class="sticky top-0 z-40 border-b border-line bg-white">
-	<div class="lm-shell flex h-[60px] items-center gap-6">
+	<div class="lm-shell flex h-[60px] items-center gap-5">
 		{%- if layout == "search-left" %}
 			{{ wordmark() }}
-			{{ searchbox("hidden w-[230px] md:block") }}
-			<div class="flex-1"></div>
+			{{ searchbox("hidden w-[230px] shrink md:block") }}
+			<div class="min-w-0 flex-1"></div>
 			{{ navlinks() }}
 			<div class="w-4"></div>
 			{{ actions() }}
 		{%- elif layout == "nav-left" %}
 			{{ wordmark() }}
 			{{ navlinks() }}
-			<div class="flex-1"></div>
-			{%- if not hide_search %}{{ searchbox("hidden w-[250px] md:block") }}{% endif %}
+			<div class="min-w-0 flex-1"></div>
+			{%- if not hide_search %}{{ searchbox("hidden w-[220px] shrink md:block") }}{% endif %}
 			{{ actions() }}
 		{%- elif layout == "nav-center" %}
 			{{ wordmark() }}
-			<div class="flex-1"></div>
+			<div class="min-w-0 flex-1"></div>
 			{{ navlinks() }}
-			<div class="flex-1"></div>
-			{%- if not hide_search %}{{ searchbox("hidden w-[210px] md:block") }}{% endif %}
+			<div class="min-w-0 flex-1"></div>
+			{%- if not hide_search %}{{ searchbox("hidden w-[210px] shrink md:block") }}{% endif %}
 			{{ actions() }}
 		{%- else %}
 			{{ wordmark() }}
-			<div class="flex flex-1 justify-center">
-				{{ searchbox("w-full max-w-[330px]") }}
+			<div class="flex min-w-0 flex-1 justify-center">
+				{{ searchbox("w-full max-w-[330px] shrink") }}
 			</div>
 			{{ navlinks() }}
 			<div class="w-2"></div>

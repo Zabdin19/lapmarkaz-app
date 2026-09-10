@@ -16,7 +16,7 @@ import frappe
 
 def get_context(context):
 	context.no_cache = 1
-	context.title = "Forgot Password | Lapmarkaz"
+	context.title = "Forgot Password | hamzatraders"
 
 	# Someone already signed in has no use for this page.
 	if frappe.session.user != "Guest":

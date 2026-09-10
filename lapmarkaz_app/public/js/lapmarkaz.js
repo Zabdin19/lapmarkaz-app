@@ -218,6 +218,47 @@
 		play();
 	}
 
+	// ---------------------------------------------------------- scroll reveal
+
+	function initReveal() {
+		var sections = document.querySelectorAll("[data-lm-reveal]");
+		if (!sections.length) return;
+
+		var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+		if (reduceMotion || !("IntersectionObserver" in window)) {
+			sections.forEach((el) => el.classList.add("lm-revealed"));
+			return;
+		}
+
+		var observer = new IntersectionObserver(
+			function (entries) {
+				entries.forEach(function (entry) {
+					if (entry.isIntersecting) {
+						entry.target.classList.add("lm-revealed");
+						observer.unobserve(entry.target);
+					}
+				});
+			},
+			{ rootMargin: "0px 0px -10% 0px", threshold: 0.1 }
+		);
+
+		sections.forEach((el) => observer.observe(el));
+	}
+
+	// -------------------------------------------------------------- faq accordion
+
+	document.addEventListener("click", function (event) {
+		const button = event.target.closest("[data-lm-faq-toggle]");
+		if (!button) return;
+
+		const panel = document.getElementById(button.getAttribute("aria-controls"));
+		if (!panel) return;
+
+		const open = button.getAttribute("aria-expanded") === "true";
+		button.setAttribute("aria-expanded", String(!open));
+		panel.classList.toggle("is-open", !open);
+	});
+
 	// ---------------------------------------------------------------- boot
 
 	// After a guest cart is merged on login, tell the customer if anything was
@@ -241,6 +282,7 @@
 
 	document.addEventListener("DOMContentLoaded", function () {
 		document.querySelectorAll("[data-lm-carousel]").forEach(initCarousel);
+		initReveal();
 		refreshBadge();
 		showMergeNotice();
 	});

@@ -59,7 +59,7 @@ def run():
 		{
 			"hero_heading": "Empowering Pakistan with Premium Tech",
 			"hero_body": (
-				"At Lapmarkaz, our mission is to provide authentic, high-quality laptops and "
+				"At hamzatraders, our mission is to provide authentic, high-quality laptops and "
 				"accessories that empower students, professionals, and creators across Pakistan. "
 				"We bridge the gap between premium global tech and local accessibility."
 			),
@@ -68,9 +68,9 @@ def run():
 			"hero_image": IMG + "about-office.svg",
 			"story_heading": "Our Story",
 			"story_body": (
-				"Lapmarkaz started with a simple observation: the tech market in Pakistan suffered "
+				"hamzatraders started with a simple observation: the tech market in Pakistan suffered "
 				"from a massive trust gap. Customers struggled to distinguish between genuinely "
-				"refurbished premium laptops and low-quality imports. We founded Lapmarkaz to bring "
+				"refurbished premium laptops and low-quality imports. We founded hamzatraders to bring "
 				"transparency, rigorous quality control, and exceptional customer support to the "
 				"local tech landscape, ensuring every purchase is a secure investment in your future."
 			),
@@ -83,7 +83,7 @@ def run():
 			),
 			"expertise_image_1": IMG + "about-technician.svg",
 			"expertise_image_2": IMG + "about-store.svg",
-			"cta_heading": "Experience the Lapmarkaz Difference",
+			"cta_heading": "Experience the hamzatraders Difference",
 			"cta_body": (
 				"Join thousands of satisfied professionals and students who have upgraded their "
 				"tech journey with our premium, reliable laptops."
@@ -94,10 +94,10 @@ def run():
 			"footer_tagline": "Premium tech solutions for Pakistan. Quality guaranteed.",
 			"contact_email": "Info@lapmarkaz.pk",
 			"contact_phone": "+92 321 2789920",
-			"footer_note": "© 2024 Lapmarkaz Pakistan. All rights reserved.",
-			"page_title": "About Us | Lapmarkaz",
+			"footer_note": "© 2024 hamzatraders Pakistan. All rights reserved.",
+			"page_title": "About Us | hamzatraders",
 			"meta_description": (
-				"Lapmarkaz provides authentic, certified refurbished laptops and accessories "
+				"hamzatraders provides authentic, certified refurbished laptops and accessories "
 				"across Pakistan, backed by rigorous inspection and real warranty support."
 			),
 		}

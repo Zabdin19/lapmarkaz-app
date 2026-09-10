@@ -24,6 +24,53 @@
   "products_cta_label",
   "products_cta_link",
   "products_limit",
+  "sb_home_categories",
+  "show_categories",
+  "categories_heading",
+  "cb_home_categories",
+  "categories_subheading",
+  "home_categories",
+  "sb_home_brands",
+  "show_brands",
+  "brands_heading",
+  "cb_home_brands",
+  "brands_subheading",
+  "brands_limit",
+  "sb_home_promo",
+  "promo_banners",
+  "sb_home_featured",
+  "show_featured",
+  "featured_heading",
+  "featured_subheading",
+  "featured_source",
+  "cb_home_featured",
+  "featured_cta_label",
+  "featured_cta_link",
+  "featured_limit",
+  "sb_home_budget",
+  "show_budget",
+  "budget_heading",
+  "cb_home_budget",
+  "budget_subheading",
+  "budget_ranges",
+  "sb_home_usecases",
+  "show_use_cases",
+  "use_cases_heading",
+  "cb_home_usecases",
+  "use_cases_subheading",
+  "use_cases_limit",
+  "sb_home_why",
+  "show_why_choose",
+  "why_choose_heading",
+  "cb_home_why",
+  "why_choose_subheading",
+  "why_choose_items",
+  "sb_home_testimonials",
+  "testimonials_heading",
+  "testimonials",
+  "sb_home_faq",
+  "faq_heading",
+  "faqs",
   "sb_home_news",
   "show_newsletter",
   "newsletter_heading",
@@ -151,6 +198,267 @@
    "fieldname": "products_limit",
    "fieldtype": "Int",
    "label": "Number of Products"
+  },
+  {
+   "fieldname": "sb_home_categories",
+   "fieldtype": "Section Break",
+   "label": "Shop by Category"
+  },
+  {
+   "default": "1",
+   "fieldname": "show_categories",
+   "fieldtype": "Check",
+   "label": "Show Section"
+  },
+  {
+   "default": "Shop by Category",
+   "fieldname": "categories_heading",
+   "fieldtype": "Data",
+   "label": "Heading"
+  },
+  {
+   "fieldname": "cb_home_categories",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "categories_subheading",
+   "fieldtype": "Small Text",
+   "label": "Subheading"
+  },
+  {
+   "fieldname": "home_categories",
+   "fieldtype": "Table",
+   "label": "Category Tiles",
+   "options": "Lapmarkaz Home Category"
+  },
+  {
+   "fieldname": "sb_home_brands",
+   "fieldtype": "Section Break",
+   "label": "Shop by Brand"
+  },
+  {
+   "default": "1",
+   "fieldname": "show_brands",
+   "fieldtype": "Check",
+   "label": "Show Section"
+  },
+  {
+   "default": "Shop Top Brands",
+   "fieldname": "brands_heading",
+   "fieldtype": "Data",
+   "label": "Heading"
+  },
+  {
+   "fieldname": "cb_home_brands",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "brands_subheading",
+   "fieldtype": "Small Text",
+   "label": "Subheading"
+  },
+  {
+   "default": "8",
+   "description": "Brands are managed in the Laptop Brand list — tick \"Show on Homepage\" and set Display Order there",
+   "fieldname": "brands_limit",
+   "fieldtype": "Int",
+   "label": "Number of Brands"
+  },
+  {
+   "fieldname": "sb_home_promo",
+   "fieldtype": "Section Break",
+   "label": "Promotional Banners"
+  },
+  {
+   "description": "Add one row for the banner shown after New Arrivals (Placement = Primary) and one for the lower conversion banner (Placement = Secondary). Unpublished/empty placements are simply skipped.",
+   "fieldname": "promo_banners",
+   "fieldtype": "Table",
+   "label": "Banners",
+   "options": "Lapmarkaz Promo Banner"
+  },
+  {
+   "fieldname": "sb_home_featured",
+   "fieldtype": "Section Break",
+   "label": "Featured Products"
+  },
+  {
+   "default": "1",
+   "fieldname": "show_featured",
+   "fieldtype": "Check",
+   "label": "Show Section"
+  },
+  {
+   "default": "Featured Laptops",
+   "fieldname": "featured_heading",
+   "fieldtype": "Data",
+   "label": "Heading"
+  },
+  {
+   "fieldname": "featured_subheading",
+   "fieldtype": "Small Text",
+   "label": "Subheading"
+  },
+  {
+   "default": "Featured",
+   "fieldname": "featured_source",
+   "fieldtype": "Select",
+   "label": "Source",
+   "options": "New Arrivals\nFeatured\nBest Sellers\nLatest\nLowest Price"
+  },
+  {
+   "fieldname": "cb_home_featured",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "View All",
+   "fieldname": "featured_cta_label",
+   "fieldtype": "Data",
+   "label": "CTA Label"
+  },
+  {
+   "default": "/shop",
+   "fieldname": "featured_cta_link",
+   "fieldtype": "Data",
+   "label": "CTA Link"
+  },
+  {
+   "default": "4",
+   "fieldname": "featured_limit",
+   "fieldtype": "Int",
+   "label": "Number of Products"
+  },
+  {
+   "fieldname": "sb_home_budget",
+   "fieldtype": "Section Break",
+   "label": "Shop by Budget"
+  },
+  {
+   "default": "1",
+   "fieldname": "show_budget",
+   "fieldtype": "Check",
+   "label": "Show Section"
+  },
+  {
+   "default": "Shop by Budget",
+   "fieldname": "budget_heading",
+   "fieldtype": "Data",
+   "label": "Heading"
+  },
+  {
+   "fieldname": "cb_home_budget",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "budget_subheading",
+   "fieldtype": "Small Text",
+   "label": "Subheading"
+  },
+  {
+   "fieldname": "budget_ranges",
+   "fieldtype": "Table",
+   "label": "Budget Ranges",
+   "options": "Lapmarkaz Budget Range"
+  },
+  {
+   "fieldname": "sb_home_usecases",
+   "fieldtype": "Section Break",
+   "label": "Shop by Use Case"
+  },
+  {
+   "default": "1",
+   "fieldname": "show_use_cases",
+   "fieldtype": "Check",
+   "label": "Show Section"
+  },
+  {
+   "default": "Shop by Use Case",
+   "fieldname": "use_cases_heading",
+   "fieldtype": "Data",
+   "label": "Heading"
+  },
+  {
+   "fieldname": "cb_home_usecases",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "use_cases_subheading",
+   "fieldtype": "Small Text",
+   "label": "Subheading"
+  },
+  {
+   "default": "6",
+   "description": "Use cases are managed in the Laptop Usage list — tick \"Show on Homepage\" and set Display Order there",
+   "fieldname": "use_cases_limit",
+   "fieldtype": "Int",
+   "label": "Number of Use Cases"
+  },
+  {
+   "fieldname": "sb_home_why",
+   "fieldtype": "Section Break",
+   "label": "Why Choose Lapmarkaz"
+  },
+  {
+   "default": "1",
+   "fieldname": "show_why_choose",
+   "fieldtype": "Check",
+   "label": "Show Section"
+  },
+  {
+   "default": "Why Choose Lapmarkaz",
+   "fieldname": "why_choose_heading",
+   "fieldtype": "Data",
+   "label": "Heading"
+  },
+  {
+   "fieldname": "cb_home_why",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "why_choose_subheading",
+   "fieldtype": "Small Text",
+   "label": "Subheading"
+  },
+  {
+   "fieldname": "why_choose_items",
+   "fieldtype": "Table",
+   "label": "Reasons",
+   "options": "Lapmarkaz Feature Item"
+  },
+  {
+   "fieldname": "sb_home_testimonials",
+   "fieldtype": "Section Break",
+   "label": "Customer Testimonials"
+  },
+  {
+   "default": "What Our Customers Say",
+   "description": "Hidden automatically when there are no enabled testimonials — never seed with fake reviews",
+   "fieldname": "testimonials_heading",
+   "fieldtype": "Data",
+   "label": "Heading"
+  },
+  {
+   "fieldname": "testimonials",
+   "fieldtype": "Table",
+   "label": "Testimonials",
+   "options": "Lapmarkaz Testimonial"
+  },
+  {
+   "fieldname": "sb_home_faq",
+   "fieldtype": "Section Break",
+   "label": "FAQ"
+  },
+  {
+   "default": "Frequently Asked Questions",
+   "description": "Hidden automatically when there are no enabled FAQs",
+   "fieldname": "faq_heading",
+   "fieldtype": "Data",
+   "label": "Heading"
+  },
+  {
+   "fieldname": "faqs",
+   "fieldtype": "Table",
+   "label": "Questions",
+   "options": "Lapmarkaz FAQ Item"
   },
   {
    "fieldname": "sb_home_news",

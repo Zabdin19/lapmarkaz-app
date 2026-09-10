@@ -2,7 +2,7 @@
 {% import "templates/includes/lm_icons.html" as ic %}
 {% import "templates/includes/lm_cards.html" as cards %}
 
-{% block title %}{{ laptop.brand }} {{ laptop.model }} | Lapmarkaz{% endblock %}
+{% block title %}{{ laptop.brand }} {{ laptop.model }} | hamzatraders{% endblock %}
 
 {% block lm_content %}
 <div class="lm-shell py-6">
@@ -25,7 +25,7 @@
 		<div>
 			<div class="lm-card relative flex h-[380px] items-center justify-center p-8">
 				{%- if laptop.show_condition_badge %}
-				<span class="lm-badge absolute left-4 top-4 bg-emerald-50 text-emerald-700">{{ laptop.condition }}</span>
+				<span class="lm-badge absolute left-4 top-4 {{ condition_class(laptop.condition) }}">{{ laptop.condition }}</span>
 				{%- endif %}
 				<img id="lm-gallery-main" src="{{ gallery[0] or product_image(laptop) }}"
 					alt="{{ laptop.brand }} {{ laptop.model }}" class="max-h-full max-w-full object-contain">
@@ -65,8 +65,8 @@
 				</span>
 				{%- endif %}
 				<span class="inline-flex items-center gap-1.5 rounded-md px-2.5 py-1.5 text-[12px] font-medium
-					{% if laptop.stock_status == 'In Stock' %}bg-emerald-50 text-emerald-700
-					{% elif laptop.stock_status == 'Low Stock' %}bg-amber-50 text-amber-700
+					{% if laptop.stock_status == 'In Stock' %}bg-success-50 text-success-700
+					{% elif laptop.stock_status == 'Low Stock' %}bg-warning-50 text-warning-700
 					{% else %}bg-slate-100 text-slate-500{% endif %}">
 					{{ ic.icon("check-circle", "h-3.5 w-3.5") }} {{ laptop.stock_status }}
 				</span>
@@ -183,7 +183,7 @@
 						{{ ic.stars(review.rating, "h-[14px] w-[14px]") }}
 						<span class="text-[13.5px] font-semibold text-ink">{{ review.title }}</span>
 						{%- if review.verified_purchase %}
-						<span class="lm-badge bg-emerald-50 text-emerald-700">Verified Purchase</span>
+						<span class="lm-badge bg-success-50 text-success-700">Verified Purchase</span>
 						{%- endif %}
 					</div>
 					<p class="mt-2 text-[13.5px] leading-relaxed text-slate-600">{{ review.comment }}</p>

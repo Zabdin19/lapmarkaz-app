@@ -17,13 +17,19 @@ class LapmarkazCart(Document):
 			row.qty = max(cint(row.qty), 1)
 
 			if row.item_type == "Accessory" and row.accessory:
-				row.laptop = None
+				row.laptop = row.printing_machine = row.printing_accessory = None
 				name, price, _ = _accessory_snapshot(row.accessory)
+			elif row.item_type == "Printing Machine" and row.printing_machine:
+				row.laptop = row.accessory = row.printing_accessory = None
+				name, price, _ = _printing_machine_snapshot(row.printing_machine)
+			elif row.item_type == "Printing Accessory" and row.printing_accessory:
+				row.laptop = row.accessory = row.printing_machine = None
+				name, price, _ = _printing_accessory_snapshot(row.printing_accessory)
 			elif row.laptop:
-				row.accessory = None
+				row.accessory = row.printing_machine = row.printing_accessory = None
 				name, price, _ = _laptop_snapshot(row.laptop)
 			else:
-				frappe.throw("Every cart row needs a Laptop or an Accessory")
+				frappe.throw("Every cart row needs a Laptop, Accessory, Printing Machine or Printing Accessory")
 
 			row.item_name = name
 			row.rate = price
@@ -47,4 +53,22 @@ def _accessory_snapshot(name):
 	)
 	if not row:
 		frappe.throw(f"Accessory {name} not found")
+	return row.accessory_name, row.price, row.image
+
+
+def _printing_machine_snapshot(name):
+	row = frappe.db.get_value(
+		"Printing Machine", name, ["machine_name", "price", "thumbnail"], as_dict=True
+	)
+	if not row:
+		frappe.throw(f"Printing Machine {name} not found")
+	return row.machine_name, row.price, row.thumbnail
+
+
+def _printing_accessory_snapshot(name):
+	row = frappe.db.get_value(
+		"Printing Accessory", name, ["accessory_name", "price", "image"], as_dict=True
+	)
+	if not row:
+		frappe.throw(f"Printing Accessory {name} not found")
 	return row.accessory_name, row.price, row.image

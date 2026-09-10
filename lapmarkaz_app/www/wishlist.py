@@ -12,7 +12,7 @@ from lapmarkaz_app.www.shop import CARD_FIELDS
 
 def get_context(context):
 	context.no_cache = 1
-	context.title = "My Wishlist | Lapmarkaz"
+	context.title = "My Wishlist | hamzatraders"
 
 	if frappe.session.user == "Guest":
 		frappe.local.flags.redirect_location = "/login?redirect-to=/wishlist"

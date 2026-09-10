@@ -13,7 +13,7 @@ import frappe
 
 PRIVACY = """
 <h2>What we collect</h2>
-<p>When you shop with Lapmarkaz we collect only what we need to fulfil your order: your name,
+<p>When you shop with hamzatraders we collect only what we need to fulfil your order: your name,
 email address, phone number and delivery address. If you create an account we also store your
 order history so you can look it up later.</p>
 <p>We do not store card numbers. Card payments are handled by our payment partner and the card
@@ -105,10 +105,10 @@ POLICIES = [
 	{
 		"title": "Privacy Policy",
 		"route": "privacy",
-		"subtitle": "How Lapmarkaz collects, uses and protects the information you share with us.",
+		"subtitle": "How hamzatraders collects, uses and protects the information you share with us.",
 		"content": PRIVACY,
 		"display_order": 1,
-		"meta_description": "How Lapmarkaz collects, uses and protects your personal information.",
+		"meta_description": "How hamzatraders collects, uses and protects your personal information.",
 	},
 	{
 		"title": "Shipping Policy",
@@ -116,7 +116,7 @@ POLICIES = [
 		"subtitle": "Delivery times, charges and what to expect once your order is on its way.",
 		"content": SHIPPING,
 		"display_order": 2,
-		"meta_description": "Lapmarkaz delivery times, shipping charges and dispatch process across Pakistan.",
+		"meta_description": "hamzatraders delivery times, shipping charges and dispatch process across Pakistan.",
 	},
 	{
 		"title": "Refund Policy",
@@ -124,24 +124,24 @@ POLICIES = [
 		"subtitle": "Our 7-day return window, how to start a return, and when your money arrives.",
 		"content": REFUND,
 		"display_order": 3,
-		"meta_description": "Lapmarkaz return window, refund timelines and what is covered.",
+		"meta_description": "hamzatraders return window, refund timelines and what is covered.",
 	},
 ]
 
 STORES = [
 	{
-		"store_name": "Lapmarkaz Tech Mall",
+		"store_name": "hamzatraders Tech Mall",
 		"city": "Karachi",
 		"address": "Karachi, Pakistan",
 		"phone": "+92 321 2789920",
 		"email": "Info@lapmarkaz.pk",
 		"hours": "Mon - Sat, 10:00 AM - 8:00 PM",
-		"map_url": "https://maps.google.com/?q=Lapmarkaz+Karachi",
+		"map_url": "https://maps.google.com/?q=hamzatraders+Karachi",
 		"is_flagship": 1,
 		"display_order": 1,
 	},
 	{
-		"store_name": "Lapmarkaz Hall Road",
+		"store_name": "hamzatraders Hall Road",
 		"city": "Lahore",
 		"address": "Office 4, Second Floor, Hafeez Centre, Gulberg III, Lahore",
 		"phone": "+92 301 2345678",
@@ -151,7 +151,7 @@ STORES = [
 		"display_order": 2,
 	},
 	{
-		"store_name": "Lapmarkaz Blue Area",
+		"store_name": "hamzatraders Blue Area",
 		"city": "Islamabad",
 		"address": "Shop 22, Ground Floor, Jinnah Super Market, F-7 Markaz, Islamabad",
 		"phone": "+92 302 3456789",
@@ -202,7 +202,7 @@ def run():
 	settings = frappe.get_single("Store Locator Settings")
 	settings.update(
 		{
-			"heading": "Find a Lapmarkaz Store",
+			"heading": "Find a hamzatraders Store",
 			"subheading": (
 				"Come see the machines in person. Every branch keeps display stock you can test, "
 				"and handles warranty drop-offs for orders bought online."
@@ -215,8 +215,8 @@ def run():
 			"empty_body": "Try another city, or reach us online.",
 			"empty_cta_label": "Contact Support",
 			"empty_cta_link": "/support",
-			"page_title": "Store Locator | Lapmarkaz",
-			"meta_description": "Lapmarkaz store addresses, phone numbers and opening hours across Pakistan.",
+			"page_title": "Store Locator | hamzatraders",
+			"meta_description": "hamzatraders store addresses, phone numbers and opening hours across Pakistan.",
 		}
 	)
 	settings.save(ignore_permissions=True)

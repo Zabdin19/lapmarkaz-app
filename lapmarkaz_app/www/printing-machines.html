@@ -1,0 +1,175 @@
+{% extends "templates/lapmarkaz_base.html" %}
+{% import "templates/includes/lm_icons.html" as ic %}
+{% import "templates/includes/lm_cards.html" as cards %}
+
+{% block title %}Printing Machines | hamzatraders{% endblock %}
+
+{% block lm_content %}
+<div class="lm-shell py-9">
+
+	<h1 class="font-display text-[32px] font-bold tracking-tight text-ink">Printing Machines</h1>
+	<p class="mt-2 text-[15px] text-slate-500">Laser, inkjet and multifunction printers for home, study and the office.</p>
+
+	<div class="mt-7 grid items-start gap-6 lg:grid-cols-[240px_minmax(0,1fr)]">
+
+		{# ------------------------------------------------------- filter rail #}
+		<form method="get" action="/printing-machines" id="lm-filters" class="lm-card px-5 py-5 lg:sticky lg:top-[76px]">
+			{%- if search %}<input type="hidden" name="q" value="{{ search }}">{% endif %}
+			{%- if view != "grid" %}<input type="hidden" name="view" value="{{ view }}">{% endif %}
+
+			<div class="flex items-center justify-between border-b border-line pb-4">
+				<span class="flex items-center gap-2 font-display text-[15px] font-semibold text-ink">
+					{{ ic.icon("filter", "h-[18px] w-[18px]") }} Filters
+				</span>
+				{%- if active_filter_count %}
+				<a href="/printing-machines" class="text-[12px] font-medium text-brand hover:underline">Clear</a>
+				{%- endif %}
+			</div>
+
+			{%- for facet in facets %}
+			{%- set options = facet_options[facet.param] %}
+			{%- set picked = selected[facet.param] %}
+			{%- if options %}
+			<details class="group border-b border-line" {% if picked %}open{% endif %}>
+				<summary class="flex cursor-pointer list-none items-center justify-between py-3.5
+					text-[14.5px] font-medium text-ink marker:content-none [&::-webkit-details-marker]:hidden">
+					<span>
+						{{ facet.label }}
+						{%- if picked %}
+						<span class="ml-1 rounded bg-brand-50 px-1.5 py-0.5 text-[11px] font-semibold text-brand">{{ picked | length }}</span>
+						{%- endif %}
+					</span>
+					<span class="text-slate-400">
+						<span class="group-open:hidden">{{ ic.icon("plus", "h-4 w-4") }}</span>
+						<span class="hidden group-open:inline">{{ ic.icon("minus", "h-4 w-4") }}</span>
+					</span>
+				</summary>
+				<div class="max-h-56 space-y-2 overflow-y-auto pb-4 pr-1">
+					{%- for option in options %}
+					<label class="flex cursor-pointer items-center gap-2.5 text-[13px] text-slate-600 hover:text-ink">
+						<input type="checkbox" name="{{ facet.param }}" value="{{ option.value }}"
+							{% if option.value in picked %}checked{% endif %}
+							class="h-4 w-4 shrink-0 rounded border-line text-brand focus:ring-brand/30">
+						<span>{{ option.label }}</span>
+					</label>
+					{%- endfor %}
+				</div>
+			</details>
+			{%- endif %}
+			{%- endfor %}
+
+			<button type="submit" class="lm-btn-secondary mt-5 w-full py-3 text-[14px]">
+				Apply Filter
+			</button>
+		</form>
+
+		{# ------------------------------------------------------------ results #}
+		<div>
+			<div class="lm-card flex flex-wrap items-center justify-between gap-3 px-5 py-4">
+				<p class="text-[14px] text-slate-600">
+					Showing <span class="font-semibold text-ink">{{ total }}</span> product{{ "" if total == 1 else "s" }}
+					{%- if search %} for “{{ search }}”{% endif %}
+				</p>
+
+				<div class="flex items-center gap-3">
+					<label for="lm-sort" class="text-[13px] text-slate-500">Sort by:</label>
+					<select id="lm-sort" name="sort" form="lm-filters" onchange="this.form.submit()"
+						class="h-9 rounded-lg border border-line bg-white pl-3 pr-8 text-[13px] text-ink
+							focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/15">
+						{%- for option in sort_options %}
+						<option value="{{ option.value }}" {% if option.value == sort %}selected{% endif %}>{{ option.label }}</option>
+						{%- endfor %}
+					</select>
+
+					<div class="flex items-center gap-1.5">
+						{%- for mode, icon_name in [("grid", "grid"), ("list", "list")] %}
+						<a href="/printing-machines?{{ base_query }}{% if base_query %}&{% endif %}view={{ mode }}" aria-label="{{ mode }} view"
+							class="flex h-9 w-9 items-center justify-center rounded-lg border transition
+								{% if view == mode %}border-brand bg-brand text-white
+								{% else %}border-line bg-white text-slate-500 hover:text-ink{% endif %}">
+							{{ ic.icon(icon_name, "h-[18px] w-[18px]") }}
+						</a>
+						{%- endfor %}
+					</div>
+				</div>
+			</div>
+
+			{%- if not machines %}
+			<div class="lm-card mt-5 px-6 py-16 text-center">
+				<p class="font-display text-[17px] font-semibold text-ink">No printing machines match those filters</p>
+				<p class="mt-2 text-[14px] text-slate-500">Try widening your selection or clearing a filter or two.</p>
+				<a href="/printing-machines" class="lm-btn-primary mt-6">Clear all filters</a>
+			</div>
+
+			{%- elif view == "list" %}
+			<div class="mt-5 space-y-4">
+				{%- for machine in machines %}
+				<div class="lm-card flex flex-col gap-5 p-4 sm:flex-row sm:items-center">
+					<a href="/printing-machines/{{ machine.slug }}"
+						class="lm-tile flex h-[120px] w-full shrink-0 items-center justify-center rounded-lg px-5 sm:w-[190px]">
+						<img src="{{ product_image(machine) }}" alt="{{ machine.brand }} {{ machine.model }}"
+							class="max-h-full max-w-full object-contain" loading="lazy">
+					</a>
+					<div class="min-w-0 flex-1">
+						{%- if machine.show_condition_badge %}
+						<span class="lm-badge {{ condition_class(machine.condition) }}">{{ machine.condition }}</span>
+						{%- endif %}
+						<a href="/printing-machines/{{ machine.slug }}"
+							class="mt-2 block font-display text-[16px] font-semibold text-ink hover:text-brand">
+							{{ machine.brand }} {{ machine.model }}
+						</a>
+						<p class="mt-1 text-[13px] text-slate-500">{{ machine.tagline }}</p>
+						<p class="mt-1.5 text-[12.5px] text-slate-400">
+							{{ [machine.machine_type, machine.print_technology, machine.color_mode] | select | join(" · ") }}
+						</p>
+					</div>
+					<div class="flex shrink-0 items-center gap-4 sm:flex-col sm:items-end">
+						<span class="font-display text-[18px] font-bold text-ink">{{ rupees(machine.price) }}</span>
+						<button type="button" data-lm-add="{{ machine.name }}" data-lm-type="Printing Machine"
+							class="lm-btn-primary px-5 py-2.5 text-[13px]">Add to Cart</button>
+					</div>
+				</div>
+				{%- endfor %}
+			</div>
+
+			{%- else %}
+			<div class="mt-5 grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+				{%- for machine in machines %}
+				{{ cards.shop_card(machine, url_prefix="/printing-machines", item_type="Printing Machine") }}
+				{%- endfor %}
+			</div>
+			{%- endif %}
+
+			{# --------------------------------------------------- pagination #}
+			{%- if page_numbers %}
+			<nav class="mt-8 flex items-center justify-center gap-2" aria-label="Pagination">
+				{%- set qs = base_query + ("&" if base_query else "") %}
+
+				<a href="{{ '/printing-machines?' ~ qs ~ 'page=' ~ (page - 1) if page > 1 else '#' }}" aria-label="Previous page"
+					class="flex h-9 w-9 items-center justify-center rounded-lg border border-line bg-white transition
+						{% if page > 1 %}text-slate-600 hover:text-ink{% else %}pointer-events-none text-slate-300{% endif %}">
+					{{ ic.icon("chevron-left", "h-4 w-4") }}
+				</a>
+
+				{%- for number in page_numbers %}
+					{%- if number is none %}
+					<span class="px-1 text-slate-400">…</span>
+					{%- else %}
+					<a href="/printing-machines?{{ qs }}page={{ number }}"
+						class="flex h-9 min-w-[36px] items-center justify-center rounded-lg border px-2 text-[13.5px] font-medium transition
+							{% if number == page %}border-brand bg-brand text-white
+							{% else %}border-line bg-white text-slate-600 hover:text-ink{% endif %}">{{ number }}</a>
+					{%- endif %}
+				{%- endfor %}
+
+				<a href="{{ '/printing-machines?' ~ qs ~ 'page=' ~ (page + 1) if page < total_pages else '#' }}" aria-label="Next page"
+					class="flex h-9 w-9 items-center justify-center rounded-lg border border-line bg-white transition
+						{% if page < total_pages %}text-slate-600 hover:text-ink{% else %}pointer-events-none text-slate-300{% endif %}">
+					{{ ic.icon("chevron-right", "h-4 w-4") }}
+				</a>
+			</nav>
+			{%- endif %}
+		</div>
+	</div>
+</div>
+{% endblock %}

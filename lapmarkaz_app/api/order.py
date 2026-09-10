@@ -357,10 +357,8 @@ def place_order(**payload):
 		)
 
 		for row in cart.items:
-			item_code = get_or_create_item(
-				"Lapmarkaz Accessory" if row.item_type == "Accessory" else "Laptop",
-				row.accessory if row.item_type == "Accessory" else row.laptop,
-			)
+			item_doctype, item_name = _catalogue_ref(row)
+			item_code = get_or_create_item(item_doctype, item_name)
 			order.append(
 				"items",
 				{
@@ -377,6 +375,8 @@ def place_order(**payload):
 					"lm_item_type": row.item_type,
 					"lm_laptop": row.laptop,
 					"lm_accessory": row.accessory,
+					"lm_printing_machine": row.printing_machine,
+					"lm_printing_accessory": row.printing_accessory,
 				},
 			)
 
@@ -422,10 +422,25 @@ def place_order(**payload):
 	return {"order": order.name, "redirect": redirect}
 
 
+def _catalogue_ref(row):
+	"""(doctype, name) of the catalogue record a cart/order row points at."""
+	if row.item_type == "Accessory":
+		return "Lapmarkaz Accessory", row.accessory
+	if row.item_type == "Printing Machine":
+		return "Printing Machine", row.printing_machine
+	if row.item_type == "Printing Accessory":
+		return "Printing Accessory", row.printing_accessory
+	return "Laptop", row.laptop
+
+
 def storefront_image(row):
 	"""Product image for a Sales Order line, from the catalogue record."""
 	if row.get("lm_accessory"):
 		return frappe.db.get_value("Lapmarkaz Accessory", row.lm_accessory, "image")
+	if row.get("lm_printing_machine"):
+		return frappe.db.get_value("Printing Machine", row.lm_printing_machine, "thumbnail")
+	if row.get("lm_printing_accessory"):
+		return frappe.db.get_value("Printing Accessory", row.lm_printing_accessory, "image")
 	if row.get("lm_laptop"):
 		return frappe.db.get_value("Laptop", row.lm_laptop, "thumbnail")
 	return row.get("image")
@@ -433,11 +448,15 @@ def storefront_image(row):
 
 def _decrement_stock(order):
 	for row in order.items:
-		if not row.get("lm_laptop"):
-			continue
-
-		laptop = frappe.get_doc("Laptop", row.lm_laptop)
-		remaining = max(cint(laptop.stock_qty) - cint(row.qty), 0)
-		laptop.db_set("stock_qty", remaining)
-		if remaining == 0:
-			laptop.db_set("stock_status", "Out of Stock")
+		if row.get("lm_laptop"):
+			laptop = frappe.get_doc("Laptop", row.lm_laptop)
+			remaining = max(cint(laptop.stock_qty) - cint(row.qty), 0)
+			laptop.db_set("stock_qty", remaining)
+			if remaining == 0:
+				laptop.db_set("stock_status", "Out of Stock")
+		elif row.get("lm_printing_machine"):
+			machine = frappe.get_doc("Printing Machine", row.lm_printing_machine)
+			remaining = max(cint(machine.stock_qty) - cint(row.qty), 0)
+			machine.db_set("stock_qty", remaining)
+			if remaining == 0:
+				machine.db_set("stock_status", "Out of Stock")

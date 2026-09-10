@@ -1,12 +1,12 @@
 {% extends "templates/lapmarkaz_base.html" %}
 {% import "templates/includes/lm_icons.html" as ic %}
 
-{% block title %}{{ settings.page_title or "Support | Lapmarkaz" }}{% endblock %}
+{% block title %}{{ settings.page_title or "Support | hamzatraders" }}{% endblock %}
 
 {% block lm_content %}
 
 {# ---------------------------------------------------------------- hero #}
-<section class="bg-[#ECEEF1]">
+<section class="bg-surface-muted">
 	<div class="lm-shell py-16 text-center">
 		<h1 class="font-display text-[28px] font-bold tracking-tight text-ink sm:text-[30px]">
 			{{ settings.hero_heading }}
@@ -45,7 +45,7 @@
 			{%- set tag = "a" if category.link else "div" %}
 			<{{ tag }} {% if category.link %}href="{{ category.link }}"{% endif %}
 				class="lm-card block px-5 py-7 text-center transition hover:shadow-pop">
-				<span class="inline-flex h-11 w-11 items-center justify-center rounded-full bg-[#ECEEF1] text-ink">
+				<span class="lm-tile inline-flex h-11 w-11 items-center justify-center rounded-full text-ink">
 					{{ ic.icon(category.icon or "headset", "h-[19px] w-[19px]") }}
 				</span>
 				<h3 class="mt-4 font-display text-[15px] font-bold text-ink">{{ category.title }}</h3>
@@ -60,7 +60,7 @@
 {%- endif %}
 
 {# ----------------------------------------------------------------- faq #}
-<section class="bg-[#ECEEF1]">
+<section class="bg-surface-muted">
 	<div class="lm-shell py-14">
 		<h2 class="text-center font-display text-[22px] font-bold tracking-tight text-ink">
 			{{ settings.faq_heading or "Frequently Asked Questions" }}
@@ -130,7 +130,7 @@
 
 		<div class="space-y-6">
 			{%- if settings.channels %}
-			<div class="rounded-xl border border-line bg-[#ECEEF1] p-7">
+			<div class="rounded-xl border border-line bg-surface-muted p-7">
 				<h2 class="font-display text-[19px] font-bold tracking-tight text-ink">
 					{{ settings.channels_heading or "Direct Channels" }}
 				</h2>
@@ -189,8 +189,8 @@
 
 		function say(text, ok) {
 			box.textContent = text;
-			box.classList.remove("hidden", "bg-emerald-50", "text-emerald-700", "bg-red-50", "text-red-700");
-			box.classList.add(ok ? "bg-emerald-50" : "bg-red-50", ok ? "text-emerald-700" : "text-red-700");
+			box.classList.remove("hidden", "bg-success-50", "text-success-700", "bg-danger-50", "text-danger-700");
+			box.classList.add(ok ? "bg-success-50" : "bg-danger-50", ok ? "text-success-700" : "text-danger-700");
 		}
 
 		function reset() {

@@ -21,7 +21,7 @@ but the record is matched by name so Desk never accumulates duplicates.
 import frappe
 
 TEMPLATE_NAME = "Lapmarkaz Password Reset"
-SUBJECT = "Reset your Lapmarkaz password"
+SUBJECT = "Reset your hamzatraders password"
 
 BRAND = "#0B5FD5"
 NAVY = "#101B33"
@@ -46,7 +46,7 @@ RESPONSE_HTML = f"""
 				<tr>
 					<td style="background-color:{NAVY};padding:24px 32px;">
 						<span style="font-size:20px;font-weight:700;letter-spacing:-0.02em;color:#ffffff;">
-							Lap<span style="color:#35D6A4;">markaz</span>
+							hamzatraders
 						</span>
 					</td>
 				</tr>
@@ -64,7 +64,7 @@ RESPONSE_HTML = f"""
 						</p>
 
 						<p style="margin:0 0 26px 0;font-size:15px;line-height:1.6;color:{MUTED};">
-							We received a request to reset the password for the Lapmarkaz account
+							We received a request to reset the password for the hamzatraders account
 							registered to <strong style="color:{INK};">{{{{ user }}}}</strong>.
 							Click the button below to choose a new one.
 						</p>
@@ -116,7 +116,7 @@ RESPONSE_HTML = f"""
 							without this link.
 						</p>
 						<p style="margin:18px 0 0 0;font-size:12px;line-height:1.7;color:#94A3B8;">
-							Lapmarkaz &middot; Karachi, Pakistan<br>
+							hamzatraders &middot; Karachi, Pakistan<br>
 							<a href="mailto:Info@lapmarkaz.pk" style="color:#94A3B8;text-decoration:none;">
 								Info@lapmarkaz.pk</a> &middot; +92 321 2789920
 						</p>

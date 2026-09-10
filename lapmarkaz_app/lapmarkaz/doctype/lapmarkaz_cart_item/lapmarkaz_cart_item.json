@@ -9,6 +9,8 @@
   "item_type",
   "laptop",
   "accessory",
+  "printing_machine",
+  "printing_accessory",
   "item_name",
   "qty",
   "rate",
@@ -20,7 +22,7 @@
    "fieldname": "item_type",
    "fieldtype": "Select",
    "label": "Item Type",
-   "options": "Laptop\nAccessory",
+   "options": "Laptop\nAccessory\nPrinting Machine\nPrinting Accessory",
    "reqd": 1
   },
   {
@@ -38,6 +40,22 @@
    "in_list_view": 1,
    "label": "Accessory",
    "options": "Lapmarkaz Accessory"
+  },
+  {
+   "depends_on": "eval:doc.item_type=='Printing Machine'",
+   "fieldname": "printing_machine",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Printing Machine",
+   "options": "Printing Machine"
+  },
+  {
+   "depends_on": "eval:doc.item_type=='Printing Accessory'",
+   "fieldname": "printing_accessory",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Printing Accessory",
+   "options": "Printing Accessory"
   },
   {
    "fieldname": "item_name",

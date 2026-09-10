@@ -1,0 +1,176 @@
+{% extends "templates/lapmarkaz_base.html" %}
+{% import "templates/includes/lm_icons.html" as ic %}
+
+{% block title %}{{ accessory.accessory_name }} | hamzatraders{% endblock %}
+
+{% block lm_content %}
+<div class="lm-shell py-6">
+
+	{# ------------------------------------------------------- breadcrumbs #}
+	<nav class="flex flex-wrap items-center gap-1.5 text-[12.5px] text-slate-500" aria-label="Breadcrumb">
+		{%- for crumb in breadcrumbs %}
+		{%- if crumb.href %}
+		<a href="{{ crumb.href }}" class="transition hover:text-brand">{{ crumb.label }}</a>
+		<span class="text-slate-300">{{ ic.icon("chevron-right", "h-3 w-3") }}</span>
+		{%- else %}
+		<span class="font-medium text-ink">{{ crumb.label }}</span>
+		{%- endif %}
+		{%- endfor %}
+	</nav>
+
+	<div class="mt-6 grid gap-10 lg:grid-cols-2">
+
+		{# --------------------------------------------------------- image #}
+		<div class="lm-card flex h-[380px] items-center justify-center p-8">
+			<img src="{{ product_image(accessory) }}" alt="{{ accessory.accessory_name }}"
+				class="max-h-full max-w-full object-contain">
+		</div>
+
+		{# -------------------------------------------------- buy column #}
+		<div>
+			{%- if accessory.review_count %}
+			<div class="flex items-center gap-2">
+				{{ ic.stars(accessory.rating) }}
+				<span class="text-[12.5px] text-slate-500">
+					({{ "%.1f" | format(accessory.rating or 0) }}/5) &middot; {{ accessory.review_count }} Reviews
+				</span>
+			</div>
+			{%- endif %}
+
+			<h1 class="{{ 'mt-3' if accessory.review_count else '' }} font-display text-[28px] font-bold leading-tight tracking-tight text-ink">
+				{{ accessory.accessory_name }}
+			</h1>
+			{%- if accessory.tagline %}
+			<p class="mt-1.5 text-[15px] text-slate-500">{{ accessory.tagline }}</p>
+			{%- endif %}
+
+			<div class="mt-4 flex flex-wrap items-center gap-2.5">
+				{%- if accessory.accessory_type %}
+				<span class="inline-flex items-center gap-1.5 rounded-md bg-navy px-2.5 py-1.5 text-[12px] font-medium text-white">
+					{{ accessory.accessory_type }}
+				</span>
+				{%- endif %}
+				<span class="inline-flex items-center gap-1.5 rounded-md px-2.5 py-1.5 text-[12px] font-medium
+					{% if accessory.stock_status == 'In Stock' %}bg-success-50 text-success-700
+					{% elif accessory.stock_status == 'Low Stock' %}bg-warning-50 text-warning-700
+					{% else %}bg-slate-100 text-slate-500{% endif %}">
+					{{ ic.icon("check-circle", "h-3.5 w-3.5") }} {{ accessory.stock_status }}
+				</span>
+			</div>
+
+			<p class="mt-6 font-display text-[26px] font-bold text-ink">{{ rupees(accessory.price, "Rs") }}</p>
+			{%- if accessory.compare_at_price and accessory.compare_at_price > accessory.price %}
+			<p class="mt-1 text-[13px] text-slate-400 line-through">{{ rupees(accessory.compare_at_price, "Rs") }}</p>
+			{%- endif %}
+
+			<div class="mt-6 flex flex-wrap items-stretch gap-3">
+				<div class="flex items-center rounded-lg border border-line">
+					<button type="button" data-lm-step="-1" aria-label="Decrease quantity"
+						class="flex h-11 w-10 items-center justify-center text-slate-500 hover:text-ink">
+						{{ ic.icon("minus", "h-4 w-4") }}
+					</button>
+					<input id="lm-qty" type="number" min="1" max="99" value="1"
+						class="h-11 w-12 border-0 bg-transparent text-center text-[14px] font-medium text-ink
+							focus:outline-none [appearance:textfield]
+							[&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none">
+					<button type="button" data-lm-step="1" aria-label="Increase quantity"
+						class="flex h-11 w-10 items-center justify-center text-slate-500 hover:text-ink">
+						{{ ic.icon("plus", "h-4 w-4") }}
+					</button>
+				</div>
+
+				<button type="button" data-lm-add="{{ accessory.name }}" data-lm-type="Printing Accessory" data-lm-qty-from="#lm-qty"
+					{% if accessory.stock_status == "Out of Stock" %}disabled{% endif %}
+					class="lm-btn-primary h-11 flex-1 disabled:cursor-not-allowed disabled:opacity-50">
+					{{ ic.icon("cart", "h-[18px] w-[18px]") }} Add to Cart
+				</button>
+			</div>
+
+			{# ----------------------------------------------- compatible with #}
+			{%- if compatible_machines %}
+			<div class="mt-8 border-t border-line pt-6">
+				<h2 class="font-display text-[15px] font-bold text-ink">Compatible With</h2>
+				<ul class="mt-3 space-y-2">
+					{%- for machine in compatible_machines %}
+					<li>
+						<a href="/printing-machines/{{ machine.slug }}"
+							class="flex items-center gap-2 text-[13.5px] text-slate-600 hover:text-brand">
+							{{ ic.icon("check-circle", "h-4 w-4 shrink-0 text-success-600") }}
+							{{ machine.brand }} {{ machine.model }}
+						</a>
+					</li>
+					{%- endfor %}
+				</ul>
+			</div>
+			{%- endif %}
+		</div>
+	</div>
+
+	{# ------------------------------------------------------------- specs #}
+	{%- if spec_groups or accessory.description %}
+	<div class="mt-12">
+		<h2 class="font-display text-[20px] font-bold tracking-tight text-ink">Details</h2>
+		{%- if spec_groups %}
+		<div class="lm-card mt-5 grid overflow-hidden sm:grid-cols-2
+			[&>*]:border-b [&>*]:border-line
+			[&>*:last-child]:border-b-0
+			sm:[&>*:nth-child(odd)]:border-r
+			sm:[&>*:nth-last-child(-n+2)]:border-b-0">
+			{%- for spec in spec_groups %}
+			<div class="p-5">
+				<p class="text-[11px] font-semibold uppercase tracking-[0.07em] text-slate-400">{{ spec.label }}</p>
+				<p class="mt-1.5 font-display text-[15px] font-semibold text-ink">{{ spec.value }}</p>
+			</div>
+			{%- endfor %}
+		</div>
+		{%- endif %}
+		{%- if accessory.description %}
+		<div class="lm-card mt-5 p-6">
+			<div class="prose-lm max-w-[760px] text-[14px] leading-relaxed text-slate-600">
+				{{ accessory.description | safe }}
+			</div>
+		</div>
+		{%- endif %}
+	</div>
+	{%- endif %}
+
+	{# --------------------------------------------------- related #}
+	{%- if related %}
+	<section class="mt-14">
+		<h2 class="font-display text-[20px] font-bold tracking-tight text-ink">You Might Also Need</h2>
+		<div class="mt-5 grid grid-cols-2 gap-5 lg:grid-cols-4">
+			{%- for item in related %}
+			<a href="/printing-accessories/{{ item.slug }}" class="lm-card flex flex-col overflow-hidden transition hover:shadow-pop">
+				<div class="lm-tile flex h-[120px] items-center justify-center px-5">
+					<img src="{{ product_image(item) }}" alt="{{ item.accessory_name }}"
+						class="max-h-full max-w-full object-contain" loading="lazy">
+				</div>
+				<div class="flex flex-1 flex-col px-3.5 pb-3.5 pt-3">
+					<span class="text-[11px] font-medium text-brand">{{ item.brand }}</span>
+					<span class="mt-1 block text-[12.5px] leading-[1.45] text-ink">{{ item.accessory_name }}</span>
+					<div class="mt-auto flex items-center justify-between pt-3">
+						<span class="font-display text-[14.5px] font-semibold text-ink">{{ rupees(item.price, "Rs") }}</span>
+					</div>
+				</div>
+			</a>
+			{%- endfor %}
+		</div>
+	</section>
+	{%- endif %}
+</div>
+{% endblock %}
+
+{% block lm_script %}
+<script>
+	(function () {
+		var qty = document.getElementById("lm-qty");
+		document.querySelectorAll("[data-lm-step]").forEach(function (button) {
+			button.addEventListener("click", function () {
+				var next = parseInt(qty.value || "1", 10) + parseInt(button.dataset.lmStep, 10);
+				var max = parseInt(qty.max || "99", 10);
+				qty.value = Math.min(Math.max(next, 1), max);
+			});
+		});
+	})();
+</script>
+{% endblock %}

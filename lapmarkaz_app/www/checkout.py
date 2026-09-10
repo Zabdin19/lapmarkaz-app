@@ -9,7 +9,7 @@ from lapmarkaz_app.api.order import guest_blocked, payment_methods, shipping_cha
 
 def get_context(context):
 	context.no_cache = 1
-	context.title = "Checkout | Lapmarkaz"
+	context.title = "Checkout | hamzatraders"
 
 	# Lapmarkaz Shop Settings can require an account before ordering. The
 	# endpoint enforces it too; this just saves guests filling in the form.
@@ -68,6 +68,6 @@ def get_context(context):
 	context.header_variant = "checkout"
 	context.header_note = "Secure Checkout"
 	context.footer_variant = "light"
-	context.footer_note = "© 2024 Lapmarkaz. Premium Tech for Pakistan."
+	context.footer_note = "© 2024 hamzatraders. Premium Tech for Pakistan."
 
 	return context

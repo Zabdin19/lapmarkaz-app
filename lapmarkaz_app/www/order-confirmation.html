@@ -1,14 +1,14 @@
 {% extends "templates/lapmarkaz_base.html" %}
 {% import "templates/includes/lm_icons.html" as ic %}
 
-{% block title %}Order {{ order.name }} | Lapmarkaz{% endblock %}
+{% block title %}Order {{ order.name }} | hamzatraders{% endblock %}
 
 {% block lm_content %}
 <div class="lm-shell py-12">
 
 	{# ---------------------------------------------------------- headline #}
 	<div class="text-center">
-		<span class="inline-flex h-16 w-16 items-center justify-center rounded-full bg-emerald-50 text-emerald-500">
+		<span class="inline-flex h-16 w-16 items-center justify-center rounded-full bg-success-50 text-success-600">
 			{{ ic.icon("check-circle", "h-8 w-8", stroke="1.6") }}
 		</span>
 		<h1 class="mt-5 font-display text-[32px] font-bold tracking-tight text-ink">Thank You for Your Order!</h1>
@@ -29,7 +29,7 @@
 			<ul class="mt-5 divide-y divide-line border-t border-line">
 				{%- for item in order_items %}
 				<li class="flex items-center gap-4 py-4">
-					<span class="flex h-[52px] w-[62px] shrink-0 items-center justify-center rounded-lg bg-[#EDF0F4] p-1.5">
+					<span class="lm-tile flex h-[52px] w-[62px] shrink-0 items-center justify-center rounded-lg p-1.5">
 						<img src="{{ item.image }}" alt="" class="max-h-full max-w-full object-contain">
 					</span>
 					<span class="min-w-0 flex-1">
@@ -49,12 +49,12 @@
 				{%- if totals.discount_amount %}
 				<div class="flex items-center justify-between">
 					<dt class="text-slate-600">Discount</dt>
-					<dd class="text-emerald-600">− {{ rupees(totals.discount_amount) }}</dd>
+					<dd class="text-success-700">− {{ rupees(totals.discount_amount) }}</dd>
 				</div>
 				{%- endif %}
 				<div class="flex items-center justify-between">
 					<dt class="text-slate-600">Shipping</dt>
-					<dd class="{% if not totals.shipping_charge %}text-emerald-600{% else %}text-ink{% endif %}">
+					<dd class="{% if not totals.shipping_charge %}text-success-700{% else %}text-ink{% endif %}">
 						{{ "Free" if not totals.shipping_charge else rupees(totals.shipping_charge) }}
 					</dd>
 				</div>
@@ -74,11 +74,11 @@
 				</h2>
 
 				{%- if expected_delivery %}
-				<div class="mt-4 flex items-start gap-2.5 rounded-lg bg-emerald-50 px-4 py-3">
-					<span class="mt-0.5 shrink-0 text-emerald-600">{{ ic.icon("calendar", "h-4 w-4") }}</span>
+				<div class="lm-alert-success mt-4">
+					<span class="mt-0.5 shrink-0 text-success-600">{{ ic.icon("calendar", "h-4 w-4") }}</span>
 					<span>
-						<span class="block text-[12.5px] text-emerald-700">Arriving by</span>
-						<span class="block text-[14px] font-semibold text-emerald-800">{{ expected_delivery }}</span>
+						<span class="block text-[12.5px]">Arriving by</span>
+						<span class="block text-[14px] font-semibold">{{ expected_delivery }}</span>
 					</span>
 				</div>
 				{%- endif %}

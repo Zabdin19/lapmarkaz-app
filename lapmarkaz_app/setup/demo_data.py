@@ -18,6 +18,16 @@ SILVER, BLACK, GRAY = IMG + "laptop-silver.svg", IMG + "laptop-black.svg", IMG +
 BRANDS = ["HP", "Dell", "Lenovo", "Apple", "Asus", "Acer", "MSI", "Microsoft"]
 USAGES = ["Student", "Business", "Gaming", "Programming", "Design", "Everyday"]
 
+# Homepage "Shop by Use Case" imagery + copy, keyed by the USAGES names above.
+USAGE_HOME_INFO = {
+	"Student": (IMG + "usecase-student.svg", "Light, reliable machines built for campus life."),
+	"Business": (IMG + "usecase-business.svg", "Professional-grade laptops for office and business."),
+	"Gaming": (IMG + "usecase-gaming.svg", "Enough power to keep frame rates high."),
+	"Programming": (IMG + "usecase-programming.svg", "Multitask across editors, terminals and containers."),
+	"Design": (IMG + "usecase-design.svg", "Accurate colour and enough power for creative work."),
+	"Everyday": (IMG + "usecase-everyday.svg", "A dependable laptop for everyday tasks."),
+}
+
 # fmt: off
 # name | brand | model | cond | grade | cpu family | gen | cpu | ram | storage | screen | price | img | flags | usage
 CATALOGUE = [
@@ -73,6 +83,7 @@ HERO_SLIDES = [
 		"cta_label": "Shop Now",
 		"cta_link": "/shop?usage=Student",
 		"image": IMG + "hero-student.svg",
+		"mobile_image": IMG + "hero-student-mobile.svg",
 		"display_order": 1,
 	},
 	{
@@ -82,6 +93,7 @@ HERO_SLIDES = [
 		"cta_label": "Shop Now",
 		"cta_link": "/shop?usage=Business",
 		"image": IMG + "hero-business.svg",
+		"mobile_image": IMG + "hero-business-mobile.svg",
 		"display_order": 2,
 	},
 	{
@@ -91,6 +103,7 @@ HERO_SLIDES = [
 		"cta_label": "Shop Now",
 		"cta_link": "/shop?usage=Gaming",
 		"image": IMG + "hero-gaming.svg",
+		"mobile_image": IMG + "hero-gaming-mobile.svg",
 		"display_order": 3,
 	},
 ]
@@ -123,8 +136,19 @@ def run():
 	for i, brand in enumerate(BRANDS):
 		_ensure("Laptop Brand", brand, {"brand_name": brand, "display_order": i + 1})
 
-	for usage in USAGES:
-		_ensure("Laptop Usage", usage, {"usage_name": usage})
+	for i, usage in enumerate(USAGES):
+		image, short_description = USAGE_HOME_INFO.get(usage, (None, None))
+		_ensure(
+			"Laptop Usage",
+			usage,
+			{
+				"usage_name": usage,
+				"image": image,
+				"short_description": short_description,
+				"show_on_home": 1,
+				"display_order": i + 1,
+			},
+		)
 
 	for row in CATALOGUE:
 		(
@@ -208,7 +232,7 @@ def _description(brand, model, condition, cpu, ram, storage):
 	return (
 		f"<p>The <b>{brand} {model}</b> pairs a {cpu} with {ram}GB of memory and a {storage}, "
 		"making it a dependable everyday machine for work, study and everything in between.</p>"
-		f"<p>This unit is supplied as <b>{condition}</b>. Every Lapmarkaz laptop is inspected across a "
+		f"<p>This unit is supplied as <b>{condition}</b>. Every hamzatraders laptop is inspected across a "
 		"40-point checklist covering battery health, keyboard, hinges, ports, display uniformity and "
 		"thermals before it is listed.</p>"
 		"<ul><li>Genuine Windows / macOS installation</li>"

@@ -41,6 +41,14 @@
     @apply lm-btn border border-line bg-white text-ink hover:bg-page;
   }
 
+  .lm-btn-outline-dark {
+    @apply lm-btn border border-white/40 text-white hover:bg-white/10;
+  }
+
+  .lm-btn-secondary {
+    @apply lm-btn bg-success text-white hover:bg-success-700;
+  }
+
   .lm-card {
     @apply rounded-xl border border-line bg-white shadow-card;
   }
@@ -56,6 +64,42 @@
 
   .lm-badge {
     @apply inline-flex items-center rounded px-2 py-1 text-[11px] font-semibold leading-none;
+  }
+
+  .lm-badge-success {
+    @apply lm-badge bg-success text-white;
+  }
+
+  .lm-badge-warning {
+    @apply lm-badge bg-warning text-white;
+  }
+
+  .lm-badge-danger {
+    @apply lm-badge bg-danger text-white;
+  }
+
+  /* Inline status/notice panels — replaces one-off bg-emerald-50/bg-red-50/
+     bg-amber-50 blocks with a single reusable pattern per semantic role. */
+  .lm-alert {
+    @apply flex items-start gap-2.5 rounded-lg border px-4 py-3 text-[13px] leading-relaxed;
+  }
+
+  .lm-alert-success {
+    @apply lm-alert border-success-100 bg-success-50 text-success-700;
+  }
+
+  .lm-alert-warning {
+    @apply lm-alert border-warning-100 bg-warning-50 text-warning-700;
+  }
+
+  .lm-alert-danger {
+    @apply lm-alert border-danger-100 bg-danger-50 text-danger-700;
+  }
+
+  /* Neutral image/icon tile background — replaces the old one-off
+     bg-[#EDF0F4]/#ECEEF1/#F1F3F6/#E9EBEE arbitrary hex values. */
+  .lm-tile {
+    @apply bg-surface-muted;
   }
 
   /* Rich text coming out of a Text Editor field. */
@@ -83,5 +127,70 @@
   .prose-lm h2,
   .prose-lm h3 {
     @apply mb-2 mt-6 font-display font-semibold text-ink first:mt-0;
+  }
+
+  /* Mobile-swipeable rows (categories, brands, testimonials) that become a
+     plain grid at `sm:` via a `sm:grid` utility overriding `display: flex`. */
+  .lm-snap-row {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .lm-snap-row::-webkit-scrollbar {
+    display: none;
+  }
+
+  .lm-snap-row > * {
+    scroll-snap-align: start;
+  }
+
+  /* Scroll-reveal: JS toggles `.lm-revealed` on [data-lm-reveal] via IntersectionObserver. */
+  [data-lm-reveal] > * {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  [data-lm-reveal].lm-revealed > * {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-lm-reveal] > * {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+
+  /* Pure-CSS accordion: JS only toggles `.is-open` + `aria-expanded`. */
+  .lm-faq-panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.25s ease;
+  }
+
+  .lm-faq-panel.is-open {
+    grid-template-rows: 1fr;
+  }
+
+  [data-lm-faq-toggle][aria-expanded="true"] [data-lm-faq-icon] {
+    transform: rotate(180deg);
+  }
+
+  [data-lm-faq-icon] {
+    transition: transform 0.25s ease;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .lm-faq-panel,
+    [data-lm-faq-icon] {
+      transition: none;
+    }
   }
 }

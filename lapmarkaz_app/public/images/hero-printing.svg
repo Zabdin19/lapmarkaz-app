@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 520" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Printer setup">
+  <defs>
+    <linearGradient id="prBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#15212F"/>
+      <stop offset=".55" stop-color="#1E3236"/>
+      <stop offset="1" stop-color="#2A4A44"/>
+    </linearGradient>
+    <linearGradient id="prScrim" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#0A1018" stop-opacity=".85"/>
+      <stop offset=".55" stop-color="#0A1018" stop-opacity=".4"/>
+      <stop offset="1" stop-color="#0A1018" stop-opacity=".2"/>
+    </linearGradient>
+    <radialGradient id="prGlow" cx=".72" cy=".46" r=".42">
+      <stop offset="0" stop-color="#35D6A4" stop-opacity=".28"/>
+      <stop offset="1" stop-color="#35D6A4" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1600" height="520" fill="url(#prBg)"/>
+  <rect width="1600" height="520" fill="url(#prGlow)"/>
+
+  <!-- desk -->
+  <path d="M0 404h1600v116H0z" fill="#22324A" opacity=".9"/>
+  <path d="M0 404h1600v8H0z" fill="#5A7A70" opacity=".28"/>
+
+  <!-- printer -->
+  <g transform="translate(980 150)">
+    <!-- scanner lid -->
+    <rect x="30" y="0" width="300" height="118" rx="10" fill="#33465A"/>
+    <rect x="52" y="18" width="256" height="60" rx="4" fill="#B9C2CE"/>
+    <!-- body -->
+    <rect x="0" y="108" width="360" height="150" rx="14" fill="#243449"/>
+    <rect x="0" y="108" width="360" height="42" rx="14" fill="#1A2738"/>
+    <circle cx="322" cy="129" r="6" fill="#35D6A4"/>
+    <circle cx="298" cy="129" r="6" fill="#5B6C82" opacity=".7"/>
+    <!-- control panel -->
+    <rect x="24" y="168" width="220" height="58" rx="6" fill="#1A2738"/>
+    <rect x="24" y="168" width="120" height="18" rx="4" fill="#2E4258"/>
+    <rect x="270" y="168" width="66" height="58" rx="6" fill="#33465A"/>
+    <!-- paper output slot -->
+    <rect x="24" y="248" width="312" height="10" rx="5" fill="#101A26"/>
+    <!-- output paper -->
+    <path d="M52 242h256l10 62H42z" fill="#E4E9F0"/>
+    <path d="M66 254h228M66 268h228M66 282h172" stroke="#B9C2CE" stroke-width="4" stroke-linecap="round"/>
+    <!-- base tray -->
+    <path d="M-26 258h412l26 42H-52z" fill="#1E2C3D"/>
+    <path d="M-52 300h464a13 13 0 0 1-13 13H-39a13 13 0 0 1-13-13z" fill="#16212F"/>
+  </g>
+
+  <!-- laptop beside the printer -->
+  <g transform="translate(600 226)" opacity=".92">
+    <rect x="0" y="0" width="260" height="164" rx="9" fill="#1B2A3C"/>
+    <rect x="9" y="9" width="242" height="146" rx="4" fill="#0C1620"/>
+    <rect x="26" y="30" width="110" height="8" rx="4" fill="#5CC9A7" opacity=".8"/>
+    <rect x="26" y="50" width="180" height="6" rx="3" fill="#4E6685" opacity=".7"/>
+    <rect x="26" y="64" width="140" height="6" rx="3" fill="#4E6685" opacity=".5"/>
+    <path d="M-30 164h320l35 46H-65z" fill="#25344A"/>
+    <path d="M-65 210h390a9 9 0 0 1-9 9H-56a9 9 0 0 1-9-9z" fill="#182333"/>
+  </g>
+
+  <rect width="1600" height="520" fill="url(#prScrim)"/>
+</svg>

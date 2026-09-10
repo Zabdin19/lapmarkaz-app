@@ -62,6 +62,15 @@ def _selected():
 	return chosen
 
 
+def _price_range():
+	"""`price_min`/`price_max` come from homepage "Shop by Budget" links,
+	not from a FACETS entry — they're a single numeric range, not a
+	multi-select."""
+	price_min = flt(frappe.form_dict.get("price_min")) or None
+	price_max = flt(frappe.form_dict.get("price_max")) or None
+	return price_min, price_max
+
+
 def _facet_options():
 	"""Build every facet's option list from what is actually published."""
 	published = {"published": 1}
@@ -92,8 +101,13 @@ def _facet_options():
 	return options
 
 
-def _build_filters(chosen, search):
+def _build_filters(chosen, search, price_min=None, price_max=None):
 	filters = [["Laptop", "published", "=", 1]]
+
+	if price_min is not None:
+		filters.append(["Laptop", "price", ">=", price_min])
+	if price_max is not None:
+		filters.append(["Laptop", "price", "<=", price_max])
 
 	simple = {
 		"condition": "condition",
@@ -155,16 +169,17 @@ def _pagination(current, total_pages, window=2):
 
 def get_context(context):
 	context.no_cache = 1
-	context.title = "All Laptops | Lapmarkaz"
+	context.title = "All Laptops | hamzatraders"
 
 	chosen = _selected()
 	search = (frappe.form_dict.get("q") or "").strip()
 	sort = frappe.form_dict.get("sort") or "latest"
 	view = frappe.form_dict.get("view") or "grid"
 	page = max(cint(frappe.form_dict.get("page")) or 1, 1)
+	price_min, price_max = _price_range()
 
 	sort_option = next((s for s in SORT_OPTIONS if s["value"] == sort), SORT_OPTIONS[0])
-	filters, or_filters = _build_filters(chosen, search)
+	filters, or_filters = _build_filters(chosen, search, price_min, price_max)
 
 	total = len(frappe.get_all("Laptop", filters=filters, or_filters=or_filters, pluck="name"))
 	total_pages = max(-(-total // PAGE_SIZE), 1)
@@ -192,7 +207,9 @@ def get_context(context):
 	context.sort_options = SORT_OPTIONS
 	context.view = view
 	context.active_filter_count = sum(len(v) for v in chosen.values())
-	context.base_query = _base_query(chosen, search, sort, view)
+	context.price_min = price_min
+	context.price_max = price_max
+	context.base_query = _base_query(chosen, search, sort, view, price_min, price_max)
 
 	# ---- shell -------------------------------------------------------------
 	context.page_bg = "bg-page"
@@ -201,10 +218,12 @@ def get_context(context):
 	context.nav_items = [
 		{"label": "Laptops", "href": "/shop", "active": True},
 		{"label": "Accessories", "href": "/accessories"},
+		{"label": "Printing Machines", "href": "/printing-machines"},
+		{"label": "Printing Accessories", "href": "/printing-accessories"},
 		{"label": "Support", "href": "/support"},
 	]
 	context.footer_variant = "slim"
-	context.footer_note = "© 2024 Lapmarkaz. Premium Tech for Pakistan."
+	context.footer_note = "© 2024 hamzatraders. Premium Tech for Pakistan."
 	context.footer_links = [
 		{"label": "Warranty Policy", "href": "/warranty"},
 		{"label": "Shipping Info", "href": "/shipping"},
@@ -215,7 +234,7 @@ def get_context(context):
 	return context
 
 
-def _base_query(chosen, search, sort, view):
+def _base_query(chosen, search, sort, view, price_min=None, price_max=None):
 	"""Everything except `page`, so pagination links can just append it."""
 	parts = [(param, value) for param, values in chosen.items() for value in values]
 
@@ -225,5 +244,9 @@ def _base_query(chosen, search, sort, view):
 		parts.append(("sort", sort))
 	if view and view != "grid":
 		parts.append(("view", view))
+	if price_min is not None:
+		parts.append(("price_min", price_min))
+	if price_max is not None:
+		parts.append(("price_max", price_max))
 
 	return urlencode(parts)

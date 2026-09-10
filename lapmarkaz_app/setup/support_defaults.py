@@ -24,7 +24,7 @@ FAQS = [
 	),
 	(
 		"What is the warranty policy for refurbished laptops?",
-		"Every certified refurbished laptop ships with a one-month Lapmarkaz warranty covering "
+		"Every certified refurbished laptop ships with a one-month hamzatraders warranty covering "
 		"hardware faults. Machines listed as New carry a full one-year warranty. Physical damage, "
 		"liquid damage and consumables are not covered.",
 	),
@@ -87,11 +87,11 @@ def run():
 			),
 			"channels_heading": "Direct Channels",
 			"resources_heading": "Technical Resources",
-			"footer_note": "© 2024 Lapmarkaz. All rights reserved.",
+			"footer_note": "© 2024 hamzatraders. All rights reserved.",
 			"footer_tagline": "Premium Laptops in Pakistan.",
-			"page_title": "Support | Lapmarkaz",
+			"page_title": "Support | hamzatraders",
 			"meta_description": (
-				"Track orders, claim warranty, download drivers or talk to the Lapmarkaz team. "
+				"Track orders, claim warranty, download drivers or talk to the hamzatraders team. "
 				"Answers to the questions we're asked most."
 			),
 		}

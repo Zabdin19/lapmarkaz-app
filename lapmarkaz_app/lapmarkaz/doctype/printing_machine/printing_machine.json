@@ -1,0 +1,502 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "field:machine_name",
+ "creation": "2026-09-11 10:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "sb_pm_identity",
+  "machine_name",
+  "brand",
+  "model",
+  "cb_pm_identity",
+  "slug",
+  "tagline",
+  "sb_pm_type",
+  "machine_type",
+  "print_technology",
+  "color_mode",
+  "cb_pm_type",
+  "is_multifunction",
+  "can_print",
+  "can_scan",
+  "can_copy",
+  "can_fax",
+  "sb_pm_condition",
+  "condition",
+  "show_condition_badge",
+  "cb_pm_condition",
+  "stock_status",
+  "stock_qty",
+  "sb_pm_specs",
+  "print_speed",
+  "print_resolution",
+  "paper_sizes",
+  "paper_capacity",
+  "scanner_resolution",
+  "monthly_duty_cycle",
+  "cb_pm_specs",
+  "has_duplex",
+  "has_adf",
+  "connectivity",
+  "has_wifi",
+  "mobile_printing",
+  "memory",
+  "display_panel",
+  "sb_pm_physical",
+  "power_requirements",
+  "dimensions",
+  "cb_pm_physical",
+  "weight",
+  "sb_pm_pricing",
+  "price",
+  "compare_at_price",
+  "cb_pm_pricing",
+  "price_note",
+  "item",
+  "sb_pm_assurance",
+  "shipping_note",
+  "return_note",
+  "cb_pm_assurance",
+  "warranty",
+  "sb_pm_media",
+  "thumbnail",
+  "images",
+  "sb_pm_content",
+  "description",
+  "sb_pm_rating",
+  "rating",
+  "review_count",
+  "sb_pm_flags",
+  "published",
+  "is_new_arrival",
+  "cb_pm_flags",
+  "is_featured",
+  "is_best_seller"
+ ],
+ "fields": [
+  {
+   "fieldname": "sb_pm_identity",
+   "fieldtype": "Section Break",
+   "label": "Identity"
+  },
+  {
+   "fieldname": "machine_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Machine Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "brand",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Brand",
+   "options": "Printing Brand",
+   "reqd": 1
+  },
+  {
+   "fieldname": "model",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Model",
+   "reqd": 1
+  },
+  {
+   "fieldname": "cb_pm_identity",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "URL segment, e.g. hp-laserjet-pro-m404dn",
+   "fieldname": "slug",
+   "fieldtype": "Data",
+   "label": "Slug",
+   "unique": 1
+  },
+  {
+   "description": "Short line, e.g. Mono Laser, Duplex, Wi-Fi",
+   "fieldname": "tagline",
+   "fieldtype": "Data",
+   "label": "Tagline"
+  },
+  {
+   "fieldname": "sb_pm_type",
+   "fieldtype": "Section Break",
+   "label": "Type & Capabilities"
+  },
+  {
+   "fieldname": "machine_type",
+   "fieldtype": "Link",
+   "in_standard_filter": 1,
+   "label": "Machine Type",
+   "options": "Printing Machine Type"
+  },
+  {
+   "fieldname": "print_technology",
+   "fieldtype": "Select",
+   "in_standard_filter": 1,
+   "label": "Print Technology",
+   "options": "\nLaser\nInkjet\nThermal\nDot Matrix\nSolid Ink\nOther"
+  },
+  {
+   "fieldname": "color_mode",
+   "fieldtype": "Select",
+   "in_standard_filter": 1,
+   "label": "Color / Monochrome",
+   "options": "\nColor\nMonochrome"
+  },
+  {
+   "fieldname": "cb_pm_type",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_multifunction",
+   "fieldtype": "Check",
+   "in_standard_filter": 1,
+   "label": "Multifunction (Print/Scan/Copy)"
+  },
+  {
+   "default": "1",
+   "fieldname": "can_print",
+   "fieldtype": "Check",
+   "label": "Print"
+  },
+  {
+   "default": "0",
+   "fieldname": "can_scan",
+   "fieldtype": "Check",
+   "label": "Scan"
+  },
+  {
+   "default": "0",
+   "fieldname": "can_copy",
+   "fieldtype": "Check",
+   "label": "Copy"
+  },
+  {
+   "default": "0",
+   "fieldname": "can_fax",
+   "fieldtype": "Check",
+   "label": "Fax"
+  },
+  {
+   "fieldname": "sb_pm_condition",
+   "fieldtype": "Section Break",
+   "label": "Condition & Availability"
+  },
+  {
+   "default": "New",
+   "fieldname": "condition",
+   "fieldtype": "Select",
+   "in_standard_filter": 1,
+   "label": "Condition",
+   "options": "New\nRefurbished",
+   "reqd": 1
+  },
+  {
+   "default": "1",
+   "description": "Untick to hide the condition badge for this machine everywhere it's shown, without changing the Condition value itself.",
+   "fieldname": "show_condition_badge",
+   "fieldtype": "Check",
+   "label": "Show Condition Badge"
+  },
+  {
+   "fieldname": "cb_pm_condition",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "In Stock",
+   "fieldname": "stock_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Stock Status",
+   "options": "In Stock\nLow Stock\nOut of Stock"
+  },
+  {
+   "default": "0",
+   "fieldname": "stock_qty",
+   "fieldtype": "Int",
+   "label": "Stock Quantity"
+  },
+  {
+   "fieldname": "sb_pm_specs",
+   "fieldtype": "Section Break",
+   "label": "Print & Scan Specifications"
+  },
+  {
+   "description": "e.g. 20 ppm (Mono), 18 ppm (Color)",
+   "fieldname": "print_speed",
+   "fieldtype": "Data",
+   "label": "Print Speed"
+  },
+  {
+   "description": "e.g. 1200 x 1200 dpi",
+   "fieldname": "print_resolution",
+   "fieldtype": "Data",
+   "label": "Print Resolution"
+  },
+  {
+   "description": "e.g. A4, A5, Letter, Legal",
+   "fieldname": "paper_sizes",
+   "fieldtype": "Data",
+   "label": "Paper Sizes"
+  },
+  {
+   "description": "e.g. 250-sheet input tray",
+   "fieldname": "paper_capacity",
+   "fieldtype": "Data",
+   "label": "Paper Capacity"
+  },
+  {
+   "description": "Only relevant if this machine can scan",
+   "fieldname": "scanner_resolution",
+   "fieldtype": "Data",
+   "label": "Scanner Resolution"
+  },
+  {
+   "description": "e.g. Up to 20,000 pages",
+   "fieldname": "monthly_duty_cycle",
+   "fieldtype": "Data",
+   "label": "Monthly Duty Cycle"
+  },
+  {
+   "fieldname": "cb_pm_specs",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "description": "Drives the Duplex Printing filter",
+   "fieldname": "has_duplex",
+   "fieldtype": "Check",
+   "label": "Automatic Duplex Printing"
+  },
+  {
+   "default": "0",
+   "fieldname": "has_adf",
+   "fieldtype": "Check",
+   "label": "Automatic Document Feeder"
+  },
+  {
+   "description": "e.g. USB, Wi-Fi, Ethernet",
+   "fieldname": "connectivity",
+   "fieldtype": "Data",
+   "label": "Connectivity"
+  },
+  {
+   "default": "0",
+   "description": "Drives the Wi-Fi filter",
+   "fieldname": "has_wifi",
+   "fieldtype": "Check",
+   "label": "Wi-Fi"
+  },
+  {
+   "default": "0",
+   "fieldname": "mobile_printing",
+   "fieldtype": "Check",
+   "label": "Mobile Printing Support"
+  },
+  {
+   "fieldname": "memory",
+   "fieldtype": "Data",
+   "label": "Memory"
+  },
+  {
+   "description": "e.g. 2.7\" Touchscreen",
+   "fieldname": "display_panel",
+   "fieldtype": "Data",
+   "label": "Display / Control Panel"
+  },
+  {
+   "fieldname": "sb_pm_physical",
+   "fieldtype": "Section Break",
+   "label": "Power & Dimensions"
+  },
+  {
+   "fieldname": "power_requirements",
+   "fieldtype": "Data",
+   "label": "Power Requirements"
+  },
+  {
+   "fieldname": "dimensions",
+   "fieldtype": "Data",
+   "label": "Dimensions"
+  },
+  {
+   "fieldname": "cb_pm_physical",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "weight",
+   "fieldtype": "Data",
+   "label": "Weight"
+  },
+  {
+   "fieldname": "sb_pm_pricing",
+   "fieldtype": "Section Break",
+   "label": "Pricing"
+  },
+  {
+   "fieldname": "price",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Price",
+   "reqd": 1
+  },
+  {
+   "fieldname": "compare_at_price",
+   "fieldtype": "Currency",
+   "label": "Compare At Price"
+  },
+  {
+   "fieldname": "cb_pm_pricing",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "price_note",
+   "fieldtype": "Data",
+   "label": "Price Note"
+  },
+  {
+   "description": "ERPNext Item behind this product on a Sales Order. Provisioned automatically the first time it is ordered.",
+   "fieldname": "item",
+   "fieldtype": "Link",
+   "label": "Item",
+   "no_copy": 1,
+   "options": "Item",
+   "read_only": 1
+  },
+  {
+   "fieldname": "sb_pm_assurance",
+   "fieldtype": "Section Break",
+   "label": "Assurance"
+  },
+  {
+   "description": "Leave blank to hide this badge on the product page",
+   "fieldname": "shipping_note",
+   "fieldtype": "Data",
+   "label": "Shipping Note"
+  },
+  {
+   "description": "Leave blank to hide this badge on the product page",
+   "fieldname": "return_note",
+   "fieldtype": "Data",
+   "label": "Return Note"
+  },
+  {
+   "fieldname": "cb_pm_assurance",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "warranty",
+   "fieldtype": "Data",
+   "label": "Warranty"
+  },
+  {
+   "fieldname": "sb_pm_media",
+   "fieldtype": "Section Break",
+   "label": "Media"
+  },
+  {
+   "fieldname": "thumbnail",
+   "fieldtype": "Attach Image",
+   "label": "Thumbnail"
+  },
+  {
+   "fieldname": "images",
+   "fieldtype": "Table",
+   "label": "Gallery",
+   "options": "Printing Machine Image"
+  },
+  {
+   "fieldname": "sb_pm_content",
+   "fieldtype": "Section Break",
+   "label": "Content"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text Editor",
+   "label": "Description"
+  },
+  {
+   "fieldname": "sb_pm_rating",
+   "fieldtype": "Section Break",
+   "label": "Rating"
+  },
+  {
+   "fieldname": "rating",
+   "fieldtype": "Float",
+   "label": "Rating",
+   "precision": "1",
+   "read_only": 1
+  },
+  {
+   "fieldname": "review_count",
+   "fieldtype": "Int",
+   "label": "Review Count",
+   "read_only": 1
+  },
+  {
+   "fieldname": "sb_pm_flags",
+   "fieldtype": "Section Break",
+   "label": "Flags"
+  },
+  {
+   "default": "1",
+   "fieldname": "published",
+   "fieldtype": "Check",
+   "label": "Published"
+  },
+  {
+   "fieldname": "is_new_arrival",
+   "fieldtype": "Check",
+   "label": "New Arrival"
+  },
+  {
+   "fieldname": "cb_pm_flags",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "is_featured",
+   "fieldtype": "Check",
+   "label": "Featured"
+  },
+  {
+   "fieldname": "is_best_seller",
+   "fieldtype": "Check",
+   "label": "Best Seller"
+  }
+ ],
+ "image_field": "thumbnail",
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-09-11 10:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Lapmarkaz",
+ "name": "Printing Machine",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "search_fields": "brand,model,machine_type",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "machine_name"
+}

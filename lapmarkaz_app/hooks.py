@@ -1,7 +1,7 @@
 app_name = "lapmarkaz_app"
-app_title = "lapmarkaz"
+app_title = "hamzatraders"
 app_publisher = "zain ul abdin"
-app_description = "Custom app for Lapmarkaz"
+app_description = "Custom app for hamzatraders"
 app_email = "zainulabdin1220@gmail.com"
 app_license = "mit"
 
@@ -81,6 +81,8 @@ before_request = ["lapmarkaz_app.api.portal.block_website_users_from_desk"]
 
 website_route_rules = [
 	{"from_route": "/laptops/<slug>", "to_route": "laptop"},
+	{"from_route": "/printing-machines/<slug>", "to_route": "printing-machine"},
+	{"from_route": "/printing-accessories/<slug>", "to_route": "printing-accessory"},
 	{"from_route": "/order/<order_id>", "to_route": "order-confirmation"},
 	# ERPNext ships its own www/support page and, being installed after this
 	# app, wins the name. Ours lives under a unique page name and claims the URL.
@@ -99,6 +101,7 @@ jinja = {
 		"lapmarkaz_app.utils.jinja.rupees",
 		"lapmarkaz_app.utils.jinja.condition_pill",
 		"lapmarkaz_app.utils.jinja.condition_class",
+		"lapmarkaz_app.utils.jinja.condition_text_class",
 		"lapmarkaz_app.utils.jinja.product_image",
 	]
 }
@@ -190,6 +193,8 @@ after_migrate = "lapmarkaz_app.setup.erpnext_setup.after_migrate"
 doc_events = {
 	"Laptop": {"on_update": "lapmarkaz_app.utils.items.sync_item"},
 	"Lapmarkaz Accessory": {"on_update": "lapmarkaz_app.utils.items.sync_item"},
+	"Printing Machine": {"on_update": "lapmarkaz_app.utils.items.sync_item"},
+	"Printing Accessory": {"on_update": "lapmarkaz_app.utils.items.sync_item"},
 	# Move the shopper's tracking timeline when staff submit or cancel, so the
 	# customer-facing status can't silently fall behind the real one.
 	"Sales Order": {

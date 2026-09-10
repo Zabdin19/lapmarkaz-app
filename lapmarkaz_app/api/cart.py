@@ -101,6 +101,22 @@ def _availability(item_type, item):
 			return False, None
 		return True, None
 
+	if item_type == "Printing Accessory":
+		row = frappe.db.get_value(
+			"Printing Accessory", item, ["published", "stock_status"], as_dict=True
+		)
+		if not row or not row.published or row.stock_status == "Out of Stock":
+			return False, None
+		return True, None
+
+	if item_type == "Printing Machine":
+		row = frappe.db.get_value(
+			"Printing Machine", item, ["published", "stock_status", "stock_qty"], as_dict=True
+		)
+		if not row or not row.published or row.stock_status == "Out of Stock":
+			return False, None
+		return True, cint(row.stock_qty)
+
 	row = frappe.db.get_value(
 		"Laptop", item, ["published", "stock_status", "stock_qty"], as_dict=True
 	)
@@ -151,7 +167,7 @@ def merge_guest_cart_into_user():
 	removed, capped = [], []
 
 	for row in guest.items:
-		item = row.laptop or row.accessory
+		item = row.laptop or row.accessory or row.printing_machine or row.printing_accessory
 		if not item:
 			continue
 
@@ -202,8 +218,16 @@ def merge_notice():
 	return notice or {}
 
 
+ITEM_TYPE_FIELD = {
+	"Laptop": "laptop",
+	"Accessory": "accessory",
+	"Printing Machine": "printing_machine",
+	"Printing Accessory": "printing_accessory",
+}
+
+
 def _upsert_row(cart, item_type, item, qty, replace=False):
-	field = "laptop" if item_type == "Laptop" else "accessory"
+	field = ITEM_TYPE_FIELD.get(item_type, "laptop")
 
 	for row in cart.items:
 		if row.item_type == item_type and row.get(field) == item:
@@ -239,6 +263,61 @@ def _serialize(cart):
 					"url": "/accessories",
 					"stock_status": "In Stock",
 					"condition": None,
+				}
+			)
+		elif row.item_type == "Printing Accessory":
+			meta = frappe.db.get_value(
+				"Printing Accessory",
+				row.printing_accessory,
+				["image", "tagline", "slug", "stock_status"],
+				as_dict=True,
+			) or {}
+			items.append(
+				{
+					"idx": row.idx,
+					"name": row.name,
+					"item_type": row.item_type,
+					"item": row.printing_accessory,
+					"item_name": row.item_name,
+					"display_name": row.item_name,
+					"qty": row.qty,
+					"rate": row.rate,
+					"amount": row.amount,
+					"image": meta.get("image"),
+					"tagline": meta.get("tagline"),
+					"url": "/printing-accessories/" + (meta.get("slug") or ""),
+					"stock_status": meta.get("stock_status"),
+					"condition": None,
+				}
+			)
+		elif row.item_type == "Printing Machine":
+			meta = frappe.db.get_value(
+				"Printing Machine",
+				row.printing_machine,
+				[
+					"thumbnail", "tagline", "slug", "stock_status", "condition",
+					"show_condition_badge", "brand", "model",
+				],
+				as_dict=True,
+			) or {}
+			items.append(
+				{
+					"idx": row.idx,
+					"name": row.name,
+					"item_type": row.item_type,
+					"item": row.printing_machine,
+					"item_name": row.item_name,
+					"display_name": " ".join(
+						p for p in (meta.get("brand"), meta.get("model")) if p
+					) or row.item_name,
+					"qty": row.qty,
+					"rate": row.rate,
+					"amount": row.amount,
+					"image": meta.get("thumbnail"),
+					"tagline": meta.get("tagline"),
+					"url": "/printing-machines/" + (meta.get("slug") or ""),
+					"stock_status": meta.get("stock_status"),
+					"condition": meta.get("condition") if meta.get("show_condition_badge", 1) else None,
 				}
 			)
 		else:

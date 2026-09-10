@@ -1,7 +1,7 @@
 {% extends "templates/lapmarkaz_base.html" %}
 {% import "templates/includes/lm_icons.html" as ic %}
 
-{% block title %}{{ about.page_title or "About Us | Lapmarkaz" }}{% endblock %}
+{% block title %}{{ about.page_title or "About Us | hamzatraders" }}{% endblock %}
 
 {% block lm_content %}
 
@@ -94,7 +94,7 @@
 {%- if about.cta_heading %}
 <section class="bg-white pb-16">
 	<div class="lm-shell">
-		<div class="rounded-2xl bg-[#E9EBEE] px-6 py-14 text-center">
+		<div class="rounded-2xl bg-brand-50 px-6 py-14 text-center">
 			<h2 class="font-display text-[28px] font-bold tracking-tight text-ink sm:text-[30px]">{{ about.cta_heading }}</h2>
 			{%- if about.cta_body %}
 			<p class="mx-auto mt-4 max-w-[520px] text-[14px] leading-relaxed text-slate-600">{{ about.cta_body }}</p>

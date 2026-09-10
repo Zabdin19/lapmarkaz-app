@@ -92,7 +92,7 @@ def get_context(context):
 
 	settings = frappe.get_cached_doc("Accessories Page Settings")
 	context.settings = settings
-	context.title = settings.page_title or "Premium Accessories | Lapmarkaz"
+	context.title = settings.page_title or "Premium Accessories | hamzatraders"
 	context.description = settings.meta_description or ""
 
 	page_size = cint(settings.page_size) or 8
@@ -142,6 +142,8 @@ def get_context(context):
 	context.nav_items = [
 		{"label": "Laptops", "href": "/shop"},
 		{"label": "Accessories", "href": "/accessories", "active": True},
+		{"label": "Printing Machines", "href": "/printing-machines"},
+		{"label": "Printing Accessories", "href": "/printing-accessories"},
 		{"label": "Support", "href": "/support"},
 	]
 

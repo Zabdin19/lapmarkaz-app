@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Design palette and stylus">
+  <rect width="400" height="400" fill="#EDF0F4"/>
+  <ellipse cx="200" cy="292" rx="118" ry="12" fill="#0F172A" opacity=".07"/>
+  <ellipse cx="190" cy="210" rx="95" ry="70" fill="#3B4453"/>
+  <circle cx="250" cy="225" r="18" fill="#EDF0F4"/>
+  <circle cx="150" cy="180" r="11" fill="#6C7788"/>
+  <circle cx="183" cy="163" r="11" fill="#525C6D"/>
+  <circle cx="218" cy="167" r="11" fill="#4B5566"/>
+  <circle cx="143" cy="216" r="11" fill="#333B48"/>
+  <rect x="255" y="120" width="14" height="90" rx="7" fill="#4B5566" transform="rotate(35 262 165)"/>
+  <circle cx="292" cy="196" r="7" fill="#2C333F" transform="rotate(35 262 165)"/>
+</svg>

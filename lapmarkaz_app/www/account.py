@@ -23,7 +23,7 @@ def get_context(context):
 		"first_name": user.first_name,
 		"phone": user.mobile_no or user.phone,
 	}
-	context.title = "My Account | Lapmarkaz"
+	context.title = "My Account | hamzatraders"
 
 	context.orders = customer_orders(limit=20)
 

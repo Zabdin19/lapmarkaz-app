@@ -2,7 +2,7 @@
 {% extends login_template %}
 {% import "templates/includes/lm_icons.html" as ic %}
 
-{% block title %}{% if use_frappe_login %}{{ _("Login") }}{% else %}Login | Lapmarkaz{% endif %}{% endblock %}
+{% block title %}{% if use_frappe_login %}{{ _("Login") }}{% else %}Login | hamzatraders{% endif %}{% endblock %}
 
 {% block lm_content %}
 <div class="grid min-h-screen lg:grid-cols-2">
@@ -28,16 +28,16 @@
 		<div class="w-full max-w-[400px]">
 
 			<a href="/" class="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-line p-1.5">
-				<img src="/assets/lapmarkaz_app/images/logo-mark.svg" alt="Lapmarkaz" class="h-full w-full">
+				<img src="/assets/lapmarkaz_app/images/logo-mark.svg" alt="hamzatraders" class="h-full w-full">
 			</a>
 
 			<h1 class="mt-7 font-display text-[34px] font-bold tracking-tight text-ink">Login</h1>
 			<p class="mt-2 text-[14px] text-slate-500">Please enter your details to sign in to your account.</p>
 
 			{%- if just_registered %}
-			<div class="mt-5 flex items-start gap-2.5 rounded-lg bg-emerald-50 px-4 py-3">
-				<span class="mt-0.5 shrink-0 text-emerald-600">{{ ic.icon("check-circle", "h-[18px] w-[18px]") }}</span>
-				<p class="text-[13px] leading-relaxed text-emerald-800">
+			<div class="lm-alert-success mt-5">
+				<span class="mt-0.5 shrink-0 text-success-600">{{ ic.icon("check-circle", "h-[18px] w-[18px]") }}</span>
+				<p class="leading-relaxed">
 					{%- if needs_verification %}
 					Please verify your email, then log in.
 					{%- else %}
@@ -48,9 +48,9 @@
 			{%- endif %}
 
 			{%- if password_updated %}
-			<div class="mt-5 flex items-start gap-2.5 rounded-lg bg-emerald-50 px-4 py-3">
-				<span class="mt-0.5 shrink-0 text-emerald-600">{{ ic.icon("check-circle", "h-[18px] w-[18px]") }}</span>
-				<p class="text-[13px] leading-relaxed text-emerald-800">
+			<div class="lm-alert-success mt-5">
+				<span class="mt-0.5 shrink-0 text-success-600">{{ ic.icon("check-circle", "h-[18px] w-[18px]") }}</span>
+				<p class="leading-relaxed">
 					<b>Password updated successfully</b> — please log in with your new password.
 				</p>
 			</div>
@@ -86,7 +86,7 @@
 					</div>
 				</div>
 
-				<p data-lm-error class="hidden rounded-lg bg-red-50 px-4 py-3 text-[13px] font-medium text-red-700"></p>
+				<p data-lm-error class="hidden rounded-lg bg-danger-50 px-4 py-3 text-[13px] font-medium text-danger-700"></p>
 
 				<button type="submit" class="lm-btn-primary w-full py-3.5 text-[15px]">
 					<span data-lm-submit-label>Login</span> {{ ic.icon("arrow-right", "h-4 w-4") }}

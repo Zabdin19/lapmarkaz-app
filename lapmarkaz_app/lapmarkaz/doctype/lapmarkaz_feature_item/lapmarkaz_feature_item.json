@@ -9,7 +9,8 @@
   "icon",
   "title",
   "description",
-  "link"
+  "link",
+  "enabled"
  ],
  "fields": [
   {
@@ -40,6 +41,13 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Link"
+  },
+  {
+   "default": "1",
+   "fieldname": "enabled",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Enabled"
   }
  ],
  "index_web_pages_for_search": 1,

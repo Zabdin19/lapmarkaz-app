@@ -1,0 +1,196 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "field:accessory_name",
+ "creation": "2026-09-11 10:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "editable_grid": 1,
+ "field_order": [
+  "accessory_name",
+  "slug",
+  "tagline",
+  "cb_pa_identity",
+  "price",
+  "compare_at_price",
+  "item",
+  "image",
+  "stock_status",
+  "published",
+  "brand",
+  "accessory_type",
+  "sb_pa_compat",
+  "compatible_machines",
+  "sb_pa_rating",
+  "rating",
+  "review_count",
+  "cb_pa_rating",
+  "is_featured",
+  "is_new_arrival",
+  "sb_pa_content",
+  "description"
+ ],
+ "fields": [
+  {
+   "fieldname": "accessory_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Accessory Name",
+   "reqd": 1
+  },
+  {
+   "description": "URL segment, e.g. hp-cf217a-toner",
+   "fieldname": "slug",
+   "fieldtype": "Data",
+   "label": "Slug",
+   "unique": 1
+  },
+  {
+   "description": "e.g. Compatible with HP LaserJet Pro M104/M132",
+   "fieldname": "tagline",
+   "fieldtype": "Data",
+   "label": "Tagline"
+  },
+  {
+   "fieldname": "cb_pa_identity",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "price",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Price",
+   "reqd": 1
+  },
+  {
+   "fieldname": "compare_at_price",
+   "fieldtype": "Currency",
+   "label": "Compare At Price"
+  },
+  {
+   "description": "ERPNext Item behind this product on a Sales Order. Provisioned automatically the first time it is ordered.",
+   "fieldname": "item",
+   "fieldtype": "Link",
+   "label": "Item",
+   "no_copy": 1,
+   "options": "Item",
+   "read_only": 1
+  },
+  {
+   "fieldname": "image",
+   "fieldtype": "Attach Image",
+   "label": "Image"
+  },
+  {
+   "default": "In Stock",
+   "fieldname": "stock_status",
+   "fieldtype": "Select",
+   "label": "Stock Status",
+   "options": "In Stock\nLow Stock\nOut of Stock"
+  },
+  {
+   "default": "1",
+   "fieldname": "published",
+   "fieldtype": "Check",
+   "label": "Published"
+  },
+  {
+   "fieldname": "brand",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Brand",
+   "options": "Printing Brand"
+  },
+  {
+   "fieldname": "accessory_type",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Accessory Type",
+   "options": "Printing Accessory Type"
+  },
+  {
+   "fieldname": "sb_pa_compat",
+   "fieldtype": "Section Break",
+   "label": "Compatibility"
+  },
+  {
+   "description": "Which Printing Machines this accessory works with. Shown as \"Compatible With\" on the product page, and this accessory appears under \"Compatible Accessories\" on each machine's page.",
+   "fieldname": "compatible_machines",
+   "fieldtype": "Table",
+   "label": "Compatible Machines",
+   "options": "Printing Accessory Compatible Machine"
+  },
+  {
+   "fieldname": "sb_pa_rating",
+   "fieldtype": "Section Break",
+   "label": "Rating"
+  },
+  {
+   "fieldname": "rating",
+   "fieldtype": "Float",
+   "label": "Rating",
+   "precision": "1",
+   "read_only": 1
+  },
+  {
+   "fieldname": "review_count",
+   "fieldtype": "Int",
+   "label": "Review Count",
+   "read_only": 1
+  },
+  {
+   "fieldname": "cb_pa_rating",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "is_featured",
+   "fieldtype": "Check",
+   "label": "Featured"
+  },
+  {
+   "fieldname": "is_new_arrival",
+   "fieldtype": "Check",
+   "label": "New Arrival"
+  },
+  {
+   "fieldname": "sb_pa_content",
+   "fieldtype": "Section Break",
+   "label": "Content"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text Editor",
+   "label": "Description"
+  }
+ ],
+ "image_field": "image",
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-09-11 10:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Lapmarkaz",
+ "name": "Printing Accessory",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "search_fields": "brand,accessory_type",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "accessory_name"
+}

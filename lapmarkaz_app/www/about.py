@@ -19,7 +19,7 @@ def get_context(context):
 	context.expertise_image_1 = settings.expertise_image_1 or IMG + "about-technician.svg"
 	context.expertise_image_2 = settings.expertise_image_2 or IMG + "about-store.svg"
 
-	context.title = settings.page_title or "About Us | Lapmarkaz"
+	context.title = settings.page_title or "About Us | hamzatraders"
 	context.description = settings.meta_description or ""
 
 	# ---- shell -------------------------------------------------------------

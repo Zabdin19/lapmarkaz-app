@@ -1,7 +1,7 @@
 {% extends "templates/lapmarkaz_base.html" %}
 {% import "templates/includes/lm_icons.html" as ic %}
 
-{% block title %}My Orders | Lapmarkaz{% endblock %}
+{% block title %}My Orders | hamzatraders{% endblock %}
 
 {% block lm_content %}
 <div class="lm-shell py-10">
@@ -10,7 +10,7 @@
 		<div>
 			<h1 class="font-display text-[30px] font-bold tracking-tight text-ink">My Orders</h1>
 			<p class="mt-2 text-[14px] text-slate-500">
-				{{ orders | length }} order{{ "" if orders | length == 1 else "s" }} placed with Lapmarkaz.
+				{{ orders | length }} order{{ "" if orders | length == 1 else "s" }} placed with hamzatraders.
 			</p>
 		</div>
 		<a href="/account" class="text-[13.5px] font-medium text-brand hover:underline">Back to My Account</a>
@@ -35,7 +35,7 @@
 							class="font-display text-[15px] font-semibold text-ink hover:text-brand">#{{ order.name }}</a>
 						<span class="lm-badge {{ order.tone }}">{{ order.status }}</span>
 						{%- if order.payment_status %}
-						<span class="lm-badge {% if order.payment_status == 'Paid' %}bg-emerald-50 text-emerald-700
+						<span class="lm-badge {% if order.payment_status == 'Paid' %}bg-success-50 text-success-700
 							{% else %}bg-slate-100 text-slate-500{% endif %}">{{ order.payment_status }}</span>
 						{%- endif %}
 					</div>

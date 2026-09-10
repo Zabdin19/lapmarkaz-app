@@ -9,7 +9,7 @@ from lapmarkaz_app.api.order import guest_blocked, login_required_message
 
 def get_context(context):
 	context.no_cache = 1
-	context.title = "Your Cart | Lapmarkaz"
+	context.title = "Your Cart | hamzatraders"
 
 	cart = _serialize(get_cart_doc(create=False))
 	context.cart = cart
@@ -49,7 +49,7 @@ def get_context(context):
 
 	context.footer_variant = "columns"
 	context.footer_blurb = "Premium Tech for Pakistan. Reliable laptops with genuine warranties."
-	context.footer_note = "© 2024 Lapmarkaz. Premium Tech for Pakistan."
+	context.footer_note = "© 2024 hamzatraders. Premium Tech for Pakistan."
 	context.footer_socials = ["instagram", "x", "facebook"]
 	context.footer_columns = [
 		{

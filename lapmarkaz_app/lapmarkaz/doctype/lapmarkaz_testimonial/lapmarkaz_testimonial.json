@@ -1,0 +1,80 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-09-09 10:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "customer_name",
+  "location",
+  "cb_testimonial_top",
+  "rating",
+  "verified",
+  "enabled",
+  "review_text",
+  "customer_image"
+ ],
+ "fields": [
+  {
+   "fieldname": "customer_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Customer Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "location",
+   "fieldtype": "Data",
+   "label": "Location"
+  },
+  {
+   "fieldname": "cb_testimonial_top",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "5",
+   "fieldname": "rating",
+   "fieldtype": "Select",
+   "label": "Rating",
+   "options": "1\n2\n3\n4\n5"
+  },
+  {
+   "default": "0",
+   "fieldname": "verified",
+   "fieldtype": "Check",
+   "label": "Verified Customer"
+  },
+  {
+   "default": "1",
+   "fieldname": "enabled",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Enabled"
+  },
+  {
+   "fieldname": "review_text",
+   "fieldtype": "Small Text",
+   "in_list_view": 1,
+   "label": "Review",
+   "reqd": 1
+  },
+  {
+   "fieldname": "customer_image",
+   "fieldtype": "Attach Image",
+   "label": "Customer Photo"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-09-09 10:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Lapmarkaz",
+ "name": "Lapmarkaz Testimonial",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -21,18 +21,37 @@ def condition_pill(laptop):
 	return laptop.get("condition") if hasattr(laptop, "get") else getattr(laptop, "condition", "")
 
 
-CONDITION_CLASSES = {
+# Single source of truth for "what color role does this condition get" —
+# both the solid badge (condition_class, used by shop/laptop cards) and the
+# text-only variant (condition_text_class, used by mini_card) are derived
+# from this so the two can never disagree again.
+CONDITION_BADGE_CLASSES = {
 	"New": "bg-brand text-white",
 	"Certified Refurbished": "bg-navy/90 text-white",
-	"Grade A Refurbished": "bg-emerald-800 text-white",
-	"Grade B Refurbished": "bg-amber-700 text-white",
-	"Excellent Condition": "bg-sky-700 text-white",
+	"Grade A Refurbished": "bg-success text-white",
+	"Grade B Refurbished": "bg-warning text-white",
+	"Excellent Condition": "bg-brand-700 text-white",
 }
+CONDITION_TEXT_CLASSES = {
+	"New": "text-brand",
+	"Certified Refurbished": "text-navy",
+	"Grade A Refurbished": "text-success-700",
+	"Grade B Refurbished": "text-warning-700",
+	"Excellent Condition": "text-brand-700",
+}
+DEFAULT_CONDITION_BADGE = "bg-navy/90 text-white"
+DEFAULT_CONDITION_TEXT = "text-navy"
 
 
 def condition_class(condition):
-	"""Badge colour for a condition, matching the shop listing design."""
-	return CONDITION_CLASSES.get(condition, "bg-navy/90 text-white")
+	"""Solid badge colour for a condition, matching the shop listing design."""
+	return CONDITION_BADGE_CLASSES.get(condition, DEFAULT_CONDITION_BADGE)
+
+
+def condition_text_class(condition):
+	"""Text-only colour for a condition, used where a solid badge would be
+	too heavy (e.g. the compact `mini_card`)."""
+	return CONDITION_TEXT_CLASSES.get(condition, DEFAULT_CONDITION_TEXT)
 
 
 def product_image(item, field="thumbnail"):

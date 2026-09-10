@@ -1,7 +1,7 @@
 {% extends "templates/lapmarkaz_base.html" %}
 {% import "templates/includes/lm_icons.html" as ic %}
 
-{% block title %}Your Cart | Lapmarkaz{% endblock %}
+{% block title %}Your Cart | hamzatraders{% endblock %}
 
 {% block lm_content %}
 <div class="lm-shell py-8">
@@ -29,7 +29,7 @@
 		<div class="space-y-4" data-lm-cart-items>
 			{%- for item in items %}
 			<div class="lm-card flex gap-4 p-4" data-lm-row="{{ item.name }}">
-				<a href="{{ item.url }}" class="flex h-[74px] w-[96px] shrink-0 items-center justify-center rounded-lg bg-[#EDF0F4] p-2">
+				<a href="{{ item.url }}" class="lm-tile flex h-[74px] w-[96px] shrink-0 items-center justify-center rounded-lg p-2">
 					<img src="{{ item.image or '/assets/lapmarkaz_app/images/laptop-silver.svg' }}" alt="{{ item.display_name }}"
 						class="max-h-full max-w-full object-contain">
 				</a>
@@ -43,11 +43,11 @@
 							<p class="mt-1 truncate text-[12.5px] text-slate-500">{{ item.tagline }}</p>
 							<div class="mt-2 flex flex-wrap items-center gap-2">
 								{%- if item.stock_status %}
-								<span class="lm-badge {% if item.stock_status == 'In Stock' %}bg-emerald-50 text-emerald-700
+								<span class="lm-badge {% if item.stock_status == 'In Stock' %}bg-success-50 text-success-700
 									{% else %}bg-slate-100 text-slate-500{% endif %}">{{ item.stock_status }}</span>
 								{%- endif %}
 								{%- if item.condition %}
-								<span class="lm-badge bg-sky-50 text-sky-700">{{ item.condition }}</span>
+								<span class="lm-badge bg-brand-50 text-brand-700">{{ item.condition }}</span>
 								{%- endif %}
 							</div>
 						</div>
@@ -94,7 +94,7 @@
 					{%- if discount_amount %}
 					<div class="flex items-center justify-between" data-lm-discount-row>
 						<dt class="text-slate-600">Discount ({{ promo_code }})</dt>
-						<dd data-lm-discount class="font-medium text-emerald-600">− {{ rupees(discount_amount) }}</dd>
+						<dd data-lm-discount class="font-medium text-success-700">− {{ rupees(discount_amount) }}</dd>
 					</div>
 					{%- endif %}
 					<div class="flex items-center justify-between">
@@ -155,7 +155,7 @@
 		<div class="mt-5 grid grid-cols-2 gap-5 lg:grid-cols-4">
 			{%- for accessory in accessories %}
 			<div class="lm-card flex flex-col overflow-hidden transition hover:shadow-pop">
-				<div class="flex h-[150px] items-center justify-center bg-[#EDF0F4] px-6">
+				<div class="lm-tile flex h-[150px] items-center justify-center px-6">
 					<img src="{{ accessory.image }}" alt="{{ accessory.accessory_name }}"
 						class="max-h-full max-w-full object-contain" loading="lazy">
 				</div>
@@ -237,8 +237,8 @@
 				var message = document.querySelector("[data-lm-promo-msg]");
 				lm.call("apply_promo", { code: promo.code.value }).then(function (result) {
 					message.textContent = result.message;
-					message.classList.remove("hidden", "text-emerald-600", "text-red-600");
-					message.classList.add(result.ok ? "text-emerald-600" : "text-red-600");
+					message.classList.remove("hidden", "text-success-700", "text-danger-600");
+					message.classList.add(result.ok ? "text-success-700" : "text-danger-600");
 					if (result.ok) window.location.reload();
 				});
 			});

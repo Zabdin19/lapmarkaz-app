@@ -1,0 +1,40 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p /tmp/claude-1001/-home-frappe-frappe-bench-apps-lapmarkaz-app/5d138727-b63c-4522-ac94-63a2db25852d/scratchpad/icons_preview)",
+      "Bash(/tmp/claude-1001/-home-frappe-frappe-bench-apps-lapmarkaz-app/5d138727-b63c-4522-ac94-63a2db25852d/scratchpad/svgvenv/bin/pip install *)",
+      "Bash(/tmp/claude-1001/-home-frappe-frappe-bench-apps-lapmarkaz-app/5d138727-b63c-4522-ac94-63a2db25852d/scratchpad/svgvenv/bin/python -)",
+      "Bash(python3 -m py_compile ./lapmarkaz_app/setup/home_defaults.py ./lapmarkaz_app/setup/demo_data.py)",
+      "Read(//home/frappe/frappe-bench/**)",
+      "Bash(bench --site lapmarkaz.local execute lapmarkaz_app.setup.demo_data.run)",
+      "Bash(bench --site lapmarkaz.local execute lapmarkaz_app.setup.home_defaults.run)",
+      "Bash(bench --site lapmarkaz.local execute lapmarkaz_app.scratch_check2.run)",
+      "Bash(sort -t'\"' -k2 -n)",
+      "Bash(sed 's|viewBox=\"0 0 1600 520\"|viewBox=\"930 0 520 520\"|' lapmarkaz_app/public/images/hero-student.svg)",
+      "Bash(sed 's|viewBox=\"0 0 1600 520\"|viewBox=\"465 0 520 520\"|' lapmarkaz_app/public/images/hero-business.svg)",
+      "Bash(sed 's|viewBox=\"0 0 1600 520\"|viewBox=\"930 0 520 520\"|' lapmarkaz_app/public/images/hero-gaming.svg)",
+      "Bash(python3 -m py_compile lapmarkaz_app/setup/home_defaults.py)",
+      "Bash(python3 -c ' *)",
+      "Bash(python3 -m py_compile lapmarkaz_app/www/index.py)",
+      "Bash(python3 -m py_compile lapmarkaz_app/setup/demo_data.py)",
+      "Bash(npm run *)",
+      "Bash(bench --site lapmarkaz.local migrate)",
+      "Bash(echo \"EXIT=$?\")",
+      "Bash(grep -vE \"Updating DocTypes for|^\\\\s*$|^\\\\[\")",
+      "Bash(curl -s http://127.0.0.1:8123/ -o /tmp/claude-1001/-home-frappe-frappe-bench-apps-lapmarkaz-app/5d138727-b63c-4522-ac94-63a2db25852d/scratchpad/home_hero.html)",
+      "Bash(grep -o '<h1[^>]*>.\\\\{0,60\\\\}' /tmp/claude-1001/-home-frappe-frappe-bench-apps-lapmarkaz-app/5d138727-b63c-4522-ac94-63a2db25852d/scratchpad/home_hero.html)",
+      "Bash(curl -s http://127.0.0.1:8123/ -o /tmp/claude-1001/-home-frappe-frappe-bench-apps-lapmarkaz-app/5d138727-b63c-4522-ac94-63a2db25852d/scratchpad/home_hero2.html)",
+      "Bash(bench --site lapmarkaz.local execute lapmarkaz_app.scratch_hero_test.run)",
+      "Bash(bench --site lapmarkaz.local execute lapmarkaz_app.scratch_hero_test.run --kwargs \"{'scenario':'dominant_only'}\")",
+      "Bash(curl -s http://localhost:8123/ -H \"Host: lapmarkaz.local\")",
+      "Bash(tee /tmp/hero_dominant_only.html)",
+      "Bash(curl -s http://localhost:8123/ -H \"Host: lapmarkaz.local\" -o /tmp/hero_dominant_only.html -w \"%{http_code}\\\\n\")",
+      "Bash(bench --site lapmarkaz.local execute lapmarkaz_app.scratch_hero_test.run --kwargs \"{'scenario':'none'}\")",
+      "Bash(bench --site lapmarkaz.local execute frappe.get_all --args \"['Lapmarkaz Hero Slide']\" --kwargs \"{'fields': ['name','eyebrow','heading','subheading','cta_label','cta_link','image','mobile_image','display_order']}\")",
+      "Bash(bench --site lapmarkaz.local execute lapmarkaz_app.scratch_fix_hero.run)",
+      "Bash(curl -s \"http://localhost:8000/\" -H \"Host: lapmarkaz.local\" -o /tmp/home.html)",
+      "Read(//tmp/**)",
+      "Bash(apt-cache search *)"
+    ]
+  }
+}

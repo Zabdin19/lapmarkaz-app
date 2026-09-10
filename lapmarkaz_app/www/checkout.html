@@ -1,7 +1,7 @@
 {% extends "templates/lapmarkaz_base.html" %}
 {% import "templates/includes/lm_icons.html" as ic %}
 
-{% block title %}Checkout | Lapmarkaz{% endblock %}
+{% block title %}Checkout | hamzatraders{% endblock %}
 
 {% block lm_content %}
 <div class="lm-shell py-10">
@@ -137,7 +137,7 @@
 								{%- if method.requires_proof %}
 								<span data-lm-payment-proof class="mt-3 hidden">
 									<span class="mb-1.5 block text-[12.5px] font-medium text-ink">
-										Upload payment receipt <span class="text-red-600">*</span>
+										Upload payment receipt <span class="text-danger-600">*</span>
 									</span>
 									<input type="file" accept="image/*,application/pdf" data-lm-proof-input
 										class="block w-full text-[12.5px] text-slate-600
@@ -151,7 +151,7 @@
 						{%- endfor %}
 					</div>
 
-					<p data-lm-payment-empty class="hidden rounded-lg bg-amber-50 px-4 py-3 text-[13px] text-amber-800">
+					<p data-lm-payment-empty class="hidden rounded-lg bg-warning-50 px-4 py-3 text-[13px] text-warning-700">
 						No payment method is available for this order. Please contact support.
 					</p>
 				</div>
@@ -174,7 +174,7 @@
 						<dd data-lm-review-payment class="text-ink"></dd>
 					</div>
 				</dl>
-				<p data-lm-error class="mt-4 hidden rounded-lg bg-red-50 px-4 py-3 text-[13px] font-medium text-red-700"></p>
+				<p data-lm-error class="mt-4 hidden rounded-lg bg-danger-50 px-4 py-3 text-[13px] font-medium text-danger-700"></p>
 			</section>
 		</div>
 
@@ -185,7 +185,7 @@
 			<ul class="mt-5 space-y-4 border-t border-line pt-5">
 				{%- for item in items %}
 				<li class="flex items-start gap-3">
-					<span class="flex h-[52px] w-[62px] shrink-0 items-center justify-center rounded-lg bg-[#EDF0F4] p-1.5">
+					<span class="lm-tile flex h-[52px] w-[62px] shrink-0 items-center justify-center rounded-lg p-1.5">
 						<img src="{{ item.image or '/assets/lapmarkaz_app/images/laptop-silver.svg' }}" alt=""
 							class="max-h-full max-w-full object-contain">
 					</span>
@@ -206,12 +206,12 @@
 				{%- if discount_amount %}
 				<div class="flex items-center justify-between">
 					<dt class="text-slate-600">Discount ({{ promo_code }})</dt>
-					<dd class="font-medium text-emerald-600">− {{ rupees(discount_amount, "Rs") }}</dd>
+					<dd class="font-medium text-success-700">− {{ rupees(discount_amount, "Rs") }}</dd>
 				</div>
 				{%- endif %}
 				<div class="flex items-center justify-between">
 					<dt class="text-slate-600">Shipping</dt>
-					<dd class="{% if not shipping_charge %}font-medium text-emerald-600{% else %}text-ink{% endif %}">
+					<dd class="{% if not shipping_charge %}font-medium text-success-700{% else %}text-ink{% endif %}">
 						{{ "Free" if not shipping_charge else rupees(shipping_charge, "Rs") }}
 					</dd>
 				</div>
@@ -301,7 +301,7 @@
 				.querySelectorAll("[required]")
 				.forEach(function (input) {
 					var filled = (input.value || "").trim().length > 0;
-					input.classList.toggle("border-red-400", !filled);
+					input.classList.toggle("border-danger-400", !filled);
 					if (!filled) ok = false;
 				});
 			return ok;

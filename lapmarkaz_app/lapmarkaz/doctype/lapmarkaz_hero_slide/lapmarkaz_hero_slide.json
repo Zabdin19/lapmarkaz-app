@@ -13,7 +13,10 @@
   "cb_hero",
   "cta_label",
   "cta_link",
+  "secondary_cta_label",
+  "secondary_cta_link",
   "image",
+  "mobile_image",
   "published",
   "display_order"
  ],
@@ -52,9 +55,26 @@
    "label": "CTA Link"
   },
   {
+   "description": "Optional",
+   "fieldname": "secondary_cta_label",
+   "fieldtype": "Data",
+   "label": "Secondary CTA Label"
+  },
+  {
+   "fieldname": "secondary_cta_link",
+   "fieldtype": "Data",
+   "label": "Secondary CTA Link"
+  },
+  {
    "fieldname": "image",
    "fieldtype": "Attach Image",
-   "label": "Background Image"
+   "label": "Background Image (Desktop)"
+  },
+  {
+   "description": "Optional — falls back to the desktop image",
+   "fieldname": "mobile_image",
+   "fieldtype": "Attach Image",
+   "label": "Background Image (Mobile)"
   },
   {
    "default": "1",

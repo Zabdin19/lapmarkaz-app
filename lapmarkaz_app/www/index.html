@@ -2,30 +2,79 @@
 {% import "templates/includes/lm_icons.html" as ic %}
 {% import "templates/includes/lm_cards.html" as cards %}
 
-{% block title %}{{ home.page_title or "Lapmarkaz — Premium Tech for Pakistan" }}{% endblock %}
+{% block title %}{{ home.page_title or "hamzatraders — Premium Tech for Pakistan" }}{% endblock %}
+
+{# ------------------------------------------------------------ promo macro #}
+{%- macro promo_banner(promo) %}
+<section class="overflow-hidden bg-navy py-12 lg:py-0" data-lm-reveal>
+	<div class="lm-shell">
+		<div class="grid items-center overflow-hidden rounded-2xl bg-gradient-to-br from-navy-900 to-navy-700 lg:grid-cols-2">
+			<div class="px-6 py-10 sm:px-10 lg:py-16 {% if promo.layout == 'Image Left' %}lg:order-2{% endif %}">
+				{%- if promo.eyebrow %}
+				<p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-mint-400">{{ promo.eyebrow }}</p>
+				{%- endif %}
+				<h2 class="mt-2.5 font-display text-[24px] font-bold leading-tight text-white sm:text-[28px]">{{ promo.heading }}</h2>
+				{%- if promo.description %}
+				<p class="mt-3 max-w-[440px] text-[14px] leading-relaxed text-white/70">{{ promo.description }}</p>
+				{%- endif %}
+				{%- if promo.cta_label %}
+				<a href="{{ promo.cta_link or '/shop' }}" class="lm-btn-primary mt-6 px-7">{{ promo.cta_label }}</a>
+				{%- endif %}
+			</div>
+			{%- if promo.desktop_image %}
+			{#
+				A fixed, landscape-leaning height (rather than lg:h-full, which
+				stretched the image to match whatever height the text column
+				happened to need) — these illustrations are wide "scene" artwork
+				with a plain surface along the bottom; forcing them into a taller,
+				near-square box left that plain band covering a third of the image.
+				A wider crop ratio shows the actual scene instead.
+			#}
+			<div class="relative h-[220px] lg:h-[300px] lg:self-center {% if promo.layout == 'Image Left' %}lg:order-1{% endif %}">
+				<picture>
+					{%- if promo.mobile_image %}<source media="(max-width: 639px)" srcset="{{ promo.mobile_image }}">{% endif %}
+					<img src="{{ promo.desktop_image }}" alt="" class="h-full w-full object-cover" loading="lazy">
+				</picture>
+			</div>
+			{%- endif %}
+		</div>
+	</div>
+</section>
+{%- endmacro %}
 
 {% block lm_content %}
 
 {# ---------------------------------------------------------------- hero #}
 {%- if hero_slides %}
-<section data-lm-carousel class="relative h-[300px] overflow-hidden bg-navy sm:h-[380px] lg:h-[430px]">
+<section data-lm-carousel class="relative h-[420px] overflow-hidden bg-navy sm:h-[440px] lg:h-[480px]">
 	{%- for slide in hero_slides %}
 	<div data-lm-slide
 		class="absolute inset-0 transition-opacity duration-700 {% if not loop.first %}opacity-0 pointer-events-none{% endif %}">
-		<img src="{{ slide.image }}" alt="" class="absolute inset-0 h-full w-full object-cover">
+		<picture>
+			{%- if slide.mobile_image %}<source media="(max-width: 639px)" srcset="{{ slide.mobile_image }}">{% endif %}
+			<img src="{{ slide.image }}" alt="" class="absolute inset-0 h-full w-full object-cover"
+				{% if loop.first %}fetchpriority="high"{% else %}loading="lazy"{% endif %}>
+		</picture>
+		<div class="absolute inset-0 bg-gradient-to-t from-navy/70 via-navy/10 to-transparent"></div>
 		<div class="lm-shell relative flex h-full flex-col justify-center">
 			{%- if slide.eyebrow %}
 			<p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-white/85">{{ slide.eyebrow }}</p>
 			{%- endif %}
-			<h1 class="mt-3 max-w-[640px] font-display text-[28px] font-bold leading-[1.2] text-white sm:text-[34px] lg:text-[38px]">
+			{%- set heading_tag = "h1" if loop.first else "div" %}
+			<{{ heading_tag }} class="mt-3 max-w-[640px] font-display text-[28px] font-bold leading-[1.2] text-white sm:text-[34px] lg:text-[38px]">
 				{%- for line in slide.heading.split("\n") %}{{ line }}{% if not loop.last %}<br>{% endif %}{% endfor -%}
-			</h1>
+			</{{ heading_tag }}>
 			{%- if slide.subheading %}
 			<p class="mt-4 max-w-[500px] text-[14px] leading-relaxed text-white/75">{{ slide.subheading }}</p>
 			{%- endif %}
-			{%- if slide.cta_label %}
-			<div class="mt-7">
+			{%- if slide.cta_label or slide.secondary_cta_label %}
+			<div class="mt-7 flex flex-wrap items-center gap-3">
+				{%- if slide.cta_label %}
 				<a href="{{ slide.cta_link or '/shop' }}" class="lm-btn-primary px-7">{{ slide.cta_label }}</a>
+				{%- endif %}
+				{%- if slide.secondary_cta_label %}
+				<a href="{{ slide.secondary_cta_link or '/shop' }}" class="lm-btn-outline-dark px-7">{{ slide.secondary_cta_label }}</a>
+				{%- endif %}
 			</div>
 			{%- endif %}
 		</div>
@@ -45,27 +94,66 @@
 
 {# ------------------------------------------------------------ value props #}
 {%- if value_props %}
-<section class="border-b border-line bg-white">
+<section class="border-b border-line bg-brand-50/40">
 	{# Flex rather than a grid: the column count is data-driven, and Tailwind
 	   can't generate a class name built from a template variable. #}
-	<div class="lm-shell flex flex-wrap items-center justify-between gap-x-6 gap-y-3 py-3.5">
+	<div class="lm-shell flex flex-wrap items-start justify-between gap-x-6 gap-y-5 py-6">
 		{%- for prop in value_props %}
-		<div class="flex items-center gap-2.5">
-			<span class="text-brand">{{ ic.icon(prop.icon or "check-circle", "h-[19px] w-[19px]") }}</span>
-			<span class="text-[12.5px] text-slate-600">{{ prop.title }}</span>
+		<div class="flex min-w-[140px] flex-1 items-start gap-3">
+			<span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-50 text-brand">
+				{{ ic.icon(prop.icon or "check-circle", "h-[19px] w-[19px]") }}
+			</span>
+			<div>
+				<div class="text-[13px] font-semibold text-ink">{{ prop.title }}</div>
+				{%- if prop.description %}
+				<p class="mt-0.5 text-[12px] leading-snug text-slate-500">{{ prop.description }}</p>
+				{%- endif %}
+			</div>
 		</div>
 		{%- endfor %}
 	</div>
 </section>
 {%- endif %}
 
+{# --------------------------------------------------------- shop by category #}
+{%- if categories %}
+<section class="bg-white py-12 lg:py-14" data-lm-reveal>
+	<div class="lm-shell">
+		<div>
+			<h2 class="font-display text-[24px] font-bold tracking-tight text-ink sm:text-[26px]">{{ home.categories_heading or "Shop by Category" }}</h2>
+			{%- if home.categories_subheading %}
+			<p class="mt-1.5 text-[14px] text-slate-500">{{ home.categories_subheading }}</p>
+			{%- endif %}
+		</div>
+
+		<div class="lm-snap-row -mx-4 mt-7 px-4 sm:mx-0 sm:grid sm:grid-cols-3 sm:gap-5 sm:overflow-visible sm:px-0 lg:grid-cols-6">
+			{%- for cat in categories %}
+			<a href="{{ cat.link }}"
+				class="lm-card group block w-[150px] shrink-0 overflow-hidden transition hover:-translate-y-0.5 hover:border-brand/40 hover:shadow-pop sm:w-auto">
+				<div class="flex h-[110px] items-center justify-center bg-page">
+					<img src="{{ product_image(cat, 'image') }}" alt="{{ cat.title }}"
+						class="h-full w-full object-cover transition duration-300 group-hover:scale-[1.04]" loading="lazy">
+				</div>
+				<div class="px-3.5 py-3">
+					<div class="text-[13px] font-semibold text-ink">{{ cat.title }}</div>
+					{%- if cat.subtitle %}
+					<div class="mt-0.5 text-[11.5px] text-slate-500">{{ cat.subtitle }}</div>
+					{%- endif %}
+				</div>
+			</a>
+			{%- endfor %}
+		</div>
+	</div>
+</section>
+{%- endif %}
+
 {# --------------------------------------------------------- product section #}
 {%- if products %}
-<section class="bg-white py-12 lg:py-14">
+<section class="bg-page py-12 lg:py-14" data-lm-reveal>
 	<div class="lm-shell">
 		<div class="flex items-end justify-between">
 			<div>
-				<h2 class="font-display text-[26px] font-bold tracking-tight text-ink">{{ home.products_heading }}</h2>
+				<h2 class="font-display text-[24px] font-bold tracking-tight text-ink sm:text-[26px]">{{ home.products_heading }}</h2>
 				{%- if home.products_subheading %}
 				<p class="mt-1.5 text-[14px] text-slate-500">{{ home.products_subheading }}</p>
 				{%- endif %}
@@ -78,6 +166,224 @@
 
 		<div class="mt-7 grid grid-cols-2 gap-5 lg:grid-cols-4">
 			{%- for laptop in products %}{{ cards.home_card(laptop, wishlist_ids) }}{% endfor %}
+		</div>
+	</div>
+</section>
+{%- endif %}
+
+{# ------------------------------------------------------------ promo banner (primary) #}
+{%- if promo_primary %}{{ promo_banner(promo_primary) }}{%- endif %}
+
+{# --------------------------------------------------------------- shop by brand #}
+{%- if brands %}
+<section class="bg-white py-12 lg:py-14" data-lm-reveal>
+	<div class="lm-shell">
+		<div>
+			<h2 class="font-display text-[24px] font-bold tracking-tight text-ink sm:text-[26px]">{{ home.brands_heading or "Shop Top Brands" }}</h2>
+			{%- if home.brands_subheading %}
+			<p class="mt-1.5 text-[14px] text-slate-500">{{ home.brands_subheading }}</p>
+			{%- endif %}
+		</div>
+
+		<div class="lm-snap-row -mx-4 mt-7 px-4 sm:mx-0 sm:grid sm:grid-cols-4 sm:gap-4 sm:overflow-visible sm:px-0 lg:grid-cols-8">
+			{%- for brand in brands %}
+			<a href="/shop?brand={{ brand.name }}"
+				aria-label="Shop {{ brand.brand_name }}"
+				class="lm-card flex h-20 w-28 shrink-0 items-center justify-center px-4 transition hover:-translate-y-0.5 hover:shadow-pop sm:w-auto">
+				{%- if brand.logo %}
+				<img src="{{ brand.logo }}" alt="{{ brand.brand_name }}" class="max-h-9 max-w-full object-contain" loading="lazy">
+				{%- else %}
+				<span class="text-[13px] font-semibold text-ink">{{ brand.brand_name }}</span>
+				{%- endif %}
+			</a>
+			{%- endfor %}
+		</div>
+	</div>
+</section>
+{%- endif %}
+
+{# ------------------------------------------------------- featured products #}
+{%- if featured_products %}
+<section class="bg-page py-12 lg:py-14" data-lm-reveal>
+	<div class="lm-shell">
+		<div class="flex items-end justify-between">
+			<div>
+				<h2 class="font-display text-[24px] font-bold tracking-tight text-ink sm:text-[26px]">{{ home.featured_heading or "Featured Laptops" }}</h2>
+				{%- if home.featured_subheading %}
+				<p class="mt-1.5 text-[14px] text-slate-500">{{ home.featured_subheading }}</p>
+				{%- endif %}
+			</div>
+			{%- if home.featured_cta_label %}
+			<a href="{{ home.featured_cta_link or '/shop' }}"
+				class="shrink-0 text-[13px] font-medium text-brand hover:underline">{{ home.featured_cta_label }}</a>
+			{%- endif %}
+		</div>
+
+		<div class="mt-7 grid grid-cols-2 gap-5 lg:grid-cols-4">
+			{%- for laptop in featured_products %}{{ cards.home_card(laptop, wishlist_ids) }}{% endfor %}
+		</div>
+	</div>
+</section>
+{%- endif %}
+
+{# ------------------------------------------------------------ shop by budget #}
+{%- if budget_ranges %}
+<section class="bg-white py-12 lg:py-14" data-lm-reveal>
+	<div class="lm-shell">
+		<div>
+			<h2 class="font-display text-[24px] font-bold tracking-tight text-ink sm:text-[26px]">{{ home.budget_heading or "Shop by Budget" }}</h2>
+			{%- if home.budget_subheading %}
+			<p class="mt-1.5 text-[14px] text-slate-500">{{ home.budget_subheading }}</p>
+			{%- endif %}
+		</div>
+
+		<div class="mt-7 grid grid-cols-2 gap-4 lg:grid-cols-4">
+			{%- for range in budget_ranges %}
+			<a href="{{ range.link }}"
+				class="lm-card group flex flex-col justify-between p-5 transition hover:-translate-y-0.5 hover:shadow-pop">
+				<div class="text-[15px] font-semibold text-ink">{{ range.title }}</div>
+				{%- if range.subtitle %}
+				<p class="mt-1 text-[12px] text-slate-500">{{ range.subtitle }}</p>
+				{%- endif %}
+				<span class="mt-4 inline-flex items-center gap-1 text-[12.5px] font-medium text-brand">
+					Shop Now {{ ic.icon("arrow-right", "h-3.5 w-3.5 transition group-hover:translate-x-0.5") }}
+				</span>
+			</a>
+			{%- endfor %}
+		</div>
+	</div>
+</section>
+{%- endif %}
+
+{# --------------------------------------------------------- shop by use case #}
+{%- if use_cases %}
+<section class="bg-page py-12 lg:py-14" data-lm-reveal>
+	<div class="lm-shell">
+		<div>
+			<h2 class="font-display text-[24px] font-bold tracking-tight text-ink sm:text-[26px]">{{ home.use_cases_heading or "Shop by Use Case" }}</h2>
+			{%- if home.use_cases_subheading %}
+			<p class="mt-1.5 text-[14px] text-slate-500">{{ home.use_cases_subheading }}</p>
+			{%- endif %}
+		</div>
+
+		<div class="mt-7 grid grid-cols-2 gap-5 lg:grid-cols-3">
+			{%- for use in use_cases %}
+			<a href="{{ use.link }}" class="lm-card group flex items-center gap-4 p-4 transition hover:-translate-y-0.5 hover:border-brand/40 hover:shadow-pop sm:p-5">
+				<span class="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-brand-50 text-brand">
+					{%- if use.image %}
+					<img src="{{ use.image }}" alt="" class="h-full w-full object-cover">
+					{%- else %}
+					{{ ic.icon("laptop", "h-6 w-6") }}
+					{%- endif %}
+				</span>
+				<span>
+					<span class="block text-[14px] font-semibold text-ink">{{ use.usage_name }}</span>
+					{%- if use.short_description %}
+					<span class="mt-0.5 block text-[12px] leading-snug text-slate-500">{{ use.short_description }}</span>
+					{%- endif %}
+				</span>
+			</a>
+			{%- endfor %}
+		</div>
+	</div>
+</section>
+{%- endif %}
+
+{# ------------------------------------------------------- why choose lapmarkaz #}
+{%- if why_choose_items %}
+<section class="bg-navy py-12 lg:py-16" data-lm-reveal>
+	<div class="lm-shell">
+		<div class="text-center">
+			<h2 class="font-display text-[24px] font-bold tracking-tight text-white sm:text-[26px]">{{ home.why_choose_heading or "Why Choose hamzatraders" }}</h2>
+			{%- if home.why_choose_subheading %}
+			<p class="mx-auto mt-1.5 max-w-[520px] text-[14px] text-white/70">{{ home.why_choose_subheading }}</p>
+			{%- endif %}
+		</div>
+
+		<div class="mt-9 grid grid-cols-2 gap-5 lg:grid-cols-3">
+			{%- for item in why_choose_items %}
+			<div class="rounded-xl border border-white/10 bg-white/5 p-5">
+				<span class="flex h-11 w-11 items-center justify-center rounded-full {{ 'bg-success' if loop.index0 % 2 else 'bg-brand' }} text-white">
+					{{ ic.icon(item.icon or "shield-check", "h-5 w-5") }}
+				</span>
+				<div class="mt-3.5 text-[14px] font-semibold text-white">{{ item.title }}</div>
+				{%- if item.description %}
+				<p class="mt-1 text-[12.5px] leading-relaxed text-white/60">{{ item.description }}</p>
+				{%- endif %}
+			</div>
+			{%- endfor %}
+		</div>
+	</div>
+</section>
+{%- endif %}
+
+{# ------------------------------------------------------------ promo banner (secondary) #}
+{%- if promo_secondary %}{{ promo_banner(promo_secondary) }}{%- endif %}
+
+{# ----------------------------------------------------------------- testimonials #}
+{%- if testimonials %}
+<section class="bg-success-50/50 py-12 lg:py-14" data-lm-reveal>
+	<div class="lm-shell">
+		<h2 class="text-center font-display text-[24px] font-bold tracking-tight text-ink sm:text-[26px]">{{ home.testimonials_heading or "What Our Customers Say" }}</h2>
+
+		<div class="lm-snap-row -mx-4 mt-8 px-4 sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-5 sm:overflow-visible sm:px-0 lg:grid-cols-3">
+			{%- for t in testimonials %}
+			<div class="lm-card flex w-[280px] shrink-0 flex-col p-5 sm:w-auto">
+				<div class="flex items-center gap-0.5 text-amber-400">
+					{%- for _ in range(t.rating | int) %}{{ ic.icon("star", "h-3.5 w-3.5") }}{% endfor %}
+					{%- for _ in range(5 - (t.rating | int)) %}{{ ic.icon("star-outline", "h-3.5 w-3.5 text-slate-300") }}{% endfor %}
+				</div>
+				<p class="mt-3 flex-1 text-[13px] leading-relaxed text-slate-600">&ldquo;{{ t.review_text }}&rdquo;</p>
+				<div class="mt-4 flex items-center gap-3 border-t border-line pt-4">
+					{%- if t.customer_image %}
+					<img src="{{ t.customer_image }}" alt="" class="h-9 w-9 rounded-full object-cover">
+					{%- else %}
+					<span class="flex h-9 w-9 items-center justify-center rounded-full bg-brand-50 text-[13px] font-semibold text-brand">
+						{{ t.customer_name[0] | upper }}
+					</span>
+					{%- endif %}
+					<div>
+						<div class="flex items-center gap-1.5 text-[12.5px] font-semibold text-ink">
+							{{ t.customer_name }}
+							{%- if t.verified %}
+							<span class="text-success-600" aria-label="Verified customer">{{ ic.icon("verified", "h-3.5 w-3.5") }}</span>
+							{%- endif %}
+						</div>
+						{%- if t.location %}
+						<div class="text-[11.5px] text-slate-500">{{ t.location }}</div>
+						{%- endif %}
+					</div>
+				</div>
+			</div>
+			{%- endfor %}
+		</div>
+	</div>
+</section>
+{%- endif %}
+
+{# --------------------------------------------------------------------- faq #}
+{%- if faqs %}
+<section class="bg-white py-12 lg:py-14" data-lm-reveal>
+	<div class="lm-shell max-w-[760px]">
+		<h2 class="text-center font-display text-[24px] font-bold tracking-tight text-ink sm:text-[26px]">{{ home.faq_heading or "Frequently Asked Questions" }}</h2>
+
+		<div class="mt-8 divide-y divide-line overflow-hidden rounded-xl border border-line">
+			{%- for faq in faqs %}
+			<div>
+				<h3>
+					<button type="button" data-lm-faq-toggle aria-expanded="false" aria-controls="lm-faq-panel-{{ loop.index }}"
+						class="flex w-full items-center justify-between gap-4 px-5 py-4 text-left transition hover:bg-page">
+						<span class="text-[14px] font-medium text-ink">{{ faq.question }}</span>
+						<span class="shrink-0 text-slate-400" data-lm-faq-icon>{{ ic.icon("chevron-down", "h-4 w-4") }}</span>
+					</button>
+				</h3>
+				<div id="lm-faq-panel-{{ loop.index }}" class="lm-faq-panel" data-lm-faq-panel>
+					<div class="overflow-hidden">
+						<p class="px-5 pb-4 text-[13.5px] leading-relaxed text-slate-500">{{ faq.answer }}</p>
+					</div>
+				</div>
+			</div>
+			{%- endfor %}
 		</div>
 	</div>
 </section>
@@ -118,8 +424,8 @@
 
 		function say(text, ok) {
 			msg.textContent = text;
-			msg.classList.remove("hidden", "text-emerald-600", "text-red-600");
-			msg.classList.add(ok ? "text-emerald-600" : "text-red-600");
+			msg.classList.remove("hidden", "text-success-700", "text-danger-600");
+			msg.classList.add(ok ? "text-success-700" : "text-danger-600");
 		}
 
 		form.addEventListener("submit", function (event) {

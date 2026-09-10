@@ -26,7 +26,7 @@ def get_context(context):
 
 	settings = frappe.get_cached_doc("Store Locator Settings")
 	context.settings = settings
-	context.title = settings.page_title or "Store Locator | Lapmarkaz"
+	context.title = settings.page_title or "Store Locator | hamzatraders"
 	context.description = settings.meta_description or ""
 
 	city = (frappe.form_dict.get("city") or "").strip()

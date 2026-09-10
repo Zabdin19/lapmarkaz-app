@@ -9,7 +9,8 @@
  "field_order": [
   "brand_name",
   "logo",
-  "display_order"
+  "display_order",
+  "show_on_home"
  ],
  "fields": [
   {
@@ -28,6 +29,13 @@
    "fieldname": "display_order",
    "fieldtype": "Int",
    "label": "Display Order"
+  },
+  {
+   "default": "1",
+   "description": "Include this brand in the homepage \"Shop Top Brands\" section",
+   "fieldname": "show_on_home",
+   "fieldtype": "Check",
+   "label": "Show on Homepage"
   }
  ],
  "index_web_pages_for_search": 1,
