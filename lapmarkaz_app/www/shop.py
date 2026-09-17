@@ -169,7 +169,7 @@ def _pagination(current, total_pages, window=2):
 
 def get_context(context):
 	context.no_cache = 1
-	context.title = "All Laptops | hamzatraders"
+	context.title = "All Laptops | HamzaTraders"
 
 	chosen = _selected()
 	search = (frappe.form_dict.get("q") or "").strip()
@@ -223,7 +223,7 @@ def get_context(context):
 		{"label": "Support", "href": "/support"},
 	]
 	context.footer_variant = "slim"
-	context.footer_note = "© 2024 hamzatraders. Premium Tech for Pakistan."
+	context.footer_note = "© 2024 HamzaTraders. Premium Tech for Pakistan."
 	context.footer_links = [
 		{"label": "Warranty Policy", "href": "/warranty"},
 		{"label": "Shipping Info", "href": "/shipping"},

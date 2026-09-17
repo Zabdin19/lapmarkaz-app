@@ -87,9 +87,9 @@ def run():
 			),
 			"channels_heading": "Direct Channels",
 			"resources_heading": "Technical Resources",
-			"footer_note": "© 2024 hamzatraders. All rights reserved.",
+			"footer_note": "© 2024 HamzaTraders. All rights reserved.",
 			"footer_tagline": "Premium Laptops in Pakistan.",
-			"page_title": "Support | hamzatraders",
+			"page_title": "Support | HamzaTraders",
 			"meta_description": (
 				"Track orders, claim warranty, download drivers or talk to the hamzatraders team. "
 				"Answers to the questions we're asked most."

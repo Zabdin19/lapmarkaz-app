@@ -181,7 +181,7 @@
    "label": "Footer"
   },
   {
-   "default": "\u00a9 2024 Lapmarkaz. All rights reserved.",
+   "default": "\u00a9 2024 HamzaTraders. All rights reserved.",
    "fieldname": "footer_note",
    "fieldtype": "Data",
    "label": "Copyright Note"
@@ -208,7 +208,7 @@
    "label": "SEO"
   },
   {
-   "default": "Support | Lapmarkaz",
+   "default": "Support | HamzaTraders",
    "fieldname": "page_title",
    "fieldtype": "Data",
    "label": "Page Title"

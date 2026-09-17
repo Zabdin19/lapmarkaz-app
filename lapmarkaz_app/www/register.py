@@ -13,7 +13,7 @@ import frappe
 
 def get_context(context):
 	context.no_cache = 1
-	context.title = "Create your Account | hamzatraders"
+	context.title = "Create your Account | HamzaTraders"
 
 	redirect_to = frappe.form_dict.get("redirect-to") or "/"
 
@@ -26,6 +26,6 @@ def get_context(context):
 	context.page_bg = "bg-page"
 	context.header_variant = "wordmark"
 	context.footer_variant = "bar"
-	context.footer_note = "© 2024 hamzatraders Pakistan. Secure Checkout."
+	context.footer_note = "© 2024 HamzaTraders Pakistan. Secure Checkout."
 
 	return context

@@ -1,10 +1,11 @@
 {# Light grey footer: wordmark + copyright left, policy links right. #}
+{% import "templates/includes/lm_brand.html" as brand %}
 <footer class="bg-surface-muted">
 	<div class="lm-shell flex flex-col gap-6 py-8 lg:flex-row lg:items-start lg:justify-between">
 		<div>
-			<p class="font-display text-[19px] font-bold tracking-tight text-ink">hamzatraders</p>
+			{{ brand.wordmark("light", False, "h-8") }}
 			<p class="mt-2 max-w-[240px] text-[12.5px] leading-relaxed text-slate-500">
-				{{ footer_note or "© 2024 hamzatraders Pakistan. All rights reserved." }}
+				{{ footer_note or "© 2024 HamzaTraders Pakistan. All rights reserved." }}
 			</p>
 		</div>
 

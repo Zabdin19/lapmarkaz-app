@@ -129,7 +129,7 @@ def run():
 			"use_cases_subheading": "Pick a laptop for what you'll actually use it for.",
 			"use_cases_limit": 6,
 			"show_why_choose": 1,
-			"why_choose_heading": "Why Choose hamzatraders",
+			"why_choose_heading": "Why Choose HamzaTraders",
 			"testimonials_heading": "What Our Customers Say",
 			"faq_heading": "Frequently Asked Questions",
 			"show_newsletter": 1,
@@ -151,8 +151,8 @@ def run():
 			"contact_address": "Karachi, Pakistan",
 			"contact_phone": "+92 321 2789920",
 			"contact_email": "Info@lapmarkaz.pk",
-			"footer_note": "© 2024 hamzatraders Pakistan. All rights reserved.",
-			"page_title": "hamzatraders — Premium Tech for Pakistan",
+			"footer_note": "© 2024 HamzaTraders Pakistan. All rights reserved.",
+			"page_title": "HamzaTraders — Premium Tech for Pakistan",
 			"meta_description": (
 				"Buy authentic new and certified refurbished laptops in Pakistan. Genuine "
 				"warranty, nationwide delivery and cash on delivery."

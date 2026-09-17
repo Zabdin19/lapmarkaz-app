@@ -23,7 +23,13 @@ class LapmarkazPolicyPage(WebsiteGenerator):
 		from lapmarkaz_app.utils.chrome import storefront_chrome
 
 		context.no_cache = 1
-		context.title = self.meta_title or self.title
+		page_title = self.meta_title or self.title
+		for suffix in (" | Lapmarkaz", " | hamzatraders"):
+			if page_title.endswith(suffix):
+				page_title = page_title[: -len(suffix)]
+		context.title = (
+			page_title if page_title.endswith(" | HamzaTraders") else f"{page_title} | HamzaTraders"
+		)
 		context.description = self.meta_description or ""
 		context.policy = self
 
@@ -47,4 +53,3 @@ def customer_service_links():
 	return [{"label": p.title, "href": "/" + p.route} for p in policies] + [
 		{"label": "Store Locator", "href": "/stores"}
 	]
-

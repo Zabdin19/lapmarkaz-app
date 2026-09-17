@@ -16,6 +16,11 @@
 #}
 {% extends "templates/base.html" %}
 
+{%- block favicon -%}
+	<link rel="icon" href="{{ favicon | abs_url }}"
+		{% if favicon.endswith('.svg') %}type="image/svg+xml"{% endif %}>
+{%- endblock -%}
+
 {%- block head -%}
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

@@ -78,7 +78,7 @@
    "fieldtype": "Column Break"
   },
   {
-   "default": "\u00a9 2024 Lapmarkaz. All rights reserved. High-performance computing for Pakistan.",
+   "default": "\u00a9 2024 HamzaTraders. All rights reserved. High-performance computing for Pakistan.",
    "fieldname": "footer_note",
    "fieldtype": "Data",
    "label": "Copyright Note"
@@ -89,7 +89,7 @@
    "label": "SEO"
   },
   {
-   "default": "Premium Accessories | Lapmarkaz",
+   "default": "Premium Accessories | HamzaTraders",
    "fieldname": "page_title",
    "fieldtype": "Data",
    "label": "Page Title"

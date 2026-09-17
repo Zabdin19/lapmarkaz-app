@@ -94,8 +94,8 @@ def run():
 			"footer_tagline": "Premium tech solutions for Pakistan. Quality guaranteed.",
 			"contact_email": "Info@lapmarkaz.pk",
 			"contact_phone": "+92 321 2789920",
-			"footer_note": "© 2024 hamzatraders Pakistan. All rights reserved.",
-			"page_title": "About Us | hamzatraders",
+			"footer_note": "© 2024 HamzaTraders Pakistan. All rights reserved.",
+			"page_title": "About Us | HamzaTraders",
 			"meta_description": (
 				"hamzatraders provides authentic, certified refurbished laptops and accessories "
 				"across Pakistan, backed by rigorous inspection and real warranty support."

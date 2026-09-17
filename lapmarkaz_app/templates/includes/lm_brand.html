@@ -1,0 +1,20 @@
+{% macro wordmark(tone="light", compact_mobile=False, classes="h-8") -%}
+<a href="/" aria-label="HamzaTraders home" class="inline-flex shrink-0 items-center">
+	{%- if compact_mobile %}
+	<picture>
+		<source media="(min-width: 640px)"
+			srcset="/assets/lapmarkaz_app/images/{{ 'logo-white.svg' if tone == 'dark' else 'logo.svg' }}">
+		<img src="/assets/lapmarkaz_app/images/logo-mark.svg" alt="HamzaTraders" class="w-auto {{ classes }}">
+	</picture>
+	{%- else %}
+	<img src="/assets/lapmarkaz_app/images/{{ 'logo-white.svg' if tone == 'dark' else 'logo.svg' }}"
+		alt="HamzaTraders" class="w-auto {{ classes }}">
+	{%- endif %}
+</a>
+{%- endmacro %}
+
+{% macro mark(classes="h-11 w-11") -%}
+<a href="/" aria-label="HamzaTraders home" class="inline-flex shrink-0 items-center">
+	<img src="/assets/lapmarkaz_app/images/logo-mark.svg" alt="HamzaTraders" class="{{ classes }}">
+</a>
+{%- endmacro %}

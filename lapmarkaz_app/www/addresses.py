@@ -11,7 +11,7 @@ from lapmarkaz_app.utils.chrome import storefront_chrome
 
 def get_context(context):
 	context.no_cache = 1
-	context.title = "My Addresses | hamzatraders"
+	context.title = "My Addresses | HamzaTraders"
 
 	if frappe.session.user == "Guest":
 		frappe.local.flags.redirect_location = "/login?redirect-to=/addresses"

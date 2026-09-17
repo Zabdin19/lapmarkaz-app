@@ -19,7 +19,7 @@ def get_context(context):
 
 	laptop = frappe.get_doc("Laptop", name)
 	context.laptop = laptop
-	context.title = f"{laptop.brand} {laptop.model} | hamzatraders"
+	context.title = f"{laptop.brand} {laptop.model} | HamzaTraders"
 
 	context.gallery = [row.image for row in laptop.images if row.image] or [laptop.thumbnail]
 
@@ -114,7 +114,7 @@ def get_context(context):
 			],
 		},
 	]
-	context.footer_note = "© 2024 hamzatraders Pakistan. All rights reserved."
+	context.footer_note = "© 2024 HamzaTraders Pakistan. All rights reserved."
 
 	return context
 

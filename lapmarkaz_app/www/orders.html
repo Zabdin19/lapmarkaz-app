@@ -1,7 +1,7 @@
 {% extends "templates/lapmarkaz_base.html" %}
 {% import "templates/includes/lm_icons.html" as ic %}
 
-{% block title %}My Orders | hamzatraders{% endblock %}
+{% block title %}My Orders | HamzaTraders{% endblock %}
 
 {% block lm_content %}
 <div class="lm-shell py-10">
@@ -10,7 +10,7 @@
 		<div>
 			<h1 class="font-display text-[30px] font-bold tracking-tight text-ink">My Orders</h1>
 			<p class="mt-2 text-[14px] text-slate-500">
-				{{ orders | length }} order{{ "" if orders | length == 1 else "s" }} placed with hamzatraders.
+				{{ orders | length }} order{{ "" if orders | length == 1 else "s" }} placed with HamzaTraders.
 			</p>
 		</div>
 		<a href="/account" class="text-[13.5px] font-medium text-brand hover:underline">Back to My Account</a>

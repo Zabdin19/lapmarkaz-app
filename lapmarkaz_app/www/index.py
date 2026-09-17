@@ -47,7 +47,7 @@ def get_context(context):
 
 	settings = frappe.get_cached_doc("Home Page Settings")
 	context.home = settings
-	context.title = settings.page_title or "hamzatraders — Premium Tech for Pakistan"
+	context.title = settings.page_title or "HamzaTraders — Premium Tech for Pakistan"
 	context.description = settings.meta_description or ""
 
 	context.hero_slides = (

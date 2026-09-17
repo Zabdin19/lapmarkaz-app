@@ -86,7 +86,7 @@ def _build_filters(chosen, search):
 
 def get_context(context):
 	context.no_cache = 1
-	context.title = "Printing Accessories | hamzatraders"
+	context.title = "Printing Accessories | HamzaTraders"
 	context.heading = "Printing Accessories"
 	context.subheading = "Toner, ink, drums and parts for your printer — filter by brand or type below."
 
@@ -140,7 +140,7 @@ def get_context(context):
 		{"label": "Support", "href": "/support"},
 	]
 	context.footer_variant = "slim"
-	context.footer_note = "© 2024 hamzatraders. Premium Tech for Pakistan."
+	context.footer_note = "© 2024 HamzaTraders. Premium Tech for Pakistan."
 	context.footer_links = [
 		{"label": "Warranty Policy", "href": "/warranty"},
 		{"label": "Shipping Info", "href": "/shipping"},

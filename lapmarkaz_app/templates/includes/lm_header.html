@@ -1,4 +1,5 @@
 {% import "templates/includes/lm_icons.html" as ic %}
+{% import "templates/includes/lm_brand.html" as brand %}
 
 {%- set layout = header_layout or "search-center" -%}
 {%- set nav = nav_items or [
@@ -9,12 +10,7 @@
 ] -%}
 
 {%- macro wordmark() -%}
-<a href="/" class="flex shrink-0 items-center gap-2.5">
-	{%- if show_logo_mark %}
-	<img src="/assets/lapmarkaz_app/images/logo-mark.svg" alt="" class="h-7 w-7 rounded-md">
-	{%- endif %}
-	<span class="font-display text-[20px] font-extrabold tracking-tight text-ink">hamzatraders</span>
-</a>
+{{ brand.wordmark("light", True, "h-8") }}
 {%- endmacro -%}
 
 {%- macro searchbox(extra="") -%}
@@ -37,7 +33,7 @@
 {%- macro navlinks() -%}
 {#
 	`min-[1200px]:flex` (not the stock `lg` = 1024px, and not the 1152px this
-	was originally tuned to before the "hamzatraders" rebrand widened the
+	was originally tuned to before the HamzaTraders rebrand widened the
 	wordmark): with 5 links — including the two-word "Printing Machines" /
 	"Printing Accessories" — the nav's natural single-line width plus the
 	wordmark, search box and account/cart actions doesn't fit inside the shell

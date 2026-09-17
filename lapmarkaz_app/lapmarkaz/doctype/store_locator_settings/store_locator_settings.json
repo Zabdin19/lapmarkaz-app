@@ -27,7 +27,7 @@
  ],
  "fields": [
   {
-   "default": "Find a Lapmarkaz Store",
+   "default": "Find a HamzaTraders Store",
    "fieldname": "heading",
    "fieldtype": "Data",
    "label": "Heading",
@@ -44,7 +44,7 @@
    "label": "SEO"
   },
   {
-   "default": "Store Locator | Lapmarkaz",
+   "default": "Store Locator | HamzaTraders",
    "fieldname": "page_title",
    "fieldtype": "Data",
    "label": "Page Title"

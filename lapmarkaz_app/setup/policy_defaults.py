@@ -202,7 +202,7 @@ def run():
 	settings = frappe.get_single("Store Locator Settings")
 	settings.update(
 		{
-			"heading": "Find a hamzatraders Store",
+			"heading": "Find a HamzaTraders Store",
 			"subheading": (
 				"Come see the machines in person. Every branch keeps display stock you can test, "
 				"and handles warranty drop-offs for orders bought online."
@@ -215,7 +215,7 @@ def run():
 			"empty_body": "Try another city, or reach us online.",
 			"empty_cta_label": "Contact Support",
 			"empty_cta_link": "/support",
-			"page_title": "Store Locator | hamzatraders",
+			"page_title": "Store Locator | HamzaTraders",
 			"meta_description": "hamzatraders store addresses, phone numbers and opening hours across Pakistan.",
 		}
 	)

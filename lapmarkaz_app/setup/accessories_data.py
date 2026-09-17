@@ -146,8 +146,8 @@ def run():
 				"High-performance computing for Pakistan. Your trusted source for premium "
 				"laptops and accessories."
 			),
-			"footer_note": "© 2024 hamzatraders. All rights reserved. High-performance computing for Pakistan.",
-			"page_title": "Premium Accessories | hamzatraders",
+			"footer_note": "© 2024 HamzaTraders. All rights reserved. High-performance computing for Pakistan.",
+			"page_title": "Premium Accessories | HamzaTraders",
 			"meta_description": (
 				"Shop mice, keyboards, chargers, bags and headsets from Logitech, Razer, Dell, "
 				"HP and Lenovo — with genuine warranty and nationwide delivery."

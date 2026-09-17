@@ -92,7 +92,7 @@ def get_context(context):
 
 	settings = frappe.get_cached_doc("Accessories Page Settings")
 	context.settings = settings
-	context.title = settings.page_title or "Premium Accessories | hamzatraders"
+	context.title = settings.page_title or "Premium Accessories | HamzaTraders"
 	context.description = settings.meta_description or ""
 
 	page_size = cint(settings.page_size) or 8

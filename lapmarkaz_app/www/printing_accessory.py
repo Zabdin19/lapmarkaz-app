@@ -19,7 +19,7 @@ def get_context(context):
 
 	accessory = frappe.get_doc("Printing Accessory", name)
 	context.accessory = accessory
-	context.title = f"{accessory.accessory_name} | hamzatraders"
+	context.title = f"{accessory.accessory_name} | HamzaTraders"
 
 	context.spec_groups = [s for s in [
 		{"label": "Brand", "value": accessory.brand, "note": None},
@@ -50,7 +50,7 @@ def get_context(context):
 		{"label": "Support", "href": "/support"},
 	]
 	context.footer_variant = "slim"
-	context.footer_note = "© 2024 hamzatraders. Premium Tech for Pakistan."
+	context.footer_note = "© 2024 HamzaTraders. Premium Tech for Pakistan."
 	context.footer_links = [
 		{"label": "Warranty Policy", "href": "/warranty"},
 		{"label": "Shipping Info", "href": "/shipping"},

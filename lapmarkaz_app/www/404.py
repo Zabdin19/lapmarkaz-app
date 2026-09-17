@@ -17,7 +17,7 @@ from lapmarkaz_app.utils.chrome import storefront_chrome
 def get_context(context):
 	context.http_status_code = 404
 	context.no_cache = 1
-	context.title = "Page Not Found | hamzatraders"
+	context.title = "Page Not Found | HamzaTraders"
 
 	# The path that missed, so we can show it back to the visitor.
 	request = getattr(frappe.local, "request", None)

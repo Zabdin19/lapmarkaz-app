@@ -22,7 +22,7 @@ no_cache = 1
 
 def get_context(context):
 	context.no_cache = 1
-	context.title = "Reset Password | hamzatraders"
+	context.title = "Reset Password | HamzaTraders"
 
 	context.page_bg = "min-h-screen bg-white"
 	context.header_variant = "none"

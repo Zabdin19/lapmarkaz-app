@@ -10,6 +10,7 @@ import frappe
 from lapmarkaz_app.api.cart import get_cart_count
 
 CSS_PATH = "lapmarkaz_app/public/css/lapmarkaz.css"
+HAMZATRADERS_FAVICON = "/assets/lapmarkaz_app/images/favicon.svg"
 
 
 def asset_version():
@@ -24,6 +25,8 @@ def asset_version():
 def update_context(context):
 	context.lm_asset_version = asset_version()
 	context.cart_count = get_cart_count()
+	if not frappe.db.get_single_value("Website Settings", "favicon"):
+		context.favicon = HAMZATRADERS_FAVICON
 
 	user = frappe.session.user
 	context.lm_user = None if user == "Guest" else user

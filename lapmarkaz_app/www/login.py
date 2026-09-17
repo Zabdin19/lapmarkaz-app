@@ -38,7 +38,7 @@ def _is_desk_redirect(redirect_to):
 
 def get_context(context):
 	context.no_cache = 1
-	context.title = "Login | hamzatraders"
+	context.title = "Login | HamzaTraders"
 
 	redirect_to = frappe.form_dict.get("redirect-to") or "/"
 

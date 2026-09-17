@@ -404,7 +404,7 @@
    "label": "Show Section"
   },
   {
-   "default": "Why Choose Lapmarkaz",
+   "default": "Why Choose HamzaTraders",
    "fieldname": "why_choose_heading",
    "fieldtype": "Data",
    "label": "Heading"
@@ -566,7 +566,7 @@
    "options": "Email"
   },
   {
-   "default": "\u00a9 2024 Lapmarkaz Pakistan. All rights reserved.",
+   "default": "\u00a9 2024 HamzaTraders Pakistan. All rights reserved.",
    "fieldname": "footer_note",
    "fieldtype": "Data",
    "label": "Copyright Note"
@@ -577,7 +577,7 @@
    "label": "SEO"
   },
   {
-   "default": "Lapmarkaz \u2014 Premium Tech for Pakistan",
+   "default": "HamzaTraders \u2014 Premium Tech for Pakistan",
    "fieldname": "page_title",
    "fieldtype": "Data",
    "label": "Page Title"

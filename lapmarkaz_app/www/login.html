@@ -1,8 +1,9 @@
 {% set login_template = "frappe/www/login.html" if use_frappe_login else "templates/lapmarkaz_base.html" %}
 {% extends login_template %}
 {% import "templates/includes/lm_icons.html" as ic %}
+{% import "templates/includes/lm_brand.html" as brand %}
 
-{% block title %}{% if use_frappe_login %}{{ _("Login") }}{% else %}Login | hamzatraders{% endif %}{% endblock %}
+{% block title %}{% if use_frappe_login %}{{ _("Login") }}{% else %}Login | HamzaTraders{% endif %}{% endblock %}
 
 {% block lm_content %}
 <div class="grid min-h-screen lg:grid-cols-2">
@@ -27,9 +28,7 @@
 	<div class="flex items-center justify-center px-6 py-12 sm:px-10">
 		<div class="w-full max-w-[400px]">
 
-			<a href="/" class="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-line p-1.5">
-				<img src="/assets/lapmarkaz_app/images/logo-mark.svg" alt="hamzatraders" class="h-full w-full">
-			</a>
+			{{ brand.wordmark("light", False, "h-10") }}
 
 			<h1 class="mt-7 font-display text-[34px] font-bold tracking-tight text-ink">Login</h1>
 			<p class="mt-2 text-[14px] text-slate-500">Please enter your details to sign in to your account.</p>

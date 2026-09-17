@@ -234,7 +234,7 @@
    "label": "Contact Phone"
   },
   {
-   "default": "\u00a9 2024 Lapmarkaz Pakistan. All rights reserved.",
+   "default": "\u00a9 2024 HamzaTraders Pakistan. All rights reserved.",
    "fieldname": "footer_note",
    "fieldtype": "Data",
    "label": "Copyright Note"
@@ -245,7 +245,7 @@
    "label": "SEO"
   },
   {
-   "default": "About Us | Lapmarkaz",
+   "default": "About Us | HamzaTraders",
    "fieldname": "page_title",
    "fieldtype": "Data",
    "label": "Page Title"
